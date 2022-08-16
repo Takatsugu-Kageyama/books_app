@@ -1,0 +1,6 @@
+.overall {
+  @apply flex flex-col gap-y-[30px];
+  .booksBox {
+    @apply text-[32px];
+  }
+}

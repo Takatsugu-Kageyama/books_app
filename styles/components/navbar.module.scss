@@ -1,0 +1,24 @@
+.overall {
+  @apply px-[24px];
+
+  .nav {
+    @apply pt-[30px] md:text-[18px];
+    .logo {
+      @apply cursor-pointer self-center w-[131.28px] h-[17px] flex items-center justify-center;
+      img {
+        @apply w-full;
+      }
+
+      &:hover {
+        @apply opacity-[70%];
+      }
+    }
+
+    ul {
+      @apply flex flex-col gap-y-[20px] pt-[50px];
+      li:hover {
+        @apply opacity-[70%];
+      }
+    }
+  }
+}

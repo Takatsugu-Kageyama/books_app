@@ -1,0 +1,23 @@
+.overall {
+  @apply px-[24px];
+}
+.overall .nav {
+  @apply pt-[30px] md:text-[18px];
+}
+.overall .nav .logo {
+  @apply cursor-pointer self-center w-[131.28px] h-[17px] flex items-center justify-center;
+}
+.overall .nav .logo img {
+  @apply w-full;
+}
+.overall .nav .logo:hover {
+  @apply opacity-[70%];
+}
+.overall .nav ul {
+  @apply flex flex-col gap-y-[20px] pt-[50px];
+}
+.overall .nav ul li:hover {
+  @apply opacity-[70%];
+}
+
+/*# sourceMappingURL=navbar.module.css.map */

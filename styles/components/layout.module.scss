@@ -1,0 +1,45 @@
+.layoutWrap {
+  .contentsWrap {
+    @apply flex w-[100vw] max-h-screen min-h-screen overflow-hidden;
+    .rightSideWrap {
+      @apply basis-full;
+      .topContainer {
+        @apply flex justify-between pt-[20px] md:text-[18px] pr-[50px];
+
+        .inputArea {
+          @apply w-[80%];
+          input {
+            @apply w-[80%] h-[40px] bg-middleGray rounded-l-[6px] px-[10px];
+            &:focus {
+              @apply outline-middleGreen;
+            }
+          }
+
+          button {
+            @apply bg-middleGreen w-[10%] h-[40px] rounded-r-[6px] align-top;
+            &:hover {
+              @apply opacity-[70%];
+            }
+          }
+        }
+
+        .indArea {
+          @apply flex items-center gap-x-[32px];
+          .cartBtn {
+            @apply w-[80px] h-[32px] rounded-[20px] bg-middleGreen flex items-center justify-center;
+          }
+
+          .accountBtn {
+            .accountIcon {
+              @apply text-[32px];
+            }
+          }
+        }
+      }
+
+      .main {
+        @apply bg-middleGray mt-[30px] h-screen;
+      }
+    }
+  }
+}

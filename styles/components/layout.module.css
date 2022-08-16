@@ -1,0 +1,38 @@
+.layoutWrap .contentsWrap {
+  @apply flex w-[100vw] max-h-screen min-h-screen overflow-hidden;
+}
+.layoutWrap .contentsWrap .rightSideWrap {
+  @apply basis-full;
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer {
+  @apply flex justify-between pt-[20px] md:text-[18px] pr-[50px];
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea {
+  @apply w-[80%];
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea input {
+  @apply w-[80%] h-[40px] bg-middleGray rounded-l-[6px] px-[10px];
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea input:focus {
+  @apply outline-middleGreen;
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea button {
+  @apply bg-middleGreen w-[10%] h-[40px] rounded-r-[6px] align-top;
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea button:hover {
+  @apply opacity-[70%];
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .indArea {
+  @apply flex items-center gap-x-[32px];
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .indArea .cartBtn {
+  @apply w-[80px] h-[32px] rounded-[20px] bg-middleGreen flex items-center justify-center;
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .indArea .accountBtn .accountIcon {
+  @apply text-[32px];
+}
+.layoutWrap .contentsWrap .rightSideWrap .main {
+  @apply bg-middleGray mt-[30px] h-screen;
+}
+
+/*# sourceMappingURL=layout.module.css.map */
