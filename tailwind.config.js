@@ -8,7 +8,11 @@ module.exports = {
     extend: {
       colors: {
         middleGray: "#EEEEEE",
+        fadeGray: "#9A9A9A",
+        hoverGray: "#727272",
         middleGreen: "#D9F8BF",
+        middleRed: "#D08080",
+        middleBlack: "#555555",
       },
     },
   },

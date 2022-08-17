@@ -1,9 +1,11 @@
 .overall {
   @apply flex flex-col gap-y-[30px] pt-[30px] pb-[180px];
+  .header {
+    @apply text-[32px] text-center font-bold text-middleBlack;
+  }
 
   .booksBox {
     @apply text-[32px] w-[90%] mx-auto;
-
     .booksCardArea {
       @apply flex justify-between pt-[30px] grid-cols-5;
       .booksCard {

@@ -32,7 +32,7 @@
   @apply text-[32px];
 }
 .layoutWrap .contentsWrap .rightSideWrap .main {
-  @apply bg-middleGray mt-[30px] h-screen;
+  @apply bg-middleGray mt-[30px] h-screen overflow-y-scroll;
 }
 
 /*# sourceMappingURL=layout.module.css.map */

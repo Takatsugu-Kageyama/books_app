@@ -38,7 +38,7 @@
       }
 
       .main {
-        @apply bg-middleGray mt-[30px] h-screen;
+        @apply bg-middleGray mt-[30px] h-screen overflow-y-scroll;
       }
     }
   }

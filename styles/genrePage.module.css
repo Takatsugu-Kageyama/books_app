@@ -1,6 +1,9 @@
 .overall {
   @apply flex flex-col gap-y-[30px] pt-[30px] pb-[180px];
 }
+.overall .header {
+  @apply text-[32px] text-center font-bold text-middleBlack;
+}
 .overall .booksBox {
   @apply text-[32px] w-[90%] mx-auto;
 }
@@ -26,4 +29,4 @@
   @apply text-[20px] text-middleRed;
 }
 
-/*# sourceMappingURL=Home.module.css.map */
+/*# sourceMappingURL=genrePage.module.css.map */
