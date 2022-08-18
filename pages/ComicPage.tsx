@@ -32,7 +32,7 @@ const ComicPage = () => {
         <div className={styles.booksCardArea}>
           {comicNewPosts.map((value: any) => {
             return (
-              <div className={styles.booksCard}>
+              <div key={null} className={styles.booksCard}>
                 <div
                   className={styles.booksImg}
                   onClick={() => {
@@ -64,7 +64,7 @@ const ComicPage = () => {
         <div className={styles.booksCardArea}>
           {comicEarningsPosts.map((value: any) => {
             return (
-              <div className={styles.booksCard}>
+              <div key={null} className={styles.booksCard}>
                 <div
                   className={styles.booksImg}
                   onClick={() => {
@@ -96,7 +96,7 @@ const ComicPage = () => {
         <div className={styles.booksCardArea}>
           {comicEvaluationPosts.map((value: any) => {
             return (
-              <div className={styles.booksCard}>
+              <div key={null} className={styles.booksCard}>
                 <div
                   className={styles.booksImg}
                   onClick={() => {

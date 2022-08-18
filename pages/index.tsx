@@ -39,10 +39,10 @@ const Home: NextPage = () => {
       {/*漫画*/}
       <div className={styles.booksBox}>
         <h2>漫画</h2>
-        <div className={styles.booksCardArea}>
+        <div key={null} className={styles.booksCardArea}>
           {comicPosts.map((value: any) => {
             return (
-              <div className={styles.booksCard}>
+              <div key={null} className={styles.booksCard}>
                 <div
                   className={styles.booksImg}
                   onClick={() => {
@@ -74,7 +74,7 @@ const Home: NextPage = () => {
         <div className={styles.booksCardArea}>
           {posts.map((value: any) => {
             return (
-              <div className={styles.booksCard}>
+              <div key={null} className={styles.booksCard}>
                 <div
                   className={styles.booksImg}
                   onClick={() => {
@@ -106,7 +106,7 @@ const Home: NextPage = () => {
         <div className={styles.booksCardArea}>
           {pictureBooksPosts.map((value: any) => {
             return (
-              <div className={styles.booksCard}>
+              <div key={null} className={styles.booksCard}>
                 <div
                   className={styles.booksImg}
                   onClick={() => {

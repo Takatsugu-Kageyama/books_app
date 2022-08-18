@@ -26,7 +26,7 @@ const BooksPage = () => {
       <div className={styles.linkArea}></div>
       {clickedBooksValue.map((value: any) => {
         return (
-          <div className={styles.booksBox}>
+          <div key={null} className={styles.booksBox}>
             <div className={styles.booksImage}>
               <img src={value.Item.largeImageUrl} alt="" />
             </div>
