@@ -23,20 +23,20 @@ export const fetchPictureBookData = async () => {
   );
   return result;
 };
-//新書
-export const fetchContemporaryBookData = async () => {
-  const result = await axios(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001020&hits=5"
-  );
-  return result;
-};
-//新書
-export const fetchLightNovelData = async () => {
-  const result = await axios(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=5"
-  );
-  return result;
-};
+// //新書
+// export const fetchContemporaryBookData = async () => {
+//   const result = await axios(
+//     "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001020&hits=5"
+//   );
+//   return result;
+// };
+// //ライトノベル
+// export const fetchLightNovelData = async () => {
+//   const result = await axios(
+//     "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=5"
+//   );
+//   return result;
+// };
 
 //各ジャンルのソートAPIを取得
 

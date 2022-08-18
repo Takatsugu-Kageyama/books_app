@@ -13,6 +13,7 @@ module.exports = {
         middleGreen: "#D9F8BF",
         middleRed: "#D08080",
         middleBlack: "#555555",
+        bgWhite: "#FCFCFC",
       },
     },
   },

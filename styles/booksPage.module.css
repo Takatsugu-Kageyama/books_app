@@ -1,0 +1,32 @@
+.overall {
+  @apply w-[90%] mx-auto pt-[30px];
+}
+.overall .booksBox {
+  @apply bg-bgWhite flex items-center h-[297px];
+}
+.overall .booksBox .booksImage {
+  @apply w-[189px];
+}
+.overall .booksBox .booksImage img {
+  @apply w-full;
+}
+.overall .booksBox .booksDetail {
+  @apply pl-[40px] w-[60%] flex flex-col gap-y-[30px];
+}
+.overall .booksBox .booksDetail .booksContents {
+  @apply flex flex-col gap-y-[10px];
+}
+.overall .booksBox .booksDetail .booksContents h2 {
+  @apply text-[28px] font-bold;
+}
+.overall .booksBox .booksDetail .booksContents .booksAuthor {
+  @apply text-[20px] text-fadeGray;
+}
+.overall .booksBox .booksDetail .booksContents .booksPrice {
+  @apply text-[20px] text-middleRed;
+}
+.overall .booksBox .booksDetail button {
+  @apply w-[300px] h-[56px] text-[24px] rounded-[20px] bg-middleGreen;
+}
+
+/*# sourceMappingURL=booksPage.module.css.map */

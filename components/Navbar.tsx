@@ -16,7 +16,7 @@ export default function Navbar() {
         </Link>
         <ul>
           <li>
-            <Link href="/">漫画</Link>
+            <Link href="/ComicPage">漫画</Link>
           </li>
           <li>
             <Link href="/">語学・学習参考書</Link>

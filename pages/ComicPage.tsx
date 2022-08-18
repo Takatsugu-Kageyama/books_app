@@ -5,11 +5,13 @@ import {
   fetchComicNewSortData,
   fetchEvaluationSortData,
 } from "../util/API/RakutenBooks";
+import { useRouter } from "next/router";
 
 const ComicPage = () => {
   const [comicNewPosts, setComicNewPosts] = useState([]);
   const [comicEarningsPosts, setComicEarningsPosts] = useState([]);
   const [comicEvaluationPosts, setComicEvaluationPosts] = useState([]);
+  const router = useRouter();
   useEffect(() => {
     fetchComicNewSortData().then((value) => {
       setComicNewPosts(value.data.Items);
@@ -28,10 +30,20 @@ const ComicPage = () => {
       <div className={styles.booksBox}>
         <h2>新着漫画</h2>
         <div className={styles.booksCardArea}>
-          {comicNewPosts.map((value) => {
+          {comicNewPosts.map((value: any) => {
             return (
               <div className={styles.booksCard}>
-                <div className={styles.booksImg}>
+                <div
+                  className={styles.booksImg}
+                  onClick={() => {
+                    // setClickedBook(value);
+                    // console.log(clickedBook);
+                    router.push({
+                      pathname: "BooksPage",
+                      query: { value: value.Item.title },
+                    });
+                  }}
+                >
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
@@ -50,10 +62,20 @@ const ComicPage = () => {
       <div className={styles.booksBox}>
         <h2>人気作品</h2>
         <div className={styles.booksCardArea}>
-          {comicEarningsPosts.map((value) => {
+          {comicEarningsPosts.map((value: any) => {
             return (
               <div className={styles.booksCard}>
-                <div className={styles.booksImg}>
+                <div
+                  className={styles.booksImg}
+                  onClick={() => {
+                    // setClickedBook(value);
+                    // console.log(clickedBook);
+                    router.push({
+                      pathname: "BooksPage",
+                      query: { value: value.Item.title },
+                    });
+                  }}
+                >
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
@@ -72,10 +94,20 @@ const ComicPage = () => {
       <div className={styles.booksBox}>
         <h2>高評価の多い作品</h2>
         <div className={styles.booksCardArea}>
-          {comicEvaluationPosts.map((value) => {
+          {comicEvaluationPosts.map((value: any) => {
             return (
               <div className={styles.booksCard}>
-                <div className={styles.booksImg}>
+                <div
+                  className={styles.booksImg}
+                  onClick={() => {
+                    // setClickedBook(value);
+                    // console.log(clickedBook);
+                    router.push({
+                      pathname: "BooksPage",
+                      query: { value: value.Item.title },
+                    });
+                  }}
+                >
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">

@@ -1,0 +1,34 @@
+.overall {
+  @apply w-[90%] mx-auto pt-[30px];
+  .booksBox {
+    @apply bg-bgWhite flex items-center h-[297px];
+    .booksImage {
+      @apply w-[189px];
+      img {
+        @apply w-full;
+      }
+    }
+
+    .booksDetail {
+      @apply pl-[40px] w-[60%] flex flex-col gap-y-[30px];
+      .booksContents {
+        @apply flex flex-col gap-y-[10px];
+        h2 {
+          @apply text-[28px] font-bold;
+        }
+
+        .booksAuthor {
+          @apply text-[20px] text-fadeGray;
+        }
+
+        .booksPrice {
+          @apply text-[20px] text-middleRed;
+        }
+      }
+
+      button {
+        @apply w-[300px] h-[56px] text-[24px] rounded-[20px] bg-middleGreen;
+      }
+    }
+  }
+}

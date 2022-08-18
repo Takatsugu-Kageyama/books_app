@@ -1,21 +1,27 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import {
   fetchComicData,
-  fetchContemporaryBookData,
-  fetchLightNovelData,
   fetchPictureBookData,
   fetchStudyBookData,
 } from "../util/API/RakutenBooks";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  //APIを保管するstate
   const [posts, setPosts] = useState([]);
   const [comicPosts, setComicPosts] = useState([]);
   const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
-  const [contemporaryBooksPosts, setContemporaryBooksPosts] = useState([]);
-  const [lightBooksPosts, setLightBooksPosts] = useState([]);
+  //クリックされた本を保管するstate
+  const [clickedBook, setClickedBook] = useState([]);
+
+  // const [contemporaryBooksPosts, setContemporaryBooksPosts] = useState([]);
+  // const [lightBooksPosts, setLightBooksPosts] = useState([]);
+
+  //router初期設定
+  const router = useRouter();
+
   useEffect(() => {
     fetchComicData().then((value) => {
       setComicPosts(value.data.Items);
@@ -26,12 +32,6 @@ const Home: NextPage = () => {
     fetchPictureBookData().then((value) => {
       setPictureBooksPosts(value.data.Items);
     });
-    // fetchContemporaryBookData().then((value) => {
-    //   setContemporaryBooksPosts(value.data.Items);
-    // });
-    // fetchLightNovelData().then((value) => {
-    //   setContemporaryBooksPosts(value.data.Items);
-    // });
   }, []);
 
   return (
@@ -40,10 +40,20 @@ const Home: NextPage = () => {
       <div className={styles.booksBox}>
         <h2>漫画</h2>
         <div className={styles.booksCardArea}>
-          {comicPosts.map((value) => {
+          {comicPosts.map((value: any) => {
             return (
               <div className={styles.booksCard}>
-                <div className={styles.booksImg}>
+                <div
+                  className={styles.booksImg}
+                  onClick={() => {
+                    // setClickedBook(value);
+                    // console.log(clickedBook);
+                    router.push({
+                      pathname: "BooksPage",
+                      query: { value: value.Item.title },
+                    });
+                  }}
+                >
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
@@ -62,10 +72,20 @@ const Home: NextPage = () => {
       <div className={styles.booksBox}>
         <h2>語学・学習参考書</h2>
         <div className={styles.booksCardArea}>
-          {posts.map((value) => {
+          {posts.map((value: any) => {
             return (
               <div className={styles.booksCard}>
-                <div className={styles.booksImg}>
+                <div
+                  className={styles.booksImg}
+                  onClick={() => {
+                    // setClickedBook(value);
+                    // console.log(clickedBook);
+                    router.push({
+                      pathname: "BooksPage",
+                      query: { value: value.Item.title },
+                    });
+                  }}
+                >
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
@@ -84,10 +104,20 @@ const Home: NextPage = () => {
       <div className={styles.booksBox}>
         <h2>絵本・児童書</h2>
         <div className={styles.booksCardArea}>
-          {pictureBooksPosts.map((value) => {
+          {pictureBooksPosts.map((value: any) => {
             return (
               <div className={styles.booksCard}>
-                <div className={styles.booksImg}>
+                <div
+                  className={styles.booksImg}
+                  onClick={() => {
+                    // setClickedBook(value);
+                    // console.log(clickedBook);
+                    router.push({
+                      pathname: "BooksPage",
+                      query: { value: value.Item.title },
+                    });
+                  }}
+                >
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
