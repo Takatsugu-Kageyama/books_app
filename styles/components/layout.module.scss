@@ -11,14 +11,14 @@
           input {
             @apply w-[80%] h-[40px] bg-middleGray rounded-l-[6px] px-[10px];
             &:focus {
-              @apply outline-middleGreen;
+              @apply outline-hoverBtn;
             }
           }
 
           button {
             @apply bg-middleGreen w-[10%] h-[40px] rounded-r-[6px] align-top;
             &:hover {
-              @apply opacity-[70%];
+              @apply bg-hoverBtn;
             }
           }
         }
@@ -38,7 +38,7 @@
       }
 
       .main {
-        @apply bg-middleGray mt-[30px] h-screen overflow-y-scroll;
+        @apply bg-middleGray mt-[30px] h-screen overflow-y-scroll text-middleBlack;
       }
     }
   }

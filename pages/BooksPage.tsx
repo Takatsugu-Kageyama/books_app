@@ -24,6 +24,7 @@ const BooksPage = () => {
   return (
     <div className={styles.overall}>
       <div className={styles.linkArea}></div>
+      {/*本の詳細と画像*/}
       {clickedBooksValue.map((value: any) => {
         return (
           <div key={null} className={styles.booksBox}>
@@ -44,6 +45,42 @@ const BooksPage = () => {
           </div>
         );
       })}
+      {/*スレッドエリア*/}
+      <div className={styles.threadArea}>
+        <div className={styles.threadTitle}>
+          <div className={styles.titleContents}>
+            <div className={styles.iconImage}>
+              <img src="./images/icon.png" alt="" />
+            </div>
+            <h2>みんなのトーク</h2>
+          </div>
+        </div>
+        {/*TODO:トークを送信するには会員登録をする必要がある(disable)*/}
+        <div className={styles.inputArea}>
+          <input type="text" placeholder="トークを送信しよう！！" />
+          <button>トークする</button>
+        </div>
+        {/*TODO:スレッドがデータベース内にあるかどうかで表示を切り替え*/}
+        <div className={styles.unitThread}>
+          <div className={styles.userIcon}>
+            <div className={styles.usersIconImg}>
+              <img src="./images/icon.png" alt="" />
+            </div>
+          </div>
+          <div className={styles.userContents}>
+            <div className={styles.userData}>
+              <div className={styles.userName}>
+                <h2>ブックトーク公式</h2>
+                <p>@BOOKTALK_official</p>
+              </div>
+              <div className={styles.upDateTime}>
+                <p>1時間前</p>
+              </div>
+            </div>
+            <div className={styles.userText}>今回の呪術おもろ！！</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

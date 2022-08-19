@@ -28,6 +28,87 @@
 
       button {
         @apply w-[300px] h-[56px] text-[24px] rounded-[20px] bg-middleGreen;
+        &:hover {
+          @apply bg-hoverBtn;
+        }
+      }
+    }
+  }
+
+  .threadArea {
+    @apply mt-[100px] bg-bgWhite;
+    .threadTitle {
+      @apply border-middleGray border-b-4;
+      .titleContents {
+        @apply w-[90%] mx-auto flex gap-[20px] py-[24px];
+        .iconImage {
+          @apply w-[36.36px] self-center;
+          img {
+            @apply w-full;
+          }
+        }
+
+        h2 {
+          @apply text-[24px] font-bold;
+        }
+      }
+    }
+
+    .inputArea {
+      @apply w-[90%] mx-auto flex justify-center border-b-4 border-middleGray mb-[35px];
+      input {
+        @apply my-[20px] px-[10px] w-[80%] h-[40px] bg-middleGray rounded-[10px];
+        &:focus {
+          @apply outline-hoverBtn;
+        }
+      }
+
+      button {
+        @apply w-[160px] h-[40px] ml-auto text-[16px] bg-middleGreen self-center rounded-[18px];
+        &:hover {
+          @apply bg-hoverBtn;
+        }
+      }
+    }
+
+    .unitThread {
+      @apply flex pb-[35px] w-[90%] mx-auto border-b-4 border-middleGray;
+      .userIcon {
+        @apply flex justify-center items-center w-[64px] h-[64px] self-start bg-middleBlack rounded-[50%];
+        .usersIconImg {
+          @apply w-[36.36px];
+          img {
+            @apply w-full;
+          }
+        }
+      }
+
+      .userContents {
+        @apply w-[60%] pl-[20px];
+        .userData {
+          @apply flex gap-x-[10px];
+          .userName {
+            @apply leading-[1];
+            h2 {
+              @apply text-[24px] font-bold;
+            }
+
+            p {
+              @apply text-[14px] text-middleBlack;
+            }
+          }
+
+          .upDateTime {
+            @apply self-start;
+            p {
+              @apply text-[16px] text-fadeGray;
+            }
+          }
+        }
+
+        .userText {
+          @apply pt-[15px] text-[24px];
+        }
       }
     }
   }
