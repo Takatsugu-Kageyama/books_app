@@ -74,7 +74,7 @@ const BooksPage = () => {
                 <p>@BOOKTALK_official</p>
               </div>
               <div className={styles.upDateTime}>
-                <p>1時間前</p>
+                <p>1.5時間前</p>
               </div>
             </div>
             <div className={styles.userText}>今回の呪術おもろ！！</div>
