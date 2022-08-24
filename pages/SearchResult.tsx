@@ -30,8 +30,6 @@ const SearchResult = () => {
               <div
                 className={styles.booksImg}
                 onClick={() => {
-                  // setClickedBook(value);
-                  // console.log(clickedBook);
                   router.push({
                     pathname: "BooksPage",
                     query: { value: value.Item.title },
