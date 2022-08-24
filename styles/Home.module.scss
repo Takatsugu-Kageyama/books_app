@@ -5,26 +5,29 @@
     @apply text-[32px] w-[90%] mx-auto;
 
     .booksCardArea {
-      @apply flex justify-between pt-[30px] grid-cols-5;
+      @apply max-w-full flex flex-wrap pt-[30px];
       .booksCard {
-        @apply object-contain;
-        .booksImg {
-          @apply w-fit;
-          img {
-            @apply cursor-pointer w-fit;
+        @apply w-[190px] m-[10px] grow-[1];
+        .cardsContent {
+          @apply w-[190px];
+          .booksImg {
+            @apply w-full;
+            img {
+              @apply cursor-pointer w-full;
+            }
           }
-        }
 
-        .booksTitle {
-          @apply w-[210px] text-[16px] font-bold;
-        }
+          .booksTitle {
+            @apply w-fit pt-[10px] text-[16px] font-bold;
+          }
 
-        .booksAuthor {
-          @apply text-[12px] text-fadeGray;
-        }
+          .booksAuthor {
+            @apply text-[12px] text-fadeGray;
+          }
 
-        .booksPrice {
-          @apply text-[20px] text-middleRed;
+          .booksPrice {
+            @apply text-[20px] text-middleRed;
+          }
         }
       }
     }

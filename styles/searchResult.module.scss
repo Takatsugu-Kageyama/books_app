@@ -1,0 +1,27 @@
+.overall {
+  @apply w-[90%] mx-auto pt-[30px] pb-[180px];
+  .booksArea {
+    @apply max-w-full flex flex-wrap pt-[30px];
+    .booksCard {
+      @apply w-[210px] m-[30px] grow-[1];
+      .booksImg {
+        @apply w-full;
+        img {
+          @apply cursor-pointer w-full;
+        }
+      }
+
+      .booksTitle {
+        @apply w-[210px] pt-[10px] text-[16px] font-bold;
+      }
+
+      .booksAuthor {
+        @apply text-[12px] text-fadeGray;
+      }
+
+      .booksPrice {
+        @apply text-[20px] text-middleRed;
+      }
+    }
+  }
+}

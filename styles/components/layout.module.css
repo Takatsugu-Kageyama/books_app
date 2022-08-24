@@ -1,5 +1,5 @@
 .layoutWrap .contentsWrap {
-  @apply flex w-[100vw] max-h-screen min-h-screen overflow-hidden;
+  @apply flex w-[100vw] max-h-screen overflow-hidden;
 }
 .layoutWrap .contentsWrap .rightSideWrap {
   @apply basis-full;
@@ -34,5 +34,4 @@
 .layoutWrap .contentsWrap .rightSideWrap .main {
   @apply bg-middleGray mt-[30px] h-screen overflow-y-scroll text-middleBlack;
 }
-
 /*# sourceMappingURL=layout.module.css.map */

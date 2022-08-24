@@ -1,5 +1,5 @@
 .overall {
-  @apply px-[24px];
+  @apply w-fit px-[24px];
 }
 .overall .nav {
   @apply pt-[30px] md:text-[18px];
@@ -19,5 +19,4 @@
 .overall .nav ul li:hover {
   @apply opacity-[70%];
 }
-
 /*# sourceMappingURL=navbar.module.css.map */

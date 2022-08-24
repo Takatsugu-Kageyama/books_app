@@ -9,7 +9,7 @@ const BooksPage = () => {
   const router = useRouter();
   const [clickedBooksValue, setClickedBooksValue] = useState([]);
   const clickedBooksTitle = router.query.value;
-  console.log(clickedBooksTitle);
+  // console.log(clickedBooksTitle);
 
   useEffect(() => {
     const fetchClickedBook = async () => {

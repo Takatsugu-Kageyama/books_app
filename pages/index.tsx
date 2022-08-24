@@ -1,11 +1,7 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
-import {
-  fetchComicData,
-  fetchPictureBookData,
-  fetchStudyBookData,
-} from "../util/API/RakutenBooks";
+import { fetchComicData, fetchPictureBookData, fetchStudyBookData } from "../util/API/RakutenBooks";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
@@ -43,26 +39,26 @@ const Home: NextPage = () => {
           {comicPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
-                <div
-                  className={styles.booksImg}
-                  onClick={() => {
-                    // setClickedBook(value);
-                    // console.log(clickedBook);
-                    router.push({
-                      pathname: "BooksPage",
-                      query: { value: value.Item.title },
-                    });
-                  }}
-                >
-                  <img src={value.Item.largeImageUrl} alt="" />
+                <div className={styles.cardsContent}>
+                  <div
+                    className={styles.booksImg}
+                    onClick={() => {
+                      // setClickedBook(value);
+                      // console.log(clickedBook);
+                      router.push({
+                        pathname: "BooksPage",
+                        query: { value: value.Item.title },
+                      });
+                    }}
+                  >
+                    <img src={value.Item.largeImageUrl} alt="" />
+                  </div>
+                  <h2 className={styles.booksTitle} id="booksTitle">
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                  </h2>
+                  <p className={styles.booksAuthor}>{value.Item.author}</p>
+                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-                <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20
-                    ? value.Item.title.substr(0, 33) + "..."
-                    : value.Item.title}
-                </h2>
-                <p className={styles.booksAuthor}>{value.Item.author}</p>
-                <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
             );
           })}
@@ -70,31 +66,31 @@ const Home: NextPage = () => {
       </div>
       {/*語学・学習参考書*/}
       <div className={styles.booksBox}>
-        <h2>語学・学習参考書</h2>
-        <div className={styles.booksCardArea}>
+        <h2>漫画</h2>
+        <div key={null} className={styles.booksCardArea}>
           {posts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
-                <div
-                  className={styles.booksImg}
-                  onClick={() => {
-                    // setClickedBook(value);
-                    // console.log(clickedBook);
-                    router.push({
-                      pathname: "BooksPage",
-                      query: { value: value.Item.title },
-                    });
-                  }}
-                >
-                  <img src={value.Item.largeImageUrl} alt="" />
+                <div className={styles.cardsContent}>
+                  <div
+                    className={styles.booksImg}
+                    onClick={() => {
+                      // setClickedBook(value);
+                      // console.log(clickedBook);
+                      router.push({
+                        pathname: "BooksPage",
+                        query: { value: value.Item.title },
+                      });
+                    }}
+                  >
+                    <img src={value.Item.largeImageUrl} alt="" />
+                  </div>
+                  <h2 className={styles.booksTitle} id="booksTitle">
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                  </h2>
+                  <p className={styles.booksAuthor}>{value.Item.author}</p>
+                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-                <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20
-                    ? value.Item.title.substr(0, 33) + "..."
-                    : value.Item.title}
-                </h2>
-                <p className={styles.booksAuthor}>{value.Item.author}</p>
-                <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
             );
           })}
@@ -103,30 +99,30 @@ const Home: NextPage = () => {
       {/*絵本・児童書*/}
       <div className={styles.booksBox}>
         <h2>絵本・児童書</h2>
-        <div className={styles.booksCardArea}>
+        <div key={null} className={styles.booksCardArea}>
           {pictureBooksPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
-                <div
-                  className={styles.booksImg}
-                  onClick={() => {
-                    // setClickedBook(value);
-                    // console.log(clickedBook);
-                    router.push({
-                      pathname: "BooksPage",
-                      query: { value: value.Item.title },
-                    });
-                  }}
-                >
-                  <img src={value.Item.largeImageUrl} alt="" />
+                <div className={styles.cardsContent}>
+                  <div
+                    className={styles.booksImg}
+                    onClick={() => {
+                      // setClickedBook(value);
+                      // console.log(clickedBook);
+                      router.push({
+                        pathname: "BooksPage",
+                        query: { value: value.Item.title },
+                      });
+                    }}
+                  >
+                    <img src={value.Item.largeImageUrl} alt="" />
+                  </div>
+                  <h2 className={styles.booksTitle} id="booksTitle">
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                  </h2>
+                  <p className={styles.booksAuthor}>{value.Item.author}</p>
+                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-                <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20
-                    ? value.Item.title.substr(0, 33) + "..."
-                    : value.Item.title}
-                </h2>
-                <p className={styles.booksAuthor}>{value.Item.author}</p>
-                <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
             );
           })}

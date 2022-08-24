@@ -1,6 +1,6 @@
 .layoutWrap {
   .contentsWrap {
-    @apply flex w-[100vw] max-h-screen min-h-screen overflow-hidden;
+    @apply flex w-[100vw] max-h-screen overflow-hidden;
     .rightSideWrap {
       @apply basis-full;
       .topContainer {
