@@ -34,4 +34,5 @@
 .layoutWrap .contentsWrap .rightSideWrap .main {
   @apply bg-middleGray mt-[30px] h-screen overflow-y-scroll text-middleBlack;
 }
+
 /*# sourceMappingURL=layout.module.css.map */
