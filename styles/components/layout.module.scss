@@ -26,12 +26,18 @@
         .indArea {
           @apply flex items-center gap-x-[32px];
           .cartBtn {
-            @apply w-[80px] h-[32px] rounded-[20px] bg-middleGreen flex items-center justify-center;
+            @apply w-[90px] h-[42px] rounded-[10px] bg-middleGreen flex items-center justify-center;
+            &:hover {
+              @apply cursor-pointer bg-hoverBtn;
+            }
           }
 
           .accountBtn {
             .accountIcon {
-              @apply text-[32px];
+              @apply text-[42px];
+              &:hover {
+                @apply cursor-pointer opacity-[70%];
+              }
             }
           }
         }

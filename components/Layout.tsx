@@ -24,6 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
   const isSearchBarChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+  // console.log(inputValue);
   return (
     <div className={styles.layoutWrap}>
       {/* <Head>*/}

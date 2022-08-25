@@ -9,8 +9,6 @@ const Home: NextPage = () => {
   const [posts, setPosts] = useState([]);
   const [comicPosts, setComicPosts] = useState([]);
   const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
-  //クリックされた本を保管するstate
-  const [clickedBook, setClickedBook] = useState([]);
 
   // const [contemporaryBooksPosts, setContemporaryBooksPosts] = useState([]);
   // const [lightBooksPosts, setLightBooksPosts] = useState([]);

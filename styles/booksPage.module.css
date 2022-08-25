@@ -1,5 +1,5 @@
 .overall {
-  @apply w-[90%] mx-auto pt-[30px];
+  @apply w-[90%] mx-auto pt-[30px] pb-[180px];
 }
 .overall .booksBox {
   @apply bg-bgWhite flex items-center h-[297px];
@@ -100,5 +100,4 @@
 .overall .threadArea .unitThread .userContents .userText {
   @apply pt-[15px] text-[24px];
 }
-
 /*# sourceMappingURL=booksPage.module.css.map */

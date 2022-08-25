@@ -26,13 +26,18 @@
   @apply flex items-center gap-x-[32px];
 }
 .layoutWrap .contentsWrap .rightSideWrap .topContainer .indArea .cartBtn {
-  @apply w-[80px] h-[32px] rounded-[20px] bg-middleGreen flex items-center justify-center;
+  @apply w-[90px] h-[42px] rounded-[10px] bg-middleGreen flex items-center justify-center;
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .indArea .cartBtn:hover {
+  @apply cursor-pointer bg-hoverBtn;
 }
 .layoutWrap .contentsWrap .rightSideWrap .topContainer .indArea .accountBtn .accountIcon {
-  @apply text-[32px];
+  @apply text-[42px];
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .indArea .accountBtn .accountIcon:hover {
+  @apply cursor-pointer opacity-[70%];
 }
 .layoutWrap .contentsWrap .rightSideWrap .main {
   @apply bg-middleGray mt-[30px] h-screen overflow-y-scroll text-middleBlack;
 }
-
 /*# sourceMappingURL=layout.module.css.map */

@@ -6,11 +6,13 @@ import axios from "axios";
 const SearchResult = () => {
   //ステートの設定
   const [resultBooks, setResultBooks] = useState([]); //!検索結果を格納
+
   //変数
   const router = useRouter(); //!Next Router
   const inputWord = router.query.value;
 
-  //!Side Effect
+  //Side Effect
+  //!入力値が変更された時に再度API接続をしてデータを取得
   useEffect(() => {
     const fetchResultBook = async () => {
       const booksValue = await axios(
@@ -19,30 +21,31 @@ const SearchResult = () => {
       setResultBooks(booksValue.data.Items);
     };
     fetchResultBook();
-  }, []);
-  console.log(resultBooks);
+  }, [inputWord]);
   return (
     <div className={styles.overall}>
       <div className={styles.booksArea}>
         {resultBooks.map((value: any) => {
           return (
             <div key={null} className={styles.booksCard}>
-              <div
-                className={styles.booksImg}
-                onClick={() => {
-                  router.push({
-                    pathname: "BooksPage",
-                    query: { value: value.Item.title },
-                  });
-                }}
-              >
-                <img src={value.Item.largeImageUrl} alt="" />
+              <div className={styles.cardsContents}>
+                <div
+                  className={styles.booksImg}
+                  onClick={() => {
+                    router.push({
+                      pathname: "BooksPage",
+                      query: { value: value.Item.title },
+                    });
+                  }}
+                >
+                  <img src={value.Item.largeImageUrl} alt="" />
+                </div>
+                <h2 className={styles.booksTitle} id="booksTitle">
+                  {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                </h2>
+                <p className={styles.booksAuthor}>{value.Item.author}</p>
+                <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
-              <h2 className={styles.booksTitle} id="booksTitle">
-                {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
-              </h2>
-              <p className={styles.booksAuthor}>{value.Item.author}</p>
-              <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
             </div>
           );
         })}
