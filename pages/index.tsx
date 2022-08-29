@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
+import { isBooksChats } from "../util/Firebase/booksChatAuth";
 import { useEffect, useState } from "react";
 import { fetchComicData, fetchPictureBookData, fetchStudyBookData } from "../util/API/RakutenBooks";
 import { useRouter } from "next/router";
@@ -27,7 +28,7 @@ const Home: NextPage = () => {
       setPictureBooksPosts(value.data.Items);
     });
   }, []);
-
+  console.log(comicPosts);
   return (
     <div className={styles.overall}>
       {/*漫画*/}
@@ -45,8 +46,9 @@ const Home: NextPage = () => {
                       // console.log(clickedBook);
                       router.push({
                         pathname: "BooksPage",
-                        query: { value: value.Item.title },
+                        query: { value: value.Item.isbn },
                       });
+                      // isBooksChats(value.Item.isbn);
                     }}
                   >
                     <img src={value.Item.largeImageUrl} alt="" />
@@ -64,7 +66,7 @@ const Home: NextPage = () => {
       </div>
       {/*語学・学習参考書*/}
       <div className={styles.booksBox}>
-        <h2>漫画</h2>
+        <h2>語学・学習参考書</h2>
         <div key={null} className={styles.booksCardArea}>
           {posts.map((value: any) => {
             return (
@@ -77,8 +79,9 @@ const Home: NextPage = () => {
                       // console.log(clickedBook);
                       router.push({
                         pathname: "BooksPage",
-                        query: { value: value.Item.title },
+                        query: { value: value.Item.isbn },
                       });
+                      // isBooksChats(value.Item.isbn);
                     }}
                   >
                     <img src={value.Item.largeImageUrl} alt="" />
@@ -109,8 +112,9 @@ const Home: NextPage = () => {
                       // console.log(clickedBook);
                       router.push({
                         pathname: "BooksPage",
-                        query: { value: value.Item.title },
+                        query: { value: value.Item.isbn },
                       });
+                      // isBooksChats(value.Item.isbn);
                     }}
                   >
                     <img src={value.Item.largeImageUrl} alt="" />

@@ -111,5 +111,10 @@
         }
       }
     }
+    .noThread {
+      .textBox {
+        @apply w-[90%] mx-auto text-[24px] font-semibold text-center py-[30px];
+      }
+    }
   }
 }

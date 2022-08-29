@@ -100,4 +100,7 @@
 .overall .threadArea .unitThread .userContents .userText {
   @apply pt-[15px] text-[24px];
 }
+.overall .threadArea .noThread .textBox {
+  @apply w-[90%] mx-auto text-[24px] font-semibold text-center py-[30px];
+}
 /*# sourceMappingURL=booksPage.module.css.map */

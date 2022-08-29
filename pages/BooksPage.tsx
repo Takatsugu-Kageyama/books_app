@@ -1,26 +1,38 @@
 //スタイル
 import styles from "../styles/booksPage.module.scss";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { isBooksChats } from "../util/Firebase/booksChatAuth";
+import { sentBooksChat } from "../util/Firebase/sendChats";
 
 const BooksPage = () => {
-  const router = useRouter();
-  const [clickedBooksValue, setClickedBooksValue] = useState([]);
-  const clickedBooksTitle = router.query.value;
-  // console.log(clickedBooksTitle);
+  const router = useRouter(); //!routerの初期化設定
+  const [clickedBooksValue, setClickedBooksValue] = useState([]); //!クリックされた本のオブジェクトを格納する
+  const [isBooksChatsData, setIsBooksChatsData] = useState([]); //!isBooksChat関数から返される値を格納する
+  const clickedBooksIsbnNum = router.query.value; //!別ページにてクリックされた本のISBN番号を格納
+  const [isTextInput, setIsTextInput] = useState(""); //!入力されたテキストを保管
 
+  //!ページにアクセスされたときにAPI通信
   useEffect(() => {
     const fetchClickedBook = async () => {
       const booksValue = await axios(
-        `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&keyword=${clickedBooksTitle}&hits=1`
+        `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&isbnjan=${clickedBooksIsbnNum}&hits=1`
       );
       setClickedBooksValue(booksValue.data.Items);
     };
     fetchClickedBook();
   }, []);
-  console.log(clickedBooksValue);
+
+  //!ページリロードと同時にFirebaseにチャットがあるかどうかを確認する
+  useEffect(() => {
+    isBooksChats(clickedBooksIsbnNum).then((value) => {
+      setIsBooksChatsData(value);
+    });
+    console.log(isBooksChatsData);
+  }, [isTextInput]);
+  // console.log(clickedBooksValue);
   return (
     <div className={styles.overall}>
       <div className={styles.linkArea}></div>
@@ -57,29 +69,62 @@ const BooksPage = () => {
         </div>
         {/*TODO:トークを送信するには会員登録をする必要がある(disable)*/}
         <div className={styles.inputArea}>
-          <input type="text" placeholder="トークを送信しよう！！" />
-          <button>トークする</button>
+          <input
+            value={isTextInput}
+            type="text"
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+              e.preventDefault;
+              setIsTextInput(e.target.value);
+            }}
+            placeholder="トークを送信しよう！！"
+          />
+          <button
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.preventDefault;
+              sentBooksChat(clickedBooksIsbnNum, isTextInput).then(() => {
+                setIsTextInput("");
+              });
+            }}
+          >
+            トークする
+          </button>
         </div>
         {/*TODO:スレッドがデータベース内にあるかどうかで表示を切り替え*/}
-        <div className={styles.unitThread}>
-          <div className={styles.userIcon}>
-            <div className={styles.usersIconImg}>
-              <img src="./images/icon.png" alt="" />
+        {isBooksChatsData ? (
+          isBooksChatsData.map((value: any) => {
+            return (
+              <div key={null} className={styles.unitThread}>
+                <div className={styles.userIcon}>
+                  <div className={styles.usersIconImg}>
+                    <img src={value.Chat.userIcon} alt="" />
+                  </div>
+                </div>
+                <div className={styles.userContents}>
+                  <div className={styles.userData}>
+                    <div className={styles.userName}>
+                      <h2>{value.Chat.userName}</h2>
+                      <p>{value.Chat.userId}</p>
+                    </div>
+                    <div className={styles.upDateTime}>
+                      <p>{value.Chat.time}</p>
+                    </div>
+                  </div>
+                  <div className={styles.userText}>{value.Chat.text}</div>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div className={styles.noThread}>
+            <div className={styles.textBox}>
+              <h2>
+                ここにはまだ会話がありません！
+                <br />
+                さっそくこの本の感想を書いて他の人と共有しましょう！
+              </h2>
             </div>
           </div>
-          <div className={styles.userContents}>
-            <div className={styles.userData}>
-              <div className={styles.userName}>
-                <h2>ブックトーク公式</h2>
-                <p>@BOOKTALK_official</p>
-              </div>
-              <div className={styles.upDateTime}>
-                <p>1時間前</p>
-              </div>
-            </div>
-            <div className={styles.userText}>今回の呪術おもろ！！</div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

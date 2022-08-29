@@ -22,6 +22,7 @@ const SearchResult = () => {
     };
     fetchResultBook();
   }, [inputWord]);
+
   return (
     <div className={styles.overall}>
       <div className={styles.booksArea}>
@@ -34,7 +35,7 @@ const SearchResult = () => {
                   onClick={() => {
                     router.push({
                       pathname: "BooksPage",
-                      query: { value: value.Item.title },
+                      query: { value: value.Item.isbn },
                     });
                   }}
                 >

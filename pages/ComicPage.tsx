@@ -1,10 +1,6 @@
 import styles from "../styles/genrePage.module.scss";
 import { useEffect, useState } from "react";
-import {
-  fetchComicEarningsSortData,
-  fetchComicNewSortData,
-  fetchEvaluationSortData,
-} from "../util/API/RakutenBooks";
+import { fetchComicEarningsSortData, fetchComicNewSortData, fetchEvaluationSortData } from "../util/API/RakutenBooks";
 import { useRouter } from "next/router";
 
 const ComicPage = () => {
@@ -40,16 +36,14 @@ const ComicPage = () => {
                     // console.log(clickedBook);
                     router.push({
                       pathname: "BooksPage",
-                      query: { value: value.Item.title },
+                      query: { value: value.Item.isbn },
                     });
                   }}
                 >
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20
-                    ? value.Item.title.substr(0, 33) + "..."
-                    : value.Item.title}
+                  {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
                 </h2>
                 <p className={styles.booksAuthor}>{value.Item.author}</p>
                 <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
@@ -79,9 +73,7 @@ const ComicPage = () => {
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20
-                    ? value.Item.title.substr(0, 33) + "..."
-                    : value.Item.title}
+                  {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
                 </h2>
                 <p className={styles.booksAuthor}>{value.Item.author}</p>
                 <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
@@ -111,9 +103,7 @@ const ComicPage = () => {
                   <img src={value.Item.largeImageUrl} alt="" />
                 </div>
                 <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20
-                    ? value.Item.title.substr(0, 33) + "..."
-                    : value.Item.title}
+                  {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
                 </h2>
                 <p className={styles.booksAuthor}>{value.Item.author}</p>
                 <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
