@@ -6,6 +6,8 @@ import axios from "axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { isBooksChats } from "../util/Firebase/booksChatAuth";
 import { sentBooksChat } from "../util/Firebase/sendChats";
+import { addCart } from "../util/Firebase/addCart";
+import { CartBooksSchema } from "../util/TypeDefinition/BooksSchema";
 
 const BooksPage = () => {
   const router = useRouter(); //!routerの初期化設定
@@ -13,7 +15,6 @@ const BooksPage = () => {
   const [isBooksChatsData, setIsBooksChatsData] = useState([]); //!isBooksChat関数から返される値を格納する
   const clickedBooksIsbnNum = router.query.value; //!別ページにてクリックされた本のISBN番号を格納
   const [isTextInput, setIsTextInput] = useState(""); //!入力されたテキストを保管
-
   //!ページにアクセスされたときにAPI通信
   useEffect(() => {
     const fetchClickedBook = async () => {
@@ -49,7 +50,21 @@ const BooksPage = () => {
                 <p className={styles.booksAuthor}>{value.Item.author}</p>
                 <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
-              <button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault;
+                  const CartBooksValue: CartBooksSchema = {
+                    userId: "I7PXmd8olYKMk0SYEnuP",
+                    title: value.Item.title,
+                    author: value.Item.author,
+                    price: value.Item.itemPrice,
+                    image: value.Item.largeImageUrl,
+                    isbn: value.Item.isbn,
+                  };
+                  console.log(CartBooksValue);
+                  addCart(CartBooksValue);
+                }}
+              >
                 <ShoppingCartIcon />
                 カートに追加する
               </button>

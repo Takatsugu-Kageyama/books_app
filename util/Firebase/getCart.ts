@@ -1,0 +1,23 @@
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../Firebase/firebaseConfig";
+
+//!カートの中身を得る関数
+export const getCartBooks = async (userId: string) => {
+  //!参照先
+  const userCartRef = doc(db, "User", userId);
+  //!本単体が持つデータの取得
+  const cartBooksDocSnap = await getDoc(userCartRef);
+  //!ユーザーのデータがあるかどうか確認
+  if (cartBooksDocSnap.exists()) {
+    //!チャットが格納される配列
+    const cartBooksData = cartBooksDocSnap.data().CartBooks;
+    if (cartBooksData.length === 0) {
+      console.log("there are not chats!");
+      return false;
+    } else {
+      // console.log("there are chats!");
+      // return console.log(booksChatsData);
+      return cartBooksData;
+    }
+  }
+};

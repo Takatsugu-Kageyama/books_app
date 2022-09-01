@@ -1,0 +1,63 @@
+.overall {
+  @apply w-[90%] mx-auto pt-[30px] pb-[180px];
+  .userName {
+    @apply text-[32px] font-bold pb-[63px];
+  }
+  .cartsContents {
+    @apply flex grow-[2] justify-between;
+    .booksBox {
+      @apply bg-bgWhite w-[800px] flex items-center h-[297px] mb-[30px];
+      .booksImage {
+        @apply w-[189px];
+        img {
+          @apply w-full;
+        }
+      }
+
+      .booksDetail {
+        @apply pl-[40px] w-[60%] flex flex-col gap-y-[30px];
+        .booksContents {
+          @apply flex flex-col gap-y-[10px];
+          h2 {
+            @apply text-[28px] font-bold;
+          }
+
+          .booksAuthor {
+            @apply text-[20px] text-fadeGray;
+          }
+
+          .booksPrice {
+            @apply text-[20px] text-middleRed;
+          }
+        }
+
+        button {
+          @apply w-[300px] h-[56px] text-[24px] rounded-[20px] bg-middleGray;
+          &:hover {
+            @apply opacity-[70%];
+          }
+        }
+      }
+    }
+    .noneBooks {
+      @apply text-[28px];
+    }
+    .sumPriceBox {
+      @apply bg-bgWhite m-[10px] w-[536px] h-[287px] flex flex-col items-center justify-center;
+      .sum {
+        @apply text-[28px] m-[10px] w-[80%] mx-auto;
+        h2 {
+          span {
+            @apply font-bold text-[12px] text-middleRed;
+          }
+        }
+      }
+      .cashBtn {
+        @apply mt-[93px] m-[10px] w-[300px] h-[56px] text-[24px] font-bold bg-middleGreen rounded-[20px];
+        &:hover {
+          @apply bg-hoverBtn;
+        }
+      }
+    }
+  }
+}

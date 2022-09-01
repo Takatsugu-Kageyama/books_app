@@ -26,7 +26,7 @@
         .indArea {
           @apply flex items-center gap-x-[32px];
           .cartBtn {
-            @apply w-[90px] h-[42px] rounded-[10px] bg-middleGreen flex items-center justify-center;
+            @apply w-[190px] h-[42px] rounded-[10px] bg-middleGreen flex items-center justify-center;
             &:hover {
               @apply cursor-pointer bg-hoverBtn;
             }

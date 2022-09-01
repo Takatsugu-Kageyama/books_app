@@ -65,7 +65,7 @@
   @apply bg-hoverBtn;
 }
 .overall .threadArea .unitThread {
-  @apply flex pb-[35px] w-[90%] mx-auto border-b-4 border-middleGray;
+  @apply flex mb-[30px] pb-[35px] w-[90%] mx-auto border-b-4 border-middleGray;
 }
 .overall .threadArea .unitThread .userIcon {
   @apply flex justify-center items-center w-[64px] h-[64px] self-start bg-middleBlack rounded-[50%];
