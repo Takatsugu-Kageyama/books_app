@@ -39,7 +39,8 @@ const BooksPage = () => {
     isBooksChats(clickedBooksIsbnNum).then((value) => {
       setIsBooksChatsData(value);
     });
-    // console.log(isBooksChatsData);
+    //console.log(isBooksChatsData);
+    // console.log(clickedBooksIsbnNum);
   }, [isTextInput]);
   //!カート内の本のデータを参照
   // useEffect(() => {
