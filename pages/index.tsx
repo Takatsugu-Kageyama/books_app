@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { isBooksChats } from "../util/Firebase/booksChatAuth";
 import { useEffect, useState } from "react";
-import { fetchComicData, fetchPictureBookData, fetchStudyBookData } from "../util/API/RakutenBooks";
+import { fetchComicData, fetchPictureBookData, fetchLightNovelData } from "../util/API/RakutenBooks";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     fetchComicData().then((value) => {
       setComicPosts(value.data.Items);
     });
-    fetchStudyBookData().then((value) => {
+    fetchLightNovelData().then((value) => {
       setPosts(value.data.Items);
     });
     fetchPictureBookData().then((value) => {

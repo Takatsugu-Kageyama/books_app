@@ -9,14 +9,11 @@ export const getCartBooks = async (userId: string) => {
   const cartBooksDocSnap = await getDoc(userCartRef);
   //!ユーザーのデータがあるかどうか確認
   if (cartBooksDocSnap.exists()) {
-    //!チャットが格納される配列
+    //!カート内の本が格納されている配列
     const cartBooksData = cartBooksDocSnap.data().CartBooks;
     if (cartBooksData.length === 0) {
-      console.log("there are not chats!");
       return false;
     } else {
-      // console.log("there are chats!");
-      // return console.log(booksChatsData);
       return cartBooksData;
     }
   }

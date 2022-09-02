@@ -7,14 +7,22 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { isBooksChats } from "../util/Firebase/booksChatAuth";
 import { sentBooksChat } from "../util/Firebase/sendChats";
 import { addCart } from "../util/Firebase/addCart";
+// import { getCartBooks } from "../util/Firebase/getCart";
 import { CartBooksSchema } from "../util/TypeDefinition/BooksSchema";
 
 const BooksPage = () => {
   const router = useRouter(); //!routerの初期化設定
-  const [clickedBooksValue, setClickedBooksValue] = useState([]); //!クリックされた本のオブジェクトを格納する
-  const [isBooksChatsData, setIsBooksChatsData] = useState([]); //!isBooksChat関数から返される値を格納する
-  const clickedBooksIsbnNum = router.query.value; //!別ページにてクリックされた本のISBN番号を格納
-  const [isTextInput, setIsTextInput] = useState(""); //!入力されたテキストを保管
+  //!クリックされた本のオブジェクトを格納する
+  const [clickedBooksValue, setClickedBooksValue] = useState([]);
+  //!isBooksChat関数から返される値を格納する
+  const [isBooksChatsData, setIsBooksChatsData] = useState([]);
+  //!入力されたテキストを保管
+  const [isTextInput, setIsTextInput] = useState("");
+  //!カート内の本のデータを格納
+  // const [cartsBooksValue, setCartsBooksValue] = useState([]);
+  const cartsBooksIsbn: string[] = [];
+  //!別ページにてクリックされた本のISBN番号を格納
+  const clickedBooksIsbnNum = router.query.value;
   //!ページにアクセスされたときにAPI通信
   useEffect(() => {
     const fetchClickedBook = async () => {
@@ -31,9 +39,17 @@ const BooksPage = () => {
     isBooksChats(clickedBooksIsbnNum).then((value) => {
       setIsBooksChatsData(value);
     });
-    console.log(isBooksChatsData);
+    // console.log(isBooksChatsData);
   }, [isTextInput]);
-  // console.log(clickedBooksValue);
+  //!カート内の本のデータを参照
+  // useEffect(() => {
+  //   getCartBooks("I7PXmd8olYKMk0SYEnuP").then((BooksObj) => {
+  //     BooksObj.map((value: any) => {
+  //       cartsBooksIsbn.push(value.Book.isbn);
+  //     });
+  //   });
+  //   console.log(cartsBooksIsbn);
+  // }, []);
   return (
     <div className={styles.overall}>
       <div className={styles.linkArea}></div>
@@ -61,8 +77,10 @@ const BooksPage = () => {
                     image: value.Item.largeImageUrl,
                     isbn: value.Item.isbn,
                   };
-                  console.log(CartBooksValue);
-                  addCart(CartBooksValue);
+                  // console.log(CartBooksValue);
+                  addCart(CartBooksValue).then(() => {
+                    window.alert("カートに追加しました！");
+                  });
                 }}
               >
                 <ShoppingCartIcon />

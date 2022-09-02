@@ -10,12 +10,13 @@ export const fetchComicData = async () => {
   return result;
 };
 //語学・学習参考書
-export const fetchStudyBookData = async () => {
+export const fetchLightNovelData = async () => {
   const result = await axios(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001002&hits=5"
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=5"
   );
   return result;
 };
+
 //絵本・児童書
 export const fetchPictureBookData = async () => {
   const result = await axios(
