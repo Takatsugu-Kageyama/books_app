@@ -1,7 +1,4 @@
 import styles from "../styles/components/navbar.module.css";
-//Material Icons
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Link from "next/link";
 
 export default function Navbar() {

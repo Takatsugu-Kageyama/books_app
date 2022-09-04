@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import styles from "../styles/searchResult.module.scss";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { async } from "@firebase/util";
 
-const SearchResult = () => {
+const SearchResult = ({ booksData }: any) => {
   //ステートの設定
   const [resultBooks, setResultBooks] = useState([]); //!検索結果を格納
 
@@ -14,13 +15,7 @@ const SearchResult = () => {
   //Side Effect
   //!入力値が変更された時に再度API接続をしてデータを取得
   useEffect(() => {
-    const fetchResultBook = async () => {
-      const booksValue = await axios(
-        `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&keyword=${inputWord}&size=1&sort=reviewCount`
-      );
-      setResultBooks(booksValue.data.Items);
-    };
-    fetchResultBook();
+    setResultBooks(booksData);
   }, [inputWord]);
 
   return (
@@ -55,3 +50,26 @@ const SearchResult = () => {
   );
 };
 export default SearchResult;
+
+export const getServerSideProps = async (context: any) => {
+  const { query } = context;
+  const inputWord = query.value;
+  let data = null;
+  function sleepByPromise(sec: any) {
+    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
+  }
+  while (!data) {
+    await sleepByPromise(0.3);
+    const response = await fetch(
+      `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&keyword=${inputWord}&size=1&sort=reviewCount`
+    );
+    data = await response.json();
+    if (data) {
+      return {
+        props: {
+          booksData: data.Items,
+        },
+      };
+    }
+  }
+};

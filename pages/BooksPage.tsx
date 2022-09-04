@@ -1,17 +1,13 @@
 //スタイル
 import styles from "../styles/booksPage.module.scss";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { isBooksChats } from "../util/Firebase/booksChatAuth";
 import { sentBooksChat } from "../util/Firebase/sendChats";
 import { addCart } from "../util/Firebase/addCart";
-// import { getCartBooks } from "../util/Firebase/getCart";
 import { CartBooksSchema } from "../util/TypeDefinition/BooksSchema";
 
-const BooksPage = () => {
-  const router = useRouter(); //!routerの初期化設定
+const BooksPage = ({ booksData, clickedBooksIsbn }: any) => {
   //!クリックされた本のオブジェクトを格納する
   const [clickedBooksValue, setClickedBooksValue] = useState([]);
   //!isBooksChat関数から返される値を格納する
@@ -19,38 +15,19 @@ const BooksPage = () => {
   //!入力されたテキストを保管
   const [isTextInput, setIsTextInput] = useState("");
   //!カート内の本のデータを格納
-  // const [cartsBooksValue, setCartsBooksValue] = useState([]);
-  const cartsBooksIsbn: string[] = [];
-  //!別ページにてクリックされた本のISBN番号を格納
-  const clickedBooksIsbnNum = router.query.value;
   //!ページにアクセスされたときにAPI通信
   useEffect(() => {
-    const fetchClickedBook = async () => {
-      const booksValue = await axios(
-        `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&isbnjan=${clickedBooksIsbnNum}&hits=1`
-      );
-      setClickedBooksValue(booksValue.data.Items);
-    };
-    fetchClickedBook();
+    setClickedBooksValue(booksData);
   }, []);
 
   //!ページリロードと同時にFirebaseにチャットがあるかどうかを確認する
   useEffect(() => {
-    isBooksChats(clickedBooksIsbnNum).then((value) => {
+    isBooksChats(clickedBooksIsbn).then((value) => {
       setIsBooksChatsData(value);
     });
-    //console.log(isBooksChatsData);
-    // console.log(clickedBooksIsbnNum);
+    console.log(isBooksChatsData);
   }, [isTextInput]);
-  //!カート内の本のデータを参照
-  // useEffect(() => {
-  //   getCartBooks("I7PXmd8olYKMk0SYEnuP").then((BooksObj) => {
-  //     BooksObj.map((value: any) => {
-  //       cartsBooksIsbn.push(value.Book.isbn);
-  //     });
-  //   });
-  //   console.log(cartsBooksIsbn);
-  // }, []);
+
   return (
     <div className={styles.overall}>
       <div className={styles.linkArea}></div>
@@ -115,7 +92,7 @@ const BooksPage = () => {
           <button
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.preventDefault;
-              sentBooksChat(clickedBooksIsbnNum, isTextInput).then(() => {
+              sentBooksChat(clickedBooksIsbn, isTextInput).then(() => {
                 setIsTextInput("");
               });
             }}
@@ -164,3 +141,27 @@ const BooksPage = () => {
   );
 };
 export default BooksPage;
+
+export const getServerSideProps = async (context: any) => {
+  const { query } = context;
+  const isbn = query.value;
+  let data = null;
+  function sleepByPromise(sec: any) {
+    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
+  }
+  while (!data) {
+    await sleepByPromise(0.3);
+    const response = await fetch(
+      `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&isbnjan=${isbn}&hits=1`
+    );
+    data = await response.json();
+    if (data) {
+      return {
+        props: {
+          booksData: data.Items,
+          clickedBooksIsbn: isbn,
+        },
+      };
+    }
+  }
+};

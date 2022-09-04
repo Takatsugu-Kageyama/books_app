@@ -1,15 +1,14 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
-import { isBooksChats } from "../util/Firebase/booksChatAuth";
 import { useEffect, useState } from "react";
-import { fetchComicData, fetchPictureBookData, fetchLightNovelData } from "../util/API/RakutenBooks";
 import { useRouter } from "next/router";
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookData }: any) => {
   //APIを保管するstate
-  const [posts, setPosts] = useState([]);
   const [comicPosts, setComicPosts] = useState([]);
+  const [lightNovelPosts, setLightNovelPosts] = useState([]);
   const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
+  const [novelBooksProps, setNovelBooksProps] = useState([]);
 
   // const [contemporaryBooksPosts, setContemporaryBooksPosts] = useState([]);
   // const [lightBooksPosts, setLightBooksPosts] = useState([]);
@@ -18,15 +17,10 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetchComicData().then((value) => {
-      setComicPosts(value.data.Items);
-    });
-    fetchLightNovelData().then((value) => {
-      setPosts(value.data.Items);
-    });
-    fetchPictureBookData().then((value) => {
-      setPictureBooksPosts(value.data.Items);
-    });
+    setComicPosts(comicData);
+    setLightNovelPosts(lightNovelData);
+    setPictureBooksPosts(pictureBookData);
+    setNovelBooksProps(novelBookData);
   }, []);
   console.log(comicPosts);
   return (
@@ -64,11 +58,11 @@ const Home: NextPage = () => {
           })}
         </div>
       </div>
-      {/*語学・学習参考書*/}
+      {/*ライトノベル*/}
       <div className={styles.booksBox}>
-        <h2>語学・学習参考書</h2>
+        <h2>ライトノベル</h2>
         <div key={null} className={styles.booksCardArea}>
-          {posts.map((value: any) => {
+          {lightNovelPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
                 <div className={styles.cardsContent}>
@@ -130,74 +124,79 @@ const Home: NextPage = () => {
           })}
         </div>
       </div>
-      {/*/!*新書*!/*/}
-      {/*<div className={styles.booksBox}>*/}
-      {/*  <h2>新書</h2>*/}
-      {/*  <div className={styles.booksCardArea}>*/}
-      {/*    {contemporaryBooksPosts.map((value) => {*/}
-      {/*      return (*/}
-      {/*        <div className={styles.booksCard}>*/}
-      {/*          <div className={styles.booksImg}>*/}
-      {/*            <img src={value.Item.largeImageUrl} alt="" />*/}
-      {/*          </div>*/}
-      {/*          <h2 className={styles.booksTitle} id="booksTitle">*/}
-      {/*            {value.Item.title.length > 20*/}
-      {/*              ? value.Item.title.substr(0, 33) + "..."*/}
-      {/*              : value.Item.title}*/}
-      {/*          </h2>*/}
-      {/*          <p className={styles.booksAuthor}>{value.Item.author}</p>*/}
-      {/*          <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>*/}
-      {/*        </div>*/}
-      {/*      );*/}
-      {/*    })}*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-      {/*/!*ライトノベル*!/*/}
-      {/*<div className={styles.booksBox}>*/}
-      {/*  <h2>ライトノベル</h2>*/}
-      {/*  <div className={styles.booksCardArea}>*/}
-      {/*    {lightBooksPosts.map((value) => {*/}
-      {/*      return (*/}
-      {/*        <div className={styles.booksCard}>*/}
-      {/*          <div className={styles.booksImg}>*/}
-      {/*            <img src={value.Item.largeImageUrl} alt="" />*/}
-      {/*          </div>*/}
-      {/*          <h2 className={styles.booksTitle} id="booksTitle">*/}
-      {/*            {value.Item.title.length > 20*/}
-      {/*              ? value.Item.title.substr(0, 33) + "..."*/}
-      {/*              : value.Item.title}*/}
-      {/*          </h2>*/}
-      {/*          <p className={styles.booksAuthor}>{value.Item.author}</p>*/}
-      {/*          <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>*/}
-      {/*        </div>*/}
-      {/*      );*/}
-      {/*    })}*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-      {/*/!*美容・暮らし・健康・料理*!/*/}
-      {/*<div className={styles.booksBox}>*/}
-      {/*  <h2>美容・暮らし・健康・料理</h2>*/}
-      {/*  <div className={styles.booksCardArea}>*/}
-      {/*    {posts.map((value) => {*/}
-      {/*      return (*/}
-      {/*        <div className={styles.booksCard}>*/}
-      {/*          <div className={styles.booksImg}>*/}
-      {/*            <img src={value.Item.largeImageUrl} alt="" />*/}
-      {/*          </div>*/}
-      {/*          <h2 className={styles.booksTitle} id="booksTitle">*/}
-      {/*            {value.Item.title.length > 20*/}
-      {/*              ? value.Item.title.substr(0, 33) + "..."*/}
-      {/*              : value.Item.title}*/}
-      {/*          </h2>*/}
-      {/*          <p className={styles.booksAuthor}>{value.Item.author}</p>*/}
-      {/*          <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>*/}
-      {/*        </div>*/}
-      {/*      );*/}
-      {/*    })}*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+      {/*小説・エッセイ*/}
+      <div className={styles.booksBox}>
+        <h2>小説・エッセイ</h2>
+        <div key={null} className={styles.booksCardArea}>
+          {novelBooksProps.map((value: any) => {
+            return (
+              <div key={null} className={styles.booksCard}>
+                <div className={styles.cardsContent}>
+                  <div
+                    className={styles.booksImg}
+                    onClick={() => {
+                      // setClickedBook(value);
+                      // console.log(clickedBook);
+                      router.push({
+                        pathname: "BooksPage",
+                        query: { value: value.Item.isbn },
+                      });
+                      // isBooksChats(value.Item.isbn);
+                    }}
+                  >
+                    <img src={value.Item.largeImageUrl} alt="" />
+                  </div>
+                  <h2 className={styles.booksTitle} id="booksTitle">
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                  </h2>
+                  <p className={styles.booksAuthor}>{value.Item.author}</p>
+                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  function sleepByPromise(sec: any) {
+    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
+  }
+  await sleepByPromise(0.3);
+  //!漫画のデータ取得
+  const fetchComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=5"
+  );
+  const comicData = await fetchComic.json();
+  await sleepByPromise(0.3);
+  //!ライトノベルデータの取得
+  const fetchLightNovel = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=5"
+  );
+  const lightNovelData = await fetchLightNovel.json();
+  await sleepByPromise(0.3);
+  //!絵本データの取得
+  const fetchPictureBook = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&hits=5"
+  );
+  const pictureBookData = await fetchPictureBook.json();
+  await sleepByPromise(0.3);
+  //!小説
+  const fetchNovelBook = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=5"
+  );
+  const novelBookData = await fetchNovelBook.json();
+  return {
+    props: {
+      comicData: comicData.Items,
+      lightNovelData: lightNovelData.Items,
+      pictureBookData: pictureBookData.Items,
+      novelBookData: novelBookData.Items,
+    },
+  };
+};

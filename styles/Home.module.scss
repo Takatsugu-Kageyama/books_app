@@ -12,13 +12,14 @@
           @apply w-[190px];
           .booksImg {
             @apply w-full;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
             img {
               @apply cursor-pointer w-full;
             }
           }
 
           .booksTitle {
-            @apply w-fit pt-[10px] text-[16px] font-bold;
+            @apply w-fit pt-[20px] text-[16px] font-bold;
           }
 
           .booksAuthor {

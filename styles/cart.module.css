@@ -50,7 +50,7 @@
   @apply text-[28px] m-[10px] w-[80%] mx-auto;
 }
 .overall .cartsContents .sumPriceBox .sum h2 span {
-  @apply font-bold text-[12px] text-middleRed;
+  @apply ml-[10px] font-bold text-[12px] text-middleRed;
 }
 .overall .cartsContents .sumPriceBox .cashBtn {
   @apply mt-[63px] m-[10px] w-[300px] h-[56px] text-[24px] font-bold bg-middleGreen rounded-[20px];

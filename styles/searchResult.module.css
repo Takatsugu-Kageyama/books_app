@@ -12,12 +12,13 @@
 }
 .overall .booksArea .booksCard .cardsContents .booksImg {
   @apply w-full;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
 }
 .overall .booksArea .booksCard .cardsContents .booksImg img {
   @apply cursor-pointer w-full;
 }
 .overall .booksArea .booksCard .cardsContents .booksTitle {
-  @apply w-[210px] pt-[10px] text-[16px] font-bold;
+  @apply w-[210px] pt-[20px] text-[16px] font-bold;
 }
 .overall .booksArea .booksCard .cardsContents .booksAuthor {
   @apply text-[12px] text-fadeGray;
