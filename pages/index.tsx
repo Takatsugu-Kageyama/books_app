@@ -10,9 +10,6 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
   const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
   const [novelBooksProps, setNovelBooksProps] = useState([]);
 
-  // const [contemporaryBooksPosts, setContemporaryBooksPosts] = useState([]);
-  // const [lightBooksPosts, setLightBooksPosts] = useState([]);
-
   //router初期設定
   const router = useRouter();
 
@@ -36,8 +33,6 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                   <div
                     className={styles.booksImg}
                     onClick={() => {
-                      // setClickedBook(value);
-                      // console.log(clickedBook);
                       router.push({
                         pathname: "BooksPage",
                         query: { value: value.Item.isbn },

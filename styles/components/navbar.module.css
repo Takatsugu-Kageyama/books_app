@@ -1,5 +1,5 @@
 .overall {
-  @apply w-fit px-[28px];
+  @apply w-fit px-[28px] bg-[#EEEEEE];
 }
 .overall .nav {
   @apply pt-[30px] md:text-[18px];

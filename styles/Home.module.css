@@ -15,7 +15,7 @@
 }
 .overall .booksBox .booksCardArea .booksCard .cardsContent .booksImg {
   @apply w-full;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
 .overall .booksBox .booksCardArea .booksCard .cardsContent .booksImg img {
   @apply cursor-pointer w-full;

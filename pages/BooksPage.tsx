@@ -14,10 +14,13 @@ const BooksPage = ({ booksData, clickedBooksIsbn }: any) => {
   const [isBooksChatsData, setIsBooksChatsData] = useState([]);
   //!入力されたテキストを保管
   const [isTextInput, setIsTextInput] = useState("");
-  //!カート内の本のデータを格納
+  //!カート内の本のisbn番号を格納
+  const [cartBooksIsbn, setCartBooksIsbn] = useState([]);
   //!ページにアクセスされたときにAPI通信
   useEffect(() => {
+    //!クリックされた本のデータをとってくる
     setClickedBooksValue(booksData);
+    //!カートにあるデータを取ってくる
   }, []);
 
   //!ページリロードと同時にFirebaseにチャットがあるかどうかを確認する

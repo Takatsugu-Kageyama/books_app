@@ -1,4 +1,5 @@
 .layoutWrap {
+  @apply bg-bgWhite;
   .contentsWrap {
     @apply flex w-[100vw] max-h-screen overflow-hidden;
     .rightSideWrap {
