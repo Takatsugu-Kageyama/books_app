@@ -31,6 +31,21 @@
 .overall .booksBox .booksDetail button:hover {
   @apply bg-hoverBtn;
 }
+.overall .booksBox .booksDetail button .cartIcon {
+  @apply text-[30px] mr-[30px];
+}
+.overall .booksBox .booksDetail .alreadyBtn {
+  @apply flex flex-row items-center w-[300px] h-[56px] text-[24px] rounded-[20px] bg-[#CCCCCC];
+}
+.overall .booksBox .booksDetail .alreadyBtn:hover {
+  @apply bg-hoverGray;
+}
+.overall .booksBox .booksDetail .alreadyBtn p {
+  @apply basis-[60%] self-center;
+}
+.overall .booksBox .booksDetail .alreadyBtn .checkIcon {
+  @apply basis-[20%] text-[30px] mr-[30px];
+}
 .overall .threadArea {
   @apply mt-[100px] bg-bgWhite;
 }

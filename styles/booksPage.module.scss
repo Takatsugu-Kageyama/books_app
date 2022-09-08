@@ -31,6 +31,21 @@
         &:hover {
           @apply bg-hoverBtn;
         }
+        .cartIcon {
+          @apply text-[30px] mr-[30px];
+        }
+      }
+      .alreadyBtn {
+        @apply flex flex-row items-center w-[300px] h-[56px] text-[24px] rounded-[20px] bg-[#CCCCCC];
+        &:hover {
+          @apply bg-hoverGray;
+        }
+        p {
+          @apply basis-[60%] self-center;
+        }
+        .checkIcon {
+          @apply basis-[20%] text-[30px] mr-[30px];
+        }
       }
     }
   }

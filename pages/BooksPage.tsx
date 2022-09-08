@@ -2,20 +2,21 @@
 import styles from "../styles/booksPage.module.scss";
 import React, { useEffect, useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CheckIcon from "@mui/icons-material/Check";
 import { isBooksChats } from "../util/Firebase/booksChatAuth";
 import { sentBooksChat } from "../util/Firebase/sendChats";
 import { addCart } from "../util/Firebase/addCart";
 import { CartBooksSchema } from "../util/TypeDefinition/BooksSchema";
+import { getCartBooksIsbn } from "../util/Firebase/getCart";
 
-const BooksPage = ({ booksData, clickedBooksIsbn }: any) => {
+const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
   //!クリックされた本のオブジェクトを格納する
   const [clickedBooksValue, setClickedBooksValue] = useState([]);
   //!isBooksChat関数から返される値を格納する
   const [isBooksChatsData, setIsBooksChatsData] = useState([]);
   //!入力されたテキストを保管
   const [isTextInput, setIsTextInput] = useState("");
-  //!カート内の本のisbn番号を格納
-  const [cartBooksIsbn, setCartBooksIsbn] = useState([]);
+
   //!ページにアクセスされたときにAPI通信
   useEffect(() => {
     //!クリックされた本のデータをとってくる
@@ -30,7 +31,12 @@ const BooksPage = ({ booksData, clickedBooksIsbn }: any) => {
     });
     console.log(isBooksChatsData);
   }, [isTextInput]);
-
+  // useEffect(() => {
+  //   getCartBooksIsbn("I7PXmd8olYKMk0SYEnuP").then((value: any) => {
+  //     setCartBooksIsbn(value);
+  //   });
+  //   console.log(cartBooksIsbn);
+  // }, []);
   return (
     <div className={styles.overall}>
       <div className={styles.linkArea}></div>
@@ -47,26 +53,33 @@ const BooksPage = ({ booksData, clickedBooksIsbn }: any) => {
                 <p className={styles.booksAuthor}>{value.Item.author}</p>
                 <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
-              <button
-                onClick={(e) => {
-                  e.preventDefault;
-                  const CartBooksValue: CartBooksSchema = {
-                    userId: "I7PXmd8olYKMk0SYEnuP",
-                    title: value.Item.title,
-                    author: value.Item.author,
-                    price: value.Item.itemPrice,
-                    image: value.Item.largeImageUrl,
-                    isbn: value.Item.isbn,
-                  };
-                  // console.log(CartBooksValue);
-                  addCart(CartBooksValue).then(() => {
-                    window.alert("カートに追加しました！");
-                  });
-                }}
-              >
-                <ShoppingCartIcon />
-                カートに追加する
-              </button>
+              {cartBooksIsbn == "" ? (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault;
+                    const CartBooksValue: CartBooksSchema = {
+                      userId: "I7PXmd8olYKMk0SYEnuP",
+                      title: value.Item.title,
+                      author: value.Item.author,
+                      price: value.Item.itemPrice,
+                      image: value.Item.largeImageUrl,
+                      isbn: value.Item.isbn,
+                    };
+                    // console.log(CartBooksValue);
+                    addCart(CartBooksValue).then(() => {
+                      window.alert("カートに追加しました！");
+                    });
+                  }}
+                >
+                  <ShoppingCartIcon className={styles.cartIcon} />
+                  カートに追加する
+                </button>
+              ) : (
+                <button className={styles.alreadyBtn}>
+                  <CheckIcon className={styles.checkIcon} />
+                  <p>追加済</p>
+                </button>
+              )}
             </div>
           </div>
         );
@@ -148,10 +161,12 @@ export default BooksPage;
 export const getServerSideProps = async (context: any) => {
   const { query } = context;
   const isbn = query.value;
+  let isCartIsbn = "";
   let data = null;
   function sleepByPromise(sec: any) {
     return new Promise((resolve) => setTimeout(resolve, sec * 1000));
   }
+  //本のデータを受け取る関数
   while (!data) {
     await sleepByPromise(0.3);
     const response = await fetch(
@@ -159,12 +174,22 @@ export const getServerSideProps = async (context: any) => {
     );
     data = await response.json();
     if (data) {
-      return {
-        props: {
-          booksData: data.Items,
-          clickedBooksIsbn: isbn,
-        },
-      };
+      break;
     }
   }
+  //本がカートにあるかを確認する関数
+  await getCartBooksIsbn("I7PXmd8olYKMk0SYEnuP").then((value: any) => {
+    for (const CartIsbn of value) {
+      if (CartIsbn === isbn) {
+        isCartIsbn = CartIsbn;
+      }
+    }
+  });
+  return {
+    props: {
+      booksData: data.Items,
+      clickedBooksIsbn: isbn,
+      cartBooksIsbn: isCartIsbn,
+    },
+  };
 };

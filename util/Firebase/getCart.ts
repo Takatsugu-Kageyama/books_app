@@ -34,13 +34,8 @@ export const getCartBooksIsbn = async (userId: string) => {
     const cartBooksIsbn = [];
     //!isbnを配列に入れる
     for (const isbn of cartBooksIsbnData) {
-      cartBooksIsbn.push(isbn);
+      cartBooksIsbn.push(isbn.Book.isbn);
     }
-
-    if (cartBooksIsbn.length === 0) {
-      return false;
-    } else {
-      return cartBooksIsbn;
-    }
+    return cartBooksIsbn;
   }
 };
