@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { getWindowSize } from "../util/Settings/catchWindow";
 
 const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookData }: any) => {
   //APIを保管するstate
@@ -9,17 +10,32 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
   const [lightNovelPosts, setLightNovelPosts] = useState([]);
   const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
   const [novelBooksProps, setNovelBooksProps] = useState([]);
+  const [windowSize, setWindowSize] = useState(getWindowSize());
 
   //router初期設定
   const router = useRouter();
 
+  //コンポーネントがマウントされたときにAPIデータを格納
   useEffect(() => {
     setComicPosts(comicData);
     setLightNovelPosts(lightNovelData);
     setPictureBooksPosts(pictureBookData);
     setNovelBooksProps(novelBookData);
   }, []);
-  console.log(comicPosts);
+
+  //画面幅の変動に応じて格納
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+  console.log(windowSize.innerWidth);
   return (
     <div className={styles.overall}>
       {/*漫画*/}
@@ -162,6 +178,7 @@ export const getServerSideProps = async () => {
   function sleepByPromise(sec: any) {
     return new Promise((resolve) => setTimeout(resolve, sec * 1000));
   }
+
   await sleepByPromise(0.3);
   //!漫画のデータ取得
   const fetchComic = await fetch(

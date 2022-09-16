@@ -31,12 +31,7 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
     });
     console.log(isBooksChatsData);
   }, [isTextInput]);
-  // useEffect(() => {
-  //   getCartBooksIsbn("I7PXmd8olYKMk0SYEnuP").then((value: any) => {
-  //     setCartBooksIsbn(value);
-  //   });
-  //   console.log(cartBooksIsbn);
-  // }, []);
+
   return (
     <div className={styles.overall}>
       <div className={styles.linkArea}></div>
