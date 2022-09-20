@@ -2,15 +2,12 @@ import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getWindowSize } from "../util/Settings/catchWindow";
-
 const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookData }: any) => {
   //APIを保管するstate
   const [comicPosts, setComicPosts] = useState([]);
   const [lightNovelPosts, setLightNovelPosts] = useState([]);
   const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
   const [novelBooksProps, setNovelBooksProps] = useState([]);
-  const [windowSize, setWindowSize] = useState(getWindowSize());
 
   //router初期設定
   const router = useRouter();
@@ -22,20 +19,6 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
     setPictureBooksPosts(pictureBookData);
     setNovelBooksProps(novelBookData);
   }, []);
-
-  //画面幅の変動に応じて格納
-  useEffect(() => {
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-  console.log(windowSize.innerWidth);
   return (
     <div className={styles.overall}>
       {/*漫画*/}

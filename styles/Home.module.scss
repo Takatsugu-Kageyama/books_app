@@ -4,9 +4,9 @@
   .booksBox {
     @apply text-[32px] w-[90%] mx-auto;
     .booksCardArea {
-      @apply max-w-full flex justify-between pt-[30px] xl:grid-cols-5;
+      @apply max-w-full grid justify-between pt-[30px] grid-cols-3 lg:grid-cols-5;
       .booksCard {
-        @apply w-[16%] m-[10px];
+        @apply w-fit m-[10px];
         .cardsContent {
           @apply w-full;
           .booksImg {
@@ -18,15 +18,15 @@
           }
 
           .booksTitle {
-            @apply w-fit pt-[20px] text-[16px] font-bold;
+            @apply w-fit pt-[20px] text-[1.3vw] font-bold;
           }
 
           .booksAuthor {
-            @apply text-[12px] text-fadeGray;
+            @apply text-[1vw] text-fadeGray;
           }
 
           .booksPrice {
-            @apply text-[20px] text-middleRed;
+            @apply text-[1.2vw] text-middleRed;
           }
         }
       }
