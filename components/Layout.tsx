@@ -16,6 +16,8 @@ const Layout = ({ children }: LayoutProps) => {
   const [inputValue, setInputValue] = useState("");
   //!変換の状態
   const [isComposing, setIsComposing] = useState(false);
+  //!ナビゲーションボタンがクリックされているかの状態を保管
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter(); //!Next Router
 
   //ユーザーアクション
@@ -32,14 +34,26 @@ const Layout = ({ children }: LayoutProps) => {
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
-  // console.log(inputValue);
+  // console.log(isMenuOpen);
   return (
     <div className={styles.layoutWrap}>
       <div className={styles.contentsWrap}>
-        <Navbar />
+        <Navbar isMenuOpen={isMenuOpen} />
         <div className={styles.rightSideWrap}>
           {/*検索欄とロゴ*/}
           <div className={styles.topContainer}>
+            {/* ハンバーガーメニュー */}
+            <button
+              onClick={(e) => {
+                e.preventDefault;
+                setIsMenuOpen(!isMenuOpen);
+              }}
+              className={isMenuOpen ? styles.openHamburger : styles.hamburger}
+            >
+              <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
+              <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
+              <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
+            </button>
             <div className={styles.inputArea}>
               <input
                 onInput={isSearchBarChanged}
@@ -67,7 +81,7 @@ const Layout = ({ children }: LayoutProps) => {
             <div className={styles.indArea}>
               <Link href="/Cart">
                 <div className={styles.cartBtn}>
-                  <ShoppingCartIcon />
+                  <ShoppingCartIcon className={styles.cartIcon} />
                   <p>カート</p>
                 </div>
               </Link>

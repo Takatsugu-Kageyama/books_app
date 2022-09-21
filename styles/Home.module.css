@@ -21,7 +21,7 @@
   @apply cursor-pointer w-full;
 }
 .overall .booksBox .booksCardArea .booksCard .cardsContent .booksTitle {
-  @apply w-fit pt-[20px] text-[1.3vw] font-bold;
+  @apply w-fit pt-[20px] text-[1.1vw] font-bold;
 }
 .overall .booksBox .booksCardArea .booksCard .cardsContent .booksAuthor {
   @apply text-[1vw] text-fadeGray;
