@@ -1,5 +1,5 @@
 .openOverall {
-  @apply w-[80%] h-[60vh] bg-[#EEEEEE] absolute left-0 top-0 z-[10];
+  @apply w-[300px] h-[100vh] bg-[#EEEEEE] absolute left-0 top-0 z-[10];
   transition: 0.3s;
 }
 .overall {
@@ -7,7 +7,7 @@
   transition: 0.3s;
 }
 .nav {
-  @apply ml-[20px] pt-[30px] md:text-[18px];
+  @apply ml-[20px] pt-[30px] md:text-[18px] md:ml-0;
   .logo {
     @apply cursor-pointer self-center w-[131.28px] h-[17px] flex items-center justify-center;
     img {

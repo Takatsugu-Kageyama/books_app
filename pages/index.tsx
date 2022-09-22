@@ -158,7 +158,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
 export default Home;
 
 export const getServerSideProps = async () => {
-  function sleepByPromise(sec: any) {
+  function sleepByPromise(sec: number) {
     return new Promise((resolve) => setTimeout(resolve, sec * 1000));
   }
 

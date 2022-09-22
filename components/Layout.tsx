@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import styles from "../styles/components/layout.module.css";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
   const [inputValue, setInputValue] = useState("");
   //!変換の状態
   const [isComposing, setIsComposing] = useState(false);
-  //!ナビゲーションボタンがクリックされているかの状態を保管
+  //!ハンバーガーメニューがクリックされているかの状態を保管
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter(); //!Next Router
 
@@ -34,7 +34,11 @@ const Layout = ({ children }: LayoutProps) => {
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
-  // console.log(isMenuOpen);
+  useEffect(()=>{ 
+      setIsMenuOpen(!isMenuOpen);
+  },[])
+  
+  console.log(isMenuOpen);
   return (
     <div className={styles.layoutWrap}>
       <div className={styles.contentsWrap}>

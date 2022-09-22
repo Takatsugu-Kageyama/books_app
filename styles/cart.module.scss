@@ -1,14 +1,14 @@
 .overall {
-  @apply w-[90%] mx-auto pt-[30px] pb-[180px];
+  @apply w-[95%] mx-auto pt-[30px] pb-[180px];
   .userName {
     @apply text-[32px] font-bold pb-[63px];
   }
   .cartsContents {
-    @apply flex grow-[2] w-[95%] justify-between;
+    @apply flex-col lg:flex-row flex grow-[2] w-[95%] justify-between gap-x-[5%];
     .cartsBooks {
-      @apply w-[50%];
+      @apply w-full lg:w-[60%];
       .booksBox {
-        @apply bg-bgWhite w-full flex items-center py-[20px] mb-[30px];
+        @apply bg-bgWhite w-full flex-col sm:flex-row flex items-center py-[20px] mb-[30px];
         .booksImage {
           @apply w-[189px];
           img {
@@ -17,24 +17,24 @@
         }
 
         .booksDetail {
-          @apply pl-[40px] w-[60%] flex flex-col items-center gap-y-[30px];
+          @apply m-[10px] sm:pl-[40px] w-full sm:w-[60%] flex flex-col items-center gap-y-[30px];
           .booksContents {
             @apply flex flex-col gap-y-[10px];
             h2 {
-              @apply text-[28px] font-bold;
+              @apply text-[18px] lg:text-[28px] font-bold;
             }
 
             .booksAuthor {
-              @apply text-[20px] text-fadeGray;
+              @apply text-[14px] lg:text-[20px] text-fadeGray;
             }
 
             .booksPrice {
-              @apply text-[20px] text-middleRed;
+              @apply text-[14px] lg:text-[20px] text-middleRed;
             }
           }
 
           button {
-            @apply w-[85%] 2xl:w-[300px] h-[56px] text-[24px] rounded-[20px] bg-middleGray;
+            @apply w-[65%] lg:w-full 2xl:w-[300px] h-[56px] text-[20px] lg:text-[24px] rounded-[20px] bg-middleGray;
             &:hover {
               @apply opacity-[70%];
             }
@@ -47,9 +47,9 @@
     }
 
     .sumPriceBox {
-      @apply bg-bgWhite m-[10px] w-[34%] h-[287px] flex flex-col items-center justify-center;
+      @apply order-first lg:order-last w-full bg-bgWhite mb-[30px] lg:m-[10px] lg:w-[40%] h-fit flex flex-col items-center justify-center;
       .sum {
-        @apply text-[28px] m-[10px] w-[80%] mx-auto;
+        @apply text-[24px] sm:text-[28px] m-[10px] w-[80%] mx-auto;
         h2 {
           span {
             @apply ml-[10px] font-bold text-[12px] text-middleRed;
@@ -57,7 +57,7 @@
         }
       }
       .cashBtn {
-        @apply mt-[63px] m-[10px] w-[300px] h-[56px] text-[24px] font-bold bg-middleGreen rounded-[20px];
+        @apply mt-[63px] m-[10px] w-[80%] h-[56px] text-[24px] font-bold bg-middleGreen rounded-[20px];
         &:hover {
           @apply bg-hoverBtn;
         }

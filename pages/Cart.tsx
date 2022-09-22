@@ -27,8 +27,6 @@ const Cart = () => {
   return (
     <div className={styles.overall}>
       <h2 className={styles.userName}>XXXさんのカート</h2>
-      {/*TODO:データベースにあるカートの中身を引っ張ってくる */}
-      {/* TODO:カートの中身が無かった場合とあった場合でレイアウトの変更 */}
       <div className={styles.cartsContents}>
         <div className={styles.cartsBooks}>
           {cartValue.length ? (

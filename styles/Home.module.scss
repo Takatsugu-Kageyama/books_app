@@ -6,7 +6,7 @@
     .booksCardArea {
       @apply max-w-full grid justify-between pt-[30px] grid-cols-3 lg:grid-cols-5;
       .booksCard {
-        @apply w-fit m-[10px];
+        @apply w-[80%] m-[10px];
         .cardsContent {
           @apply w-full;
           .booksImg {

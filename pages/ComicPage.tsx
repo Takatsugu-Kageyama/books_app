@@ -1,23 +1,16 @@
 import styles from "../styles/genrePage.module.scss";
 import { useEffect, useState } from "react";
-import { fetchComicEarningsSortData, fetchComicNewSortData, fetchEvaluationSortData } from "../util/API/RakutenBooks";
 import { useRouter } from "next/router";
 
-const ComicPage = () => {
+const ComicPage = ({ newComicData, popularComicData, evaluationComicData }: any) => {
   const [comicNewPosts, setComicNewPosts] = useState([]);
   const [comicEarningsPosts, setComicEarningsPosts] = useState([]);
   const [comicEvaluationPosts, setComicEvaluationPosts] = useState([]);
   const router = useRouter();
   useEffect(() => {
-    fetchComicNewSortData().then((value) => {
-      setComicNewPosts(value.data.Items);
-    });
-    fetchComicEarningsSortData().then((value) => {
-      setComicEarningsPosts(value.data.Items);
-    });
-    fetchEvaluationSortData().then((value) => {
-      setComicEvaluationPosts(value.data.Items);
-    });
+    setComicNewPosts(newComicData);
+    setComicEarningsPosts(popularComicData);
+    setComicEvaluationPosts(evaluationComicData);
   }, []);
   return (
     <div className={styles.overall}>
@@ -29,22 +22,25 @@ const ComicPage = () => {
           {comicNewPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
-                <div
-                  className={styles.booksImg}
-                  onClick={() => {
-                    router.push({
-                      pathname: "BooksPage",
-                      query: { value: value.Item.isbn },
-                    });
-                  }}
-                >
-                  <img src={value.Item.largeImageUrl} alt="" />
+                <div className={styles.cardsContent}>
+                  <div
+                    className={styles.booksImg}
+                    onClick={() => {
+                      router.push({
+                        pathname: "BooksPage",
+                        query: { value: value.Item.isbn },
+                      });
+                      // isBooksChats(value.Item.isbn);
+                    }}
+                  >
+                    <img src={value.Item.largeImageUrl} alt="" />
+                  </div>
+                  <h2 className={styles.booksTitle} id="booksTitle">
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                  </h2>
+                  <p className={styles.booksAuthor}>{value.Item.author}</p>
+                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-                <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
-                </h2>
-                <p className={styles.booksAuthor}>{value.Item.author}</p>
-                <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
             );
           })}
@@ -57,24 +53,25 @@ const ComicPage = () => {
           {comicEarningsPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
-                <div
-                  className={styles.booksImg}
-                  onClick={() => {
-                    // setClickedBook(value);
-                    // console.log(clickedBook);
-                    router.push({
-                      pathname: "BooksPage",
-                      query: { value: value.Item.title },
-                    });
-                  }}
-                >
-                  <img src={value.Item.largeImageUrl} alt="" />
+                <div className={styles.cardsContent}>
+                  <div
+                    className={styles.booksImg}
+                    onClick={() => {
+                      router.push({
+                        pathname: "BooksPage",
+                        query: { value: value.Item.isbn },
+                      });
+                      // isBooksChats(value.Item.isbn);
+                    }}
+                  >
+                    <img src={value.Item.largeImageUrl} alt="" />
+                  </div>
+                  <h2 className={styles.booksTitle} id="booksTitle">
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                  </h2>
+                  <p className={styles.booksAuthor}>{value.Item.author}</p>
+                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-                <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
-                </h2>
-                <p className={styles.booksAuthor}>{value.Item.author}</p>
-                <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
             );
           })}
@@ -87,24 +84,25 @@ const ComicPage = () => {
           {comicEvaluationPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
-                <div
-                  className={styles.booksImg}
-                  onClick={() => {
-                    // setClickedBook(value);
-                    // console.log(clickedBook);
-                    router.push({
-                      pathname: "BooksPage",
-                      query: { value: value.Item.title },
-                    });
-                  }}
-                >
-                  <img src={value.Item.largeImageUrl} alt="" />
+                <div className={styles.cardsContent}>
+                  <div
+                    className={styles.booksImg}
+                    onClick={() => {
+                      router.push({
+                        pathname: "BooksPage",
+                        query: { value: value.Item.isbn },
+                      });
+                      // isBooksChats(value.Item.isbn);
+                    }}
+                  >
+                    <img src={value.Item.largeImageUrl} alt="" />
+                  </div>
+                  <h2 className={styles.booksTitle} id="booksTitle">
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                  </h2>
+                  <p className={styles.booksAuthor}>{value.Item.author}</p>
+                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-                <h2 className={styles.booksTitle} id="booksTitle">
-                  {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
-                </h2>
-                <p className={styles.booksAuthor}>{value.Item.author}</p>
-                <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
             );
           })}
@@ -114,3 +112,35 @@ const ComicPage = () => {
   );
 };
 export default ComicPage;
+
+export const getServerSideProps = async () => {
+  function sleepByPromise(sec: number) {
+    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
+  }
+
+  await sleepByPromise(0.2);
+  //!新着漫画の取得
+  const fetchNewComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=-releaseDate&hits=5"
+  );
+  const newComicData = await fetchNewComic.json();
+  await sleepByPromise(0.2);
+  //!人気作品の取得
+  const fetchPopularComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=sales&hits=5"
+  );
+  const popularComicData = await fetchPopularComic.json();
+  await sleepByPromise(0.2);
+  //!高評価の多い作品
+  const fetchEvaluationComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=reviewAverage&hits=5"
+  );
+  const evaluationComicData = await fetchEvaluationComic.json();
+  return {
+    props: {
+      newComicData: newComicData.Items,
+      popularComicData: popularComicData.Items,
+      evaluationComicData: evaluationComicData.Items,
+    },
+  };
+};
