@@ -22,8 +22,8 @@ const Layout = ({ children }: LayoutProps) => {
 
   //ユーザーアクション
   const keyPress = (e: any) => {
-    if (e.key === "Enter" && isComposing && inputValue) {
-      console.log("入力中にエンターが押されました");
+    if (e.key === "Enter" && isComposing && inputValue !== "") {
+      // console.log("入力中にエンターが押されました");
       router.push({
         pathname: "SearchResult",
         query: { value: inputValue },
@@ -34,9 +34,6 @@ const Layout = ({ children }: LayoutProps) => {
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
-  useEffect(()=>{ 
-      setIsMenuOpen(!isMenuOpen);
-  },[])
   
   console.log(isMenuOpen);
   return (
@@ -63,20 +60,22 @@ const Layout = ({ children }: LayoutProps) => {
                 onInput={isSearchBarChanged}
                 onKeyPress={(e) => keyPress(e)}
                 placeholder="本のタイトルを検索"
-                onCompositionStart={(e) => {
+                onCompositionStart={() => {
                   setIsComposing(false);
                 }}
-                onCompositionEnd={(e) => {
+                onCompositionEnd={() => {
                   setIsComposing(true);
                 }}
               />
               <button
                 onClick={(e) => {
                   e.preventDefault;
-                  router.push({
-                    pathname: "SearchResult",
-                    query: { value: inputValue },
-                  });
+                  if(inputValue !== ""){
+                    router.push({
+                      pathname: "SearchResult",
+                      query: { value: inputValue },
+                    });
+                  }
                 }}
               >
                 検索

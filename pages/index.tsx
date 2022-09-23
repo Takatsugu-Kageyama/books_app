@@ -165,25 +165,25 @@ export const getServerSideProps = async () => {
   await sleepByPromise(0.3);
   //!漫画のデータ取得
   const fetchComic = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=5"
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=6"
   );
   const comicData = await fetchComic.json();
   await sleepByPromise(0.3);
   //!ライトノベルデータの取得
   const fetchLightNovel = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=5"
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=6"
   );
   const lightNovelData = await fetchLightNovel.json();
   await sleepByPromise(0.3);
   //!絵本データの取得
   const fetchPictureBook = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&hits=5"
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&hits=6"
   );
   const pictureBookData = await fetchPictureBook.json();
   await sleepByPromise(0.3);
   //!小説
   const fetchNovelBook = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=5"
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=6"
   );
   const novelBookData = await fetchNovelBook.json();
   return {
