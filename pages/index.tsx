@@ -42,7 +42,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                     <img src={value.Item.largeImageUrl} alt="" />
                   </div>
                   <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
                   </h2>
                   <p className={styles.booksAuthor}>{value.Item.author}</p>
                   <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
@@ -75,40 +75,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                     <img src={value.Item.largeImageUrl} alt="" />
                   </div>
                   <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
-                  </h2>
-                  <p className={styles.booksAuthor}>{value.Item.author}</p>
-                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      {/*絵本・児童書*/}
-      <div className={styles.booksBox}>
-        <h2>絵本・児童書</h2>
-        <div key={null} className={styles.booksCardArea}>
-          {pictureBooksPosts.map((value: any) => {
-            return (
-              <div key={null} className={styles.booksCard}>
-                <div className={styles.cardsContent}>
-                  <div
-                    className={styles.booksImg}
-                    onClick={() => {
-                      // setClickedBook(value);
-                      // console.log(clickedBook);
-                      router.push({
-                        pathname: "BooksPage",
-                        query: { value: value.Item.isbn },
-                      });
-                      // isBooksChats(value.Item.isbn);
-                    }}
-                  >
-                    <img src={value.Item.largeImageUrl} alt="" />
-                  </div>
-                  <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
                   </h2>
                   <p className={styles.booksAuthor}>{value.Item.author}</p>
                   <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
@@ -141,7 +108,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                     <img src={value.Item.largeImageUrl} alt="" />
                   </div>
                   <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
                   </h2>
                   <p className={styles.booksAuthor}>{value.Item.author}</p>
                   <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
@@ -161,36 +128,34 @@ export const getServerSideProps = async () => {
   function sleepByPromise(sec: number) {
     return new Promise((resolve) => setTimeout(resolve, sec * 1000));
   }
+  let comicData = undefined;
+  let lightNovelData = undefined;
+  let novelBookData = undefined;
 
-  await sleepByPromise(0.3);
-  //!漫画のデータ取得
-  const fetchComic = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=6"
-  );
-  const comicData = await fetchComic.json();
-  await sleepByPromise(0.3);
-  //!ライトノベルデータの取得
-  const fetchLightNovel = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=6"
-  );
-  const lightNovelData = await fetchLightNovel.json();
-  await sleepByPromise(0.3);
-  //!絵本データの取得
-  const fetchPictureBook = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&hits=6"
-  );
-  const pictureBookData = await fetchPictureBook.json();
-  await sleepByPromise(0.3);
-  //!小説
-  const fetchNovelBook = await fetch(
-    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=6"
-  );
-  const novelBookData = await fetchNovelBook.json();
+  while (!comicData && !lightNovelData && !novelBookData) {
+    await sleepByPromise(0.3);
+    //!漫画のデータ取得
+    const fetchComic = await fetch(
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=6"
+    );
+    comicData = await fetchComic.json();
+    await sleepByPromise(0.3);
+    //!ライトノベルデータの取得
+    const fetchLightNovel = await fetch(
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=6"
+    );
+    lightNovelData = await fetchLightNovel.json();
+    await sleepByPromise(0.3);
+    //!小説
+    const fetchNovelBook = await fetch(
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=6"
+    );
+    novelBookData = await fetchNovelBook.json();
+  }
   return {
     props: {
       comicData: comicData.Items,
       lightNovelData: lightNovelData.Items,
-      pictureBookData: pictureBookData.Items,
       novelBookData: novelBookData.Items,
     },
   };

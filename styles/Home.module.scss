@@ -18,15 +18,15 @@
           }
 
           .booksTitle {
-            @apply w-fit pt-[20px] text-[16px] md:text-[20px] lg:text-[24px] font-bold;
+            @apply pt-[20px] text-[16px] md:text-[14px] font-bold;
           }
 
           .booksAuthor {
-            @apply text-[14px] md:text-[16px] lg:text-[20px] text-fadeGray;
+            @apply text-[14px] md:text-[12px] text-fadeGray;
           }
 
           .booksPrice {
-            @apply text-[14px] md:text-[16px] lg:text-[20px] text-middleRed;
+            @apply text-[14px] md:text-[17px] text-middleRed;
           }
         }
       }
