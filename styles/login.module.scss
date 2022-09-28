@@ -1,0 +1,23 @@
+.overall {
+  @apply h-[100vh] bg-white;
+  .formContainer {
+    @apply w-[90%] mx-auto;
+    h2 {
+      @apply text-[24px] text-center;
+    }
+    .loginCard {
+        @apply border-[1.5px] border-[#a6a6a6] rounded-[5px];
+      .perInput {
+        @apply py-[10px] m-[10px];
+        p {
+          @apply m-[10px];
+        }
+        .input {
+          @apply w-[90%] h-[40px] border-[1.5px] border-[#a6a6a6] rounded-[5px];
+          box-shadow: 0 1px 0 rgb(255 255 255 / 50%), 0 1px 0 rgb(0 0 0 / 7%) inset;
+        }
+
+      }
+    }
+  }
+}

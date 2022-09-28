@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
   useEffect(() => {
     const authStateChanged = onAuthStateChanged(auth, async (user) => {
       setUser(user);
-      !user && !isUnAvailableForViewing && (await router.push("/Register"));
+      !user && isUnAvailableForViewing && (await router.push("/Register"));
     });
     return () => {
       authStateChanged();

@@ -4,13 +4,24 @@ import type { AppProps } from "next/app";
 import { AuthProvider } from "../util/Context/AuthContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <AuthProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AuthProvider>
-  );
+  switch (pageProps.layout) {
+    case "user":{
+      return (
+        <AuthProvider>
+            <Component {...pageProps} />
+        </AuthProvider>
+      );
+    }
+    default:{
+      return (
+        <AuthProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthProvider>
+      );
+    }
+  }
 }
 
 export default MyApp;
