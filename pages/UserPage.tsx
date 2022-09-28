@@ -5,6 +5,14 @@ import styles from "../styles/userPage.module.scss";
 const UserPage = () => {
   const { user } = useAuthContext();
   const isLoggedIn = !!user;
+  console.log(isLoggedIn);
+  useEffect(()=>{
+    if (isLoggedIn) {
+      console.log('ログインしてます');
+    }else{
+      console.log('ログインしてません')
+    }
+  })
   return (
     <div className={styles.overall}>
       <div className={styles.userDetail}>

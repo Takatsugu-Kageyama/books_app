@@ -14,6 +14,9 @@ module.exports = {
         middleBlack: "#555555",
         bgWhite: "#EEEEEE",
       },
+      fontFamily: {
+        LogoTypeGothic7: ["LogoTypeGothic7"],
+      },
     },
   },
   plugins: [],

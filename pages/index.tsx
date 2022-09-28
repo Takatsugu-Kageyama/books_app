@@ -11,7 +11,6 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
 
   //router初期設定
   const router = useRouter();
-
   //コンポーネントがマウントされたときにAPIデータを格納
   useEffect(() => {
     setComicPosts(comicData);

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: "LogoTypeGothic7";
+    font-style: normal;
+    font-weight: 600;
+    src: url(../public/fonts/LogoTypeGothic.woff2.ttf) format('truetype');
+}

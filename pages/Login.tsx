@@ -1,8 +1,15 @@
 import styles from "../styles/login.module.scss";
 import { Formik } from "formik";
 import { LoginFormTypes } from "../util/TypeDefinition/FormType";
+import Link from "next/link";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { firebase } from "../util/Firebase/firebaseConfig";
+import { useRouter } from "next/router";
+import { useAuthContext } from "../util/Context/AuthContext";
 
 const Login = () => {
+  const auth = getAuth(firebase);
+  const router = useRouter();
   return (
     <div className={styles.overall}>
       <div className={styles.formContainer}>
@@ -12,18 +19,20 @@ const Login = () => {
           validate={(values: LoginFormTypes) => {
             const errors: any = {};
             if (!values.name) {
-              errors.name = "お名前を入力してください";
+              errors.name = "※お名前を入力してください";
             }
             if (!values.password) {
-              errors.password = "パスワードを入力してください";
+              errors.password = "※パスワードを入力してください";
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
             }, 400);
+            await signInWithEmailAndPassword(auth, values.name, values.password);
+            router.push("/");
           }}
         >
           {({
@@ -47,7 +56,7 @@ const Login = () => {
                     value={values.name}
                     // placeholder=""
                   />
-                  {errors.name && touched.name && errors.name}
+                  <p className={styles.errorText}>{errors.name && touched.name && errors.name}</p>
                 </div>
                 <div className={styles.perInput}>
                   <p>パスワード</p>
@@ -59,15 +68,23 @@ const Login = () => {
                     value={values.password}
                     // placeholder="BookTalkパスワード"
                   />
-                  {errors.password && touched.password && errors.password}
+                  <p className={styles.errorText}>{errors.password && touched.password && errors.password}</p>
                 </div>
-                <button type="submit" disabled={isSubmitting}>
+                <button className={styles.submitBtn} type="submit" disabled={isSubmitting}>
                   送信
                 </button>
               </form>
             </div>
           )}
         </Formik>
+        <div className={styles.registerBtn}>
+          <p>----- BookTalkを初めて利用ですか？ -----</p>　
+          <div className={styles.registerLink}>
+            <Link href="/Register">
+              <a>アカウント登録はこちらから</a>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

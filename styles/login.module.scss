@@ -1,23 +1,42 @@
 .overall {
-  @apply h-[100vh] bg-white;
+  @apply h-[100vh] bg-white font-LogoTypeGothic7;
   .formContainer {
-    @apply w-[90%] mx-auto;
     h2 {
-      @apply text-[24px] text-center;
+      @apply py-[30px] text-[24px] md:text-[32px] text-center;
     }
     .loginCard {
-        @apply border-[1.5px] border-[#a6a6a6] rounded-[5px];
+      @apply w-[340px] md:w-[600px] mx-auto pb-[20px] border-[1.5px] outline-[#a6a6a6] outline-dashed outline-2 outline-offset-2 rounded-[5px];
       .perInput {
         @apply py-[10px] m-[10px];
         p {
-          @apply m-[10px];
+          @apply m-[10px] md:text-[18px];
         }
         .input {
-          @apply w-[90%] h-[40px] border-[1.5px] border-[#a6a6a6] rounded-[5px];
+          @apply w-full h-[40px] border-[1.5px] border-[#a6a6a6] rounded-[5px];
           box-shadow: 0 1px 0 rgb(255 255 255 / 50%), 0 1px 0 rgb(0 0 0 / 7%) inset;
+          &:focus {
+            @apply outline-hoverBtn;
+          }
         }
-
+        .errorText {
+          @apply text-red-500;
+        }
       }
+      .submitBtn {
+        @apply md:text-[18px] font-bold block bg-middleGreen w-[140px] h-[30px] rounded-[15px] mx-auto;
+        &:hover {
+          @apply bg-hoverBtn;
+        }
+      }
+    }
+    .registerBtn{
+      @apply w-fit mx-auto pt-[20px];
+      .registerLink{
+        @apply w-fit mx-auto;
+        &:hover{
+          @apply opacity-[70%];
+        }
+      }  
     }
   }
 }
