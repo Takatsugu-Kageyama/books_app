@@ -124,19 +124,19 @@ export const getServerSideProps = async () => {
     await sleepByPromise(0.2);
     //!新着漫画の取得
     const fetchNewComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=-releaseDate&hits=6"
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=-releaseDate&hits=7"
     );
     newComicData = await fetchNewComic.json();
     await sleepByPromise(0.2);
     //!人気作品の取得
     const fetchPopularComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=sales&hits=6"
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=sales&hits=7"
     );
     popularComicData = await fetchPopularComic.json();
     await sleepByPromise(0.2);
     //!高評価の多い作品
     const fetchEvaluationComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=reviewAverage&hits=6"
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=reviewAverage&hits=7"
     );
     evaluationComicData = await fetchEvaluationComic.json();
   }

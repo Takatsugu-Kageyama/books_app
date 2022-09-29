@@ -7,9 +7,9 @@
     h2 {
       @apply py-[30px] text-[24px] md:text-[32px] text-center;
     }
-    .loginCard {
+    .formCard {
       @apply w-[340px] md:w-[600px] mx-auto pb-[20px] border-[1.5px] outline-[#a6a6a6] outline-dashed outline-2 outline-offset-2 rounded-[5px];
-      .perInput {
+      .perForm {
         @apply py-[10px] m-[10px];
         p {
           @apply m-[10px] md:text-[18px];
@@ -29,15 +29,6 @@
         @apply md:text-[24px] block bg-middleGreen w-[180px] h-[50px] rounded-[15px] mx-auto;
         &:hover {
           @apply bg-hoverBtn;
-        }
-      }
-    }
-    .registerBtn {
-      @apply w-fit mx-auto pt-[20px];
-      .registerLink {
-        @apply w-fit mx-auto;
-        &:hover {
-          @apply opacity-[70%];
         }
       }
     }

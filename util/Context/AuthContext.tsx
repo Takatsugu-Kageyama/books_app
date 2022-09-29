@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
   const router = useRouter();
   const auth = getAuth(firebase);
   const [user, setUser] = useState<UserType>(null);
-  const isUnAvailableForViewing = router.pathname === "/UserPage";
+  const isUnAvailableForViewing = router.pathname === "/UserPage" ||  router.pathname === "/Cart";
   const isAvailableForViewing = router.pathname === "/Login";
   const value = {
     user,

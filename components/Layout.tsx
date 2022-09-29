@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useAuthContext } from "../util/Context/AuthContext";
 
 type LayoutProps = Required<{
   readonly children: ReactElement;
@@ -19,7 +20,9 @@ const Layout = ({ children }: LayoutProps) => {
   //!ハンバーガーメニューがクリックされているかの状態を保管
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter(); //!Next Router
-
+  //!ユーザーがログインしているかの確認
+  const { user } = useAuthContext();
+  const isLoggedIn = !!user;
   //ユーザーアクション
   const keyPress = (e: any) => {
     if (e.key === "Enter" && isComposing && inputValue !== "") {
@@ -82,7 +85,7 @@ const Layout = ({ children }: LayoutProps) => {
               </button>
             </div>
             <div className={styles.indArea}>
-              <Link href="/Cart">
+              <Link href={isLoggedIn? "/Cart" : "Register"}>
                 <div className={styles.cartBtn}>
                   <ShoppingCartIcon className={styles.cartIcon} />
                   <p>カート</p>

@@ -8,14 +8,23 @@ import { sentBooksChat } from "../util/Firebase/sendChats";
 import { addCart } from "../util/Firebase/addCart";
 import { CartBooksSchema } from "../util/TypeDefinition/BooksSchema";
 import { getCartBooksIsbn } from "../util/Firebase/getCart";
+import { useAuthContext } from "../util/Context/AuthContext";
+import { useRouter } from "next/router";
 
 const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
   //!クリックされた本のオブジェクトを格納する
   const [clickedBooksValue, setClickedBooksValue] = useState([]);
   //!isBooksChat関数から返される値を格納する
   const [isBooksChatsData, setIsBooksChatsData] = useState([]);
+  //!本がカートに入っているか
+  const [isBooksCart, setIsBooksCart] = useState(false);
+  //!Next Router
+  const router = useRouter();
+
   //!入力されたテキストを保管
   const [isTextInput, setIsTextInput] = useState("");
+  const { user } = useAuthContext();
+  const isLoggedIn = !!user;
 
   //!ページにアクセスされたときにAPI通信
   useEffect(() => {
@@ -23,6 +32,19 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
     setClickedBooksValue(booksData);
     //!カートにあるデータを取ってくる
   }, []);
+
+  //!ページにアクセスされたときに、その本がカートに入ってるかを確認する
+  useEffect(() => {
+    if (isLoggedIn) {
+      getCartBooksIsbn(user.uid).then((value: any) => {
+        for (const CartIsbn of value) {
+          if (CartIsbn === clickedBooksIsbn) {
+            return setIsBooksCart(true);
+          }
+        }
+      });
+    }
+  });
 
   //!ページリロードと同時にFirebaseにチャットがあるかどうかを確認する
   useEffect(() => {
@@ -48,31 +70,45 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
                 <p className={styles.booksAuthor}>{value.Item.author}</p>
                 <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
-              {cartBooksIsbn == "" ? (
+              {isLoggedIn ? (
+                <div>
+                  {!isBooksCart ? (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault;
+                        const CartBooksValue: CartBooksSchema = {
+                          userId: user.uid,
+                          title: value.Item.title,
+                          author: value.Item.author,
+                          price: value.Item.itemPrice,
+                          image: value.Item.largeImageUrl,
+                          isbn: value.Item.isbn,
+                        };
+                        // console.log(CartBooksValue);
+                        addCart(CartBooksValue).then(() => {
+                          window.alert("カートに追加しました！");
+                        });
+                      }}
+                    >
+                      <ShoppingCartIcon className={styles.cartIcon} />
+                      カートに追加する
+                    </button>
+                  ) : (
+                    <button className={styles.alreadyBtn}>
+                      <CheckIcon className={styles.checkIcon} />
+                      <p>追加済</p>
+                    </button>
+                  )}
+                </div>
+              ) : (
                 <button
                   onClick={(e) => {
                     e.preventDefault;
-                    const CartBooksValue: CartBooksSchema = {
-                      userId: "I7PXmd8olYKMk0SYEnuP",
-                      title: value.Item.title,
-                      author: value.Item.author,
-                      price: value.Item.itemPrice,
-                      image: value.Item.largeImageUrl,
-                      isbn: value.Item.isbn,
-                    };
-                    // console.log(CartBooksValue);
-                    addCart(CartBooksValue).then(() => {
-                      window.alert("カートに追加しました！");
-                    });
+                    router.push("/Register");
                   }}
                 >
                   <ShoppingCartIcon className={styles.cartIcon} />
                   カートに追加する
-                </button>
-              ) : (
-                <button className={styles.alreadyBtn}>
-                  <CheckIcon className={styles.checkIcon} />
-                  <p>追加済</p>
                 </button>
               )}
             </div>
@@ -156,6 +192,7 @@ export default BooksPage;
 export const getServerSideProps = async (context: any) => {
   const { query } = context;
   const isbn = query.value;
+  console.log(context);
   let isCartIsbn = "";
   let data = null;
   function sleepByPromise(sec: any) {

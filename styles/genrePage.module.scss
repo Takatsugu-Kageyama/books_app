@@ -6,7 +6,7 @@
   .booksBox {
     @apply text-[32px] w-[90%] mx-auto;
     .booksCardArea {
-      @apply max-w-full grid justify-between pt-[30px] grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6;
+      @apply max-w-full grid justify-between pt-[30px] grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 2xl:grid-cols-7;
       .booksCard {
         @apply w-[80%] m-[10px];
         .cardsContent {
@@ -30,6 +30,9 @@
           .booksPrice {
             @apply text-[14px] md:text-[17px] text-middleRed;
           }
+        }
+        &:last-child{
+          @apply hidden 2xl:block;
         }
       }
     }

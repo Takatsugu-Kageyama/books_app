@@ -8,7 +8,7 @@ const UserPage = () => {
   console.log(isLoggedIn);
   useEffect(()=>{
     if (isLoggedIn) {
-      console.log('ログインしてます');
+      console.log('ログインしてます',user.uid);
     }else{
       console.log('ログインしてません')
     }

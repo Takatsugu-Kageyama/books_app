@@ -15,7 +15,7 @@ module.exports = {
         bgWhite: "#EEEEEE",
       },
       fontFamily: {
-        LogoTypeGothic7: ["LogoTypeGothic7"],
+        NotoSans: ["NotoSans"],
       },
     },
   },

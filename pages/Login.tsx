@@ -13,6 +13,9 @@ const Login = () => {
   return (
     <div className={styles.overall}>
       <div className={styles.formContainer}>
+        <div className={styles.logo}>
+          <img src="./images/top/logo.png" alt="" />
+        </div>
         <h2>ログイン</h2>
         <Formik
           initialValues={{ name: "", password: "" }}
