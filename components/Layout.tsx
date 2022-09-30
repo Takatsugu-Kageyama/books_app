@@ -37,7 +37,7 @@ const Layout = ({ children }: LayoutProps) => {
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
-  
+
   console.log(isMenuOpen);
   return (
     <div className={styles.layoutWrap}>
@@ -73,7 +73,7 @@ const Layout = ({ children }: LayoutProps) => {
               <button
                 onClick={(e) => {
                   e.preventDefault;
-                  if(inputValue !== ""){
+                  if (inputValue !== "") {
                     router.push({
                       pathname: "SearchResult",
                       query: { value: inputValue },
@@ -85,14 +85,16 @@ const Layout = ({ children }: LayoutProps) => {
               </button>
             </div>
             <div className={styles.indArea}>
-              <Link href={isLoggedIn? "/Cart" : "Register"}>
+              <Link href={isLoggedIn ? "/Cart" : "Register"}>
                 <div className={styles.cartBtn}>
                   <ShoppingCartIcon className={styles.cartIcon} />
                   <p>カート</p>
                 </div>
               </Link>
               <div className={styles.accountBtn}>
-                <AccountCircleIcon className={styles.accountIcon} />
+                <Link href={isLoggedIn ? "/UserPage" : "Register"}>
+                  <AccountCircleIcon className={styles.accountIcon} />
+                </Link>
               </div>
             </div>
           </div>

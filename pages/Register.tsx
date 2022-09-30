@@ -1,7 +1,13 @@
 import styles from "../styles/register.module.scss";
 import { Formik } from "formik";
+import { firebase } from "../util/Firebase/firebaseConfig";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { sendUserData } from "../util/Firebase/sendUserData";
+import { useRouter } from "next/router";
 
 const Register = () => {
+  const auth = getAuth(firebase);
+  const router = useRouter()
   return (
     <div className={styles.overall}>
       <div className={styles.formContainer}>
@@ -12,7 +18,7 @@ const Register = () => {
         <Formik
           initialValues={{ name: "", account: "", email: "", password: "" }}
           validate={(values) => {
-            const errors:any = {};
+            const errors: any = {};
             //!名前のバリデーション
             if (!values.name) {
               errors.name = "※お名前の入力は必須です。";
@@ -39,11 +45,13 @@ const Register = () => {
             }
             return errors;
           }}
-          onSubmit={ (values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+          onSubmit={async (values, { setSubmitting }) => {
+            await createUserWithEmailAndPassword(auth, values.email, values.password).then((cred) => {
+              sendUserData(cred.user.uid, values.name, values.account, values.email, values.password).then(()=>{
+                router.push("/");
+              });
+            });
+           
           }}
         >
           {({
