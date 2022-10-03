@@ -51,7 +51,6 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
     isBooksChats(clickedBooksIsbn).then((value) => {
       setIsBooksChatsData(value);
     });
-    console.log(isBooksChatsData);
   }, [isTextInput]);
 
   return (

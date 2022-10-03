@@ -7,8 +7,7 @@ export const getUserData = async (userId: string) => {
   const userDocSnap = await getDoc(userDocRef);
   //!ユーザーのデータがあるかどうか確認
   if (userDocSnap.exists()) {
-    //!カート内の本が格納されている配列
-    const userData = userDocSnap.data();
+    const userData = userDocSnap.data().UserData;
     return userData;
   }
 };

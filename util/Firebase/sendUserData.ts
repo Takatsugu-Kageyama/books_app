@@ -19,9 +19,12 @@ export const sendUserData = async (
 ) => {
   const userDocRef = doc(db, "User", userId); //!ユーザデータを作る参照先
   await setDoc(userDocRef, {
-    name: userName,
-    account: "@" + userAccount,
-    email: userEmail,
-    password: userPassword,
+    CartBooks:[],
+    UserData:{
+      name: userName,
+      account: "@" + userAccount,
+      email: userEmail,
+      password: userPassword,
+    }
   });
 };

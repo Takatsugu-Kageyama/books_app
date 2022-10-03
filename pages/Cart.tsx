@@ -1,14 +1,32 @@
 import { useEffect, useState } from "react";
 import { getCartBooks } from "../util/Firebase/getCart";
-import { deleteCatBook } from "../util/Firebase/deleteCratBook";
+import { deleteCatBook } from "../util/Firebase/deleteCartBook";
+import { getUserData } from "../util/Firebase/getUserData";
+import { UserSchema } from "../util/TypeDefinition/UserDataSchema";
 import styles from "../styles/cart.module.scss";
 import { useAuthContext } from "../util/Context/AuthContext";
 
 const Cart = () => {
+  //!カートに入っている本のデータを得る
   const [cartValue, setCartValue] = useState([]);
+  //!カートの総合計値を計算
   const [cartPrice, setCartPrice] = useState(0);
+  //!ユーザーデータの取得
+  const [userName, setUserName] = useState("");
+  //!ユーザーの認証
   const { user } = useAuthContext();
   const isLoggedIn = !!user;
+
+  //!ユーザーのデータ取得
+  useEffect(() => {
+    if (isLoggedIn) {
+      getUserData(user.uid).then((userValue: UserSchema) => {
+        console.log(userValue);
+        setUserName(userValue.name);
+      });
+    }
+  },[user]);
+  //!ユーザーのカート内のデータ取得
   useEffect(() => {
     if (isLoggedIn) {
       getCartBooks(user.uid).then((value) => {
@@ -27,7 +45,7 @@ const Cart = () => {
   }, [cartValue]);
   return (
     <div className={styles.overall}>
-      <h2 className={styles.userName}>XXXさんのカート</h2>
+      <h2 className={styles.userName}>{userName !== null ? userName : ""}さんのカート</h2>
       {isLoggedIn ? (
         <div className={styles.cartsContents}>
           <div className={styles.cartsBooks}>
