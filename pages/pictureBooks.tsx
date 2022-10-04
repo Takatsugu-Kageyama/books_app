@@ -1,31 +1,25 @@
-import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/genrePage.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookData }: any) => {
-  //APIを保管するstate
-  const [comicPosts, setComicPosts] = useState([]);
-  const [lightNovelPosts, setLightNovelPosts] = useState([]);
-  const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
-  const [novelBooksProps, setNovelBooksProps] = useState([]);
 
-  //router初期設定
+const ComicPage = ({ newBooksData, popularBooksData, evaluationBooksData }: any) => {
+  const [booksNewPosts, setBooksNewPosts] = useState([]);
+  const [booksEarningsPosts, setBooksEarningsPosts] = useState([]);
+  const [booksEvaluationPosts, setBooksEvaluationPosts] = useState([]);
   const router = useRouter();
-  //コンポーネントがマウントされたときにAPIデータを格納
   useEffect(() => {
-    setComicPosts(comicData);
-    setLightNovelPosts(lightNovelData);
-    setPictureBooksPosts(pictureBookData);
-    setNovelBooksProps(novelBookData);
+    setBooksNewPosts(newBooksData);
+    setBooksEarningsPosts(popularBooksData);
+    setBooksEvaluationPosts(evaluationBooksData);
   }, []);
   return (
     <div className={styles.overall}>
       <Head>
-      <title>Book Talk ｜ホーム</title>
+      <title>Book Talk ｜ 絵本</title>
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
-      <meta property="og:url" content={"https://booktalk.vercel.app/"} />
+      <meta property="og:url" content={"https://booktalk.vercel.app/pictureBooks"} />
       <meta property="og:title" content={'BookTalk'} />
       <meta property="og:site_name" content={'BookTalk'} />
       <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
@@ -33,11 +27,12 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
       <meta property="og:image" content={"/images/icon.png"} />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
     </Head>
-      {/*漫画*/}
+      <h2 className={styles.header}>絵本</h2>
+      {/*新着*/}
       <div className={styles.booksBox}>
-        <h2>漫画</h2>
-        <div key={null} className={styles.booksCardArea}>
-          {comicPosts.map((value: any) => {
+        <h2>新着漫画</h2>
+        <div className={styles.booksCardArea}>
+          {booksNewPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
                 <div className={styles.cardsContent}>
@@ -64,19 +59,17 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
           })}
         </div>
       </div>
-      {/*ライトノベル*/}
+      {/*人気作品*/}
       <div className={styles.booksBox}>
-        <h2>ライトノベル</h2>
-        <div key={null} className={styles.booksCardArea}>
-          {lightNovelPosts.map((value: any) => {
+        <h2>人気作品</h2>
+        <div className={styles.booksCardArea}>
+          {booksEarningsPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
                 <div className={styles.cardsContent}>
                   <div
                     className={styles.booksImg}
                     onClick={() => {
-                      // setClickedBook(value);
-                      // console.log(clickedBook);
                       router.push({
                         pathname: "BooksPage",
                         query: { value: value.Item.isbn },
@@ -87,7 +80,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                     <img src={value.Item.largeImageUrl} alt="" />
                   </div>
                   <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
                   </h2>
                   <p className={styles.booksAuthor}>{value.Item.author}</p>
                   <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
@@ -97,19 +90,17 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
           })}
         </div>
       </div>
-      {/*小説・エッセイ*/}
+      {/*高評価の多い作品*/}
       <div className={styles.booksBox}>
-        <h2>小説・エッセイ</h2>
-        <div key={null} className={styles.booksCardArea}>
-          {novelBooksProps.map((value: any) => {
+        <h2>高評価の多い作品</h2>
+        <div className={styles.booksCardArea}>
+          {booksEvaluationPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
                 <div className={styles.cardsContent}>
                   <div
                     className={styles.booksImg}
                     onClick={() => {
-                      // setClickedBook(value);
-                      // console.log(clickedBook);
                       router.push({
                         pathname: "BooksPage",
                         query: { value: value.Item.isbn },
@@ -120,7 +111,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                     <img src={value.Item.largeImageUrl} alt="" />
                   </div>
                   <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
+                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 33) + "..." : value.Item.title}
                   </h2>
                   <p className={styles.booksAuthor}>{value.Item.author}</p>
                   <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
@@ -133,42 +124,40 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
     </div>
   );
 };
-
-export default Home;
+export default ComicPage;
 
 export const getServerSideProps = async () => {
   function sleepByPromise(sec: number) {
     return new Promise((resolve) => setTimeout(resolve, sec * 1000));
   }
-  let comicData = undefined;
-  let lightNovelData = undefined;
-  let novelBookData = undefined;
-
-  while (!comicData && !lightNovelData && !novelBookData) {
-    await sleepByPromise(0.3);
-    //!漫画のデータ取得
-    const fetchComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=7"
+  let newBooksData = undefined;
+  let popularBooksData = undefined;
+  let evaluationBooksData = undefined;
+  while (!newBooksData && !popularBooksData && !evaluationBooksData) {
+    await sleepByPromise(0.2);
+    //!新着漫画の取得
+    const fetchNewComic = await fetch(
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=-releaseDate&hits=7"
     );
-    comicData = await fetchComic.json();
-    await sleepByPromise(0.3);
-    //!ライトノベルデータの取得
-    const fetchLightNovel = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=7"
+    newBooksData = await fetchNewComic.json();
+    await sleepByPromise(0.2);
+    //!人気作品の取得
+    const fetchPopularComic = await fetch(
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=sales&hits=7"
     );
-    lightNovelData = await fetchLightNovel.json();
-    await sleepByPromise(0.3);
-    //!小説
-    const fetchNovelBook = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=7"
+    popularBooksData = await fetchPopularComic.json();
+    await sleepByPromise(0.2);
+    //!高評価の多い作品
+    const fetchEvaluationComic = await fetch(
+      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=reviewAverage&hits=7"
     );
-    novelBookData = await fetchNovelBook.json();
+    evaluationBooksData = await fetchEvaluationComic.json();
   }
   return {
     props: {
-      comicData: comicData.Items || null,
-      lightNovelData: lightNovelData.Items || null,
-      novelBookData: novelBookData.Items || null,
+      newBooksData: newBooksData.Items,
+      popularBooksData: popularBooksData.Items,
+      evaluationBooksData: evaluationBooksData.Items,
     },
   };
 };

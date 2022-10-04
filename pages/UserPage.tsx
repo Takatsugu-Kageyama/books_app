@@ -6,6 +6,7 @@ import styles from "../styles/userPage.module.scss";
 import { getAuth, signOut } from "firebase/auth";
 import { firebase } from "../util/Firebase/firebaseConfig";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const UserPage = () => {
   //!ユーザーのデータを格納
@@ -25,6 +26,18 @@ const UserPage = () => {
   }, [user]);
   return (
     <div className={styles.overall}>
+      <Head>
+      <title>Book Talk ｜ ユーザーページ</title>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:url" content={"https://booktalk.vercel.app/UserPage"} />
+      <meta property="og:title" content={'BookTalk'} />
+      <meta property="og:site_name" content={'BookTalk'} />
+      <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={"/images/icon.png"} />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+    </Head>
       <div className={styles.userContainer}>
         <h2>{userData ? userData.name : null}さんのアカウント</h2>
         <div className={styles.userCard}>

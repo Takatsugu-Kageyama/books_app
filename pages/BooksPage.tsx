@@ -10,6 +10,7 @@ import { CartBooksSchema } from "../util/TypeDefinition/BooksSchema";
 import { getCartBooksIsbn } from "../util/Firebase/getCart";
 import { useAuthContext } from "../util/Context/AuthContext";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
   //!クリックされた本のオブジェクトを格納する
@@ -103,7 +104,7 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
                 <button
                   onClick={(e) => {
                     e.preventDefault;
-                    router.push("/Register");
+                    router.push("/Login");
                   }}
                 >
                   <ShoppingCartIcon className={styles.cartIcon} />

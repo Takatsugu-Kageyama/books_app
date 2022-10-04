@@ -5,6 +5,7 @@ import { getUserData } from "../util/Firebase/getUserData";
 import { UserSchema } from "../util/TypeDefinition/UserDataSchema";
 import styles from "../styles/cart.module.scss";
 import { useAuthContext } from "../util/Context/AuthContext";
+import Head from "next/head";
 
 const Cart = () => {
   //!カートに入っている本のデータを得る
@@ -25,7 +26,7 @@ const Cart = () => {
         setUserName(userValue.name);
       });
     }
-  },[user]);
+  }, [user]);
   //!ユーザーのカート内のデータ取得
   useEffect(() => {
     if (isLoggedIn) {
@@ -45,6 +46,18 @@ const Cart = () => {
   }, [cartValue]);
   return (
     <div className={styles.overall}>
+      <Head>
+        <title>Book Talk ｜ カート</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:url" content={"https://booktalk.vercel.app/Cart"} />
+        <meta property="og:title" content={"BookTalk"} />
+        <meta property="og:site_name" content={"BookTalk"} />
+        <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={"/images/icon.png"} />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+      </Head>
       <h2 className={styles.userName}>{userName !== null ? userName : ""}さんのカート</h2>
       {isLoggedIn ? (
         <div className={styles.cartsContents}>

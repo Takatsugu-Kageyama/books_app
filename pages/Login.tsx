@@ -5,13 +5,25 @@ import Link from "next/link";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebase } from "../util/Firebase/firebaseConfig";
 import { useRouter } from "next/router";
-import { useAuthContext } from "../util/Context/AuthContext";
+import Head from "next/head";
 
 const Login = () => {
   const auth = getAuth(firebase);
   const router = useRouter();
   return (
     <div className={styles.overall}>
+      <Head>
+      <title>Book Talk ｜ ログイン</title>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:url" content={"https://booktalk.vercel.app/Login"} />
+      <meta property="og:title" content={'BookTalk'} />
+      <meta property="og:site_name" content={'BookTalk'} />
+      <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={"/images/icon.png"} />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+    </Head>
       <div className={styles.formContainer}>
         <div className={styles.logo}>
           <img src="./images/top/logo.png" alt="" />
@@ -31,11 +43,15 @@ const Login = () => {
           }}
           onSubmit={async (values, { setSubmitting }) => {
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
             }, 400);
-            await signInWithEmailAndPassword(auth, values.name, values.password);
-            router.push("/");
+            await signInWithEmailAndPassword(auth, values.name, values.password).then(()=>{
+              router.push("/");
+            }).catch((error) => {
+              //異常終了時
+              window.alert("メールアドレスまたはパスワードが違います");
+          });
+      
           }}
         >
           {({
@@ -50,7 +66,7 @@ const Login = () => {
             <div className={styles.loginCard}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.perInput}>
-                  <p>ユーザー名</p>
+                  <p>メールアドレス</p>
                   <input
                     className={styles.input}
                     type="text"

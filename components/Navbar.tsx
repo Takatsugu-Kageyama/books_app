@@ -21,22 +21,22 @@ export default function Navbar({ isMenuOpen }: LayoutPropsSchema) {
               <Link href="/ComicPage">漫画</Link>
             </li>
             <li>
-              <Link href="/">語学・学習参考書</Link>
+              <Link href="/studyBooks">語学・学習参考書</Link>
             </li>
             <li>
-              <Link href="/">絵本・児童書</Link>
+              <Link href="/pictureBooks">絵本・児童書</Link>
             </li>
             <li>
-              <Link href="/">小説・エッセイ</Link>
+              <Link href="/novelBooks">小説・エッセイ</Link>
             </li>
             <li>
-              <Link href="/">新書</Link>
+              <Link href="/newBooks">新書</Link>
             </li>
             <li>
-              <Link href="/">ライトノベル</Link>
+              <Link href="/lightNovel">ライトノベル</Link>
             </li>
             <li>
-              <Link href="/">美容・暮らし・健康・料理</Link>
+              <Link href="/beautyBooks">美容・暮らし・健康・料理</Link>
             </li>
           </ul>
         </div>

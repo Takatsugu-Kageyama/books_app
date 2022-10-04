@@ -4,12 +4,25 @@ import { firebase } from "../util/Firebase/firebaseConfig";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { sendUserData } from "../util/Firebase/sendUserData";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Register = () => {
   const auth = getAuth(firebase);
   const router = useRouter()
   return (
     <div className={styles.overall}>
+      <Head>
+      <title>Book Talk ｜ 登録ページ</title>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:url" content={"https://booktalk.vercel.app/Register"} />
+      <meta property="og:title" content={'BookTalk'} />
+      <meta property="og:site_name" content={'BookTalk'} />
+      <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={"/images/icon.png"} />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+    </Head>
       <div className={styles.formContainer}>
         <div className={styles.logo}>
           <img src="./images/top/logo.png" alt="" />

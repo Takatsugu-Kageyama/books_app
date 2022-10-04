@@ -1,6 +1,7 @@
 import styles from "../styles/genrePage.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const ComicPage = ({ newComicData, popularComicData, evaluationComicData }: any) => {
   const [comicNewPosts, setComicNewPosts] = useState([]);
@@ -14,6 +15,18 @@ const ComicPage = ({ newComicData, popularComicData, evaluationComicData }: any)
   }, []);
   return (
     <div className={styles.overall}>
+      <Head>
+      <title>Book Talk ｜ 漫画</title>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:url" content={"https://booktalk.vercel.app/ComicPage"} />
+      <meta property="og:title" content={'BookTalk'} />
+      <meta property="og:site_name" content={'BookTalk'} />
+      <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={"/images/icon.png"} />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+    </Head>
       <h2 className={styles.header}>漫画</h2>
       {/*新着*/}
       <div className={styles.booksBox}>

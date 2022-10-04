@@ -23,10 +23,9 @@ const Layout = ({ children }: LayoutProps) => {
   //!ユーザーがログインしているかの確認
   const { user } = useAuthContext();
   const isLoggedIn = !!user;
-  //ユーザーアクション
+  //!ユーザーアクション
   const keyPress = (e: any) => {
     if (e.key === "Enter" && isComposing && inputValue !== "") {
-      // console.log("入力中にエンターが押されました");
       router.push({
         pathname: "SearchResult",
         query: { value: inputValue },
@@ -37,7 +36,17 @@ const Layout = ({ children }: LayoutProps) => {
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
+  useEffect(() => {
+    const handleRouteChange = (url:any) => {
+        setIsMenuOpen(false);
+      console.log('ページ遷移が完了');
+    };
 
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, []);
   console.log(isMenuOpen);
   return (
     <div className={styles.layoutWrap}>
@@ -85,14 +94,14 @@ const Layout = ({ children }: LayoutProps) => {
               </button>
             </div>
             <div className={styles.indArea}>
-              <Link href={isLoggedIn ? "/Cart" : "Register"}>
+              <Link href={isLoggedIn ? "/Cart" : "/Login"}>
                 <div className={styles.cartBtn}>
                   <ShoppingCartIcon className={styles.cartIcon} />
                   <p>カート</p>
                 </div>
               </Link>
               <div className={styles.accountBtn}>
-                <Link href={isLoggedIn ? "/UserPage" : "Register"}>
+                <Link href={isLoggedIn ? "/UserPage" : "/Login"}>
                   <AccountCircleIcon className={styles.accountIcon} />
                 </Link>
               </div>
