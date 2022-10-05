@@ -52,6 +52,7 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
     isBooksChats(clickedBooksIsbn).then((value) => {
       setIsBooksChatsData(value);
     });
+    console.log(isTextInput);
   }, [isTextInput]);
 
   return (
@@ -139,9 +140,13 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
           <button
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.preventDefault;
-              sentBooksChat(clickedBooksIsbn, isTextInput).then(() => {
-                setIsTextInput("");
-              });
+              if (isLoggedIn) {
+                sentBooksChat(user?.uid, clickedBooksIsbn, isTextInput).then(() => {
+                  setIsTextInput("");
+                });
+              } else {
+                router.push("/Login");
+              }
             }}
           >
             トークする
@@ -162,9 +167,6 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
                     <div className={styles.userName}>
                       <h2>{value.Chat.userName}</h2>
                       <p>{value.Chat.userId}</p>
-                    </div>
-                    <div className={styles.upDateTime}>
-                      <p>{value.Chat.time}</p>
                     </div>
                   </div>
                   <div className={styles.userText}>{value.Chat.text}</div>

@@ -39,7 +39,6 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     const handleRouteChange = (url:any) => {
         setIsMenuOpen(false);
-      console.log('ページ遷移が完了');
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
