@@ -1,6 +1,5 @@
 .overall {
   @apply flex flex-col gap-y-[30px] pt-[30px] pb-[180px];
-
   .booksBox {
     @apply text-[32px] w-[90%] mx-auto;
     .booksCardArea {
@@ -29,9 +28,12 @@
             @apply text-[14px] md:text-[17px] 2xl:text-[19px] text-middleRed;
           }
         }
-        &:last-child{
+        &:last-child {
           @apply hidden 2xl:block;
         }
+      }
+      .error{
+        @apply flex-none text-[18px] w-full leading-[2] grow-[7];
       }
     }
   }

@@ -12,6 +12,11 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
 
   //router初期設定
   const router = useRouter();
+  // useEffect(() => {
+  //   if (comicData === null || lightNovelData === null || pictureBookData === null || novelBookData === null) {
+  //     window.alert("申し訳ございません。エラーが発生したため再度リロードをお願いします。");
+  //   }
+  // });
   //コンポーネントがマウントされたときにAPIデータを格納
   useEffect(() => {
     setComicPosts(comicData);
@@ -22,22 +27,22 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
   return (
     <div className={styles.overall}>
       <Head>
-      <title>Book Talk ｜ホーム</title>
-      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-      <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
-      <meta property="og:url" content={"https://booktalk.vercel.app/"} />
-      <meta property="og:title" content={'BookTalk'} />
-      <meta property="og:site_name" content={'BookTalk'} />
-      <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content={"/images/icon.png"} />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-    </Head>
+        <title>Book Talk ｜ホーム</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:url" content={"https://booktalk.vercel.app/"} />
+        <meta property="og:title" content={"BookTalk"} />
+        <meta property="og:site_name" content={"BookTalk"} />
+        <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={"/images/icon.png"} />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+      </Head>
       {/*漫画*/}
       <div className={styles.booksBox}>
         <h2>漫画</h2>
         <div key={null} className={styles.booksCardArea}>
-          {comicPosts.map((value: any) => {
+          {comicPosts? comicPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
                 <div className={styles.cardsContent}>
@@ -61,14 +66,14 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                 </div>
               </div>
             );
-          })}
+          }): <p className={styles.error}>読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください</p>}
         </div>
       </div>
       {/*ライトノベル*/}
       <div className={styles.booksBox}>
         <h2>ライトノベル</h2>
         <div key={null} className={styles.booksCardArea}>
-          {lightNovelPosts.map((value: any) => {
+          {lightNovelPosts ?　lightNovelPosts.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
                 <div className={styles.cardsContent}>
@@ -94,14 +99,14 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                 </div>
               </div>
             );
-          })}
+          }) : <p className={styles.error}>読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください</p>}
         </div>
       </div>
       {/*小説・エッセイ*/}
       <div className={styles.booksBox}>
         <h2>小説・エッセイ</h2>
         <div key={null} className={styles.booksCardArea}>
-          {novelBooksProps.map((value: any) => {
+          {novelBooksProps? novelBooksProps.map((value: any) => {
             return (
               <div key={null} className={styles.booksCard}>
                 <div className={styles.cardsContent}>
@@ -127,7 +132,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                 </div>
               </div>
             );
-          })}
+          }) : <p className={styles.error}>読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください</p>}
         </div>
       </div>
     </div>

@@ -32,4 +32,7 @@
 .overall .booksBox .booksCardArea .booksCard:last-child {
   @apply hidden 2xl:block;
 }
+.overall .booksBox .booksCardArea .error {
+  @apply flex-none text-[18px] w-full leading-[2] grow-[7];
+}
 /*# sourceMappingURL=Home.module.css.map */
