@@ -41,98 +41,116 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
       {/*漫画*/}
       <div className={styles.booksBox}>
         <h2>漫画</h2>
-        <div key={null} className={styles.booksCardArea}>
-          {comicPosts? comicPosts.map((value: any) => {
-            return (
-              <div key={null} className={styles.booksCard}>
-                <div className={styles.cardsContent}>
-                  <div
-                    className={styles.booksImg}
-                    onClick={() => {
-                      router.push({
-                        pathname: "BooksPage",
-                        query: { value: value.Item.isbn },
-                      });
-                      // isBooksChats(value.Item.isbn);
-                    }}
-                  >
-                    <img src={value.Item.largeImageUrl} alt="" />
+        <div key={null} className={comicPosts !== null? styles.booksCardArea : styles.cardError}>
+          {comicPosts ? (
+            comicPosts.map((value: any) => {
+              return (
+                <div key={null} className={styles.booksCard}>
+                  <div className={styles.cardsContent}>
+                    <div
+                      className={styles.booksImg}
+                      onClick={() => {
+                        router.push({
+                          pathname: "BooksPage",
+                          query: { value: value.Item.isbn },
+                        });
+                        // isBooksChats(value.Item.isbn);
+                      }}
+                    >
+                      <img src={value.Item.largeImageUrl} alt="" />
+                    </div>
+                    <h2 className={styles.booksTitle} id="booksTitle">
+                      {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
+                    </h2>
+                    <p className={styles.booksAuthor}>{value.Item.author}</p>
+                    <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                   </div>
-                  <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
-                  </h2>
-                  <p className={styles.booksAuthor}>{value.Item.author}</p>
-                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-              </div>
-            );
-          }): <p className={styles.error}>読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください</p>}
+              );
+            })
+          ) : (
+            <p className={styles.error}>
+              読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください
+            </p>
+          )}
         </div>
       </div>
       {/*ライトノベル*/}
       <div className={styles.booksBox}>
         <h2>ライトノベル</h2>
-        <div key={null} className={styles.booksCardArea}>
-          {lightNovelPosts ?　lightNovelPosts.map((value: any) => {
-            return (
-              <div key={null} className={styles.booksCard}>
-                <div className={styles.cardsContent}>
-                  <div
-                    className={styles.booksImg}
-                    onClick={() => {
-                      // setClickedBook(value);
-                      // console.log(clickedBook);
-                      router.push({
-                        pathname: "BooksPage",
-                        query: { value: value.Item.isbn },
-                      });
-                      // isBooksChats(value.Item.isbn);
-                    }}
-                  >
-                    <img src={value.Item.largeImageUrl} alt="" />
+        <div key={null} className={lightNovelData!== null? styles.booksCardArea : styles.cardError}>
+          {lightNovelPosts ? (
+            lightNovelPosts.map((value: any) => {
+              return (
+                <div key={null} className={styles.booksCard}>
+                  <div className={styles.cardsContent}>
+                    <div
+                      className={styles.booksImg}
+                      onClick={() => {
+                        // setClickedBook(value);
+                        // console.log(clickedBook);
+                        router.push({
+                          pathname: "BooksPage",
+                          query: { value: value.Item.isbn },
+                        });
+                        // isBooksChats(value.Item.isbn);
+                      }}
+                    >
+                      <img src={value.Item.largeImageUrl} alt="" />
+                    </div>
+                    <h2 className={styles.booksTitle} id="booksTitle">
+                      {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
+                    </h2>
+                    <p className={styles.booksAuthor}>{value.Item.author}</p>
+                    <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                   </div>
-                  <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
-                  </h2>
-                  <p className={styles.booksAuthor}>{value.Item.author}</p>
-                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-              </div>
-            );
-          }) : <p className={styles.error}>読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください</p>}
+              );
+            })
+          ) : (
+            <p className={styles.error}>
+              読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください
+            </p>
+          )}
         </div>
       </div>
       {/*小説・エッセイ*/}
       <div className={styles.booksBox}>
         <h2>小説・エッセイ</h2>
-        <div key={null} className={styles.booksCardArea}>
-          {novelBooksProps? novelBooksProps.map((value: any) => {
-            return (
-              <div key={null} className={styles.booksCard}>
-                <div className={styles.cardsContent}>
-                  <div
-                    className={styles.booksImg}
-                    onClick={() => {
-                      // setClickedBook(value);
-                      // console.log(clickedBook);
-                      router.push({
-                        pathname: "BooksPage",
-                        query: { value: value.Item.isbn },
-                      });
-                      // isBooksChats(value.Item.isbn);
-                    }}
-                  >
-                    <img src={value.Item.largeImageUrl} alt="" />
+        <div key={null} className={novelBookData!== null? styles.booksCardArea : styles.cardErro}>
+          {novelBooksProps ? (
+            novelBooksProps.map((value: any) => {
+              return (
+                <div key={null} className={styles.booksCard}>
+                  <div className={styles.cardsContent}>
+                    <div
+                      className={styles.booksImg}
+                      onClick={() => {
+                        // setClickedBook(value);
+                        // console.log(clickedBook);
+                        router.push({
+                          pathname: "BooksPage",
+                          query: { value: value.Item.isbn },
+                        });
+                        // isBooksChats(value.Item.isbn);
+                      }}
+                    >
+                      <img src={value.Item.largeImageUrl} alt="" />
+                    </div>
+                    <h2 className={styles.booksTitle} id="booksTitle">
+                      {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
+                    </h2>
+                    <p className={styles.booksAuthor}>{value.Item.author}</p>
+                    <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                   </div>
-                  <h2 className={styles.booksTitle} id="booksTitle">
-                    {value.Item.title.length > 20 ? value.Item.title.substr(0, 18) + "..." : value.Item.title}
-                  </h2>
-                  <p className={styles.booksAuthor}>{value.Item.author}</p>
-                  <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
                 </div>
-              </div>
-            );
-          }) : <p className={styles.error}>読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください</p>}
+              );
+            })
+          ) : (
+            <p className={styles.error}>
+              読み込み中にエラーが発生しました。申し訳ございませんが再度リロードしお試しください
+            </p>
+          )}
         </div>
       </div>
     </div>
@@ -149,26 +167,33 @@ export const getServerSideProps = async () => {
   let lightNovelData = undefined;
   let novelBookData = undefined;
 
-  while (!comicData && !lightNovelData && !novelBookData) {
-    await sleepByPromise(0.3);
-    //!漫画のデータ取得
-    const fetchComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=7"
-    );
-    comicData = await fetchComic.json();
-    await sleepByPromise(0.3);
-    //!ライトノベルデータの取得
-    const fetchLightNovel = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=7"
-    );
-    lightNovelData = await fetchLightNovel.json();
-    await sleepByPromise(0.3);
-    //!小説
-    const fetchNovelBook = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=7"
-    );
-    novelBookData = await fetchNovelBook.json();
+  while (comicData == undefined && lightNovelData == undefined && novelBookData == undefined) {
+    if (comicData == undefined) {
+      await sleepByPromise(0.3);
+      //!漫画のデータ取得
+      const fetchComic = await fetch(
+        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=7"
+      );
+      comicData = await fetchComic.json();
+    }
+    if (lightNovelData == undefined) {
+      await sleepByPromise(0.3);
+      //!ライトノベルデータの取得
+      const fetchLightNovel = await fetch(
+        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=7"
+      );
+      lightNovelData = await fetchLightNovel.json();
+    }
+    if (novelBookData == undefined) {
+      await sleepByPromise(0.3);
+      //!小説
+      const fetchNovelBook = await fetch(
+        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=7"
+      );
+      novelBookData = await fetchNovelBook.json();
+    }
   }
+  console.log(comicData, lightNovelData, novelBookData);
   return {
     props: {
       comicData: comicData.Items || null,

@@ -35,4 +35,10 @@
 .overall .booksBox .booksCardArea .booksCard:last-child {
   @apply hidden 2xl:block;
 }
+.overall .cardError {
+  @apply max-w-full pt-[30px];
+}
+.overall .cardError .error {
+  @apply flex-none text-[18px] w-full leading-[2] grow-[7];
+}
 /*# sourceMappingURL=genrePage.module.css.map */

@@ -37,4 +37,10 @@
       }
     }
   }
+  .cardError{
+    @apply max-w-full pt-[30px];
+    .error{
+      @apply flex-none text-[18px] w-full leading-[2] grow-[7];
+    }
+  }
 }
