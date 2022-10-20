@@ -193,7 +193,6 @@ export const getServerSideProps = async () => {
       novelBookData = await fetchNovelBook.json();
     }
   }
-  console.log(comicData, lightNovelData, novelBookData);
   return {
     props: {
       comicData: comicData.Items || null,
