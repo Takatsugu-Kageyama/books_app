@@ -3,32 +3,44 @@
   .header {
     @apply text-[32px] text-center font-bold text-middleBlack;
   }
-
   .booksBox {
     @apply text-[32px] w-[90%] mx-auto;
     .booksCardArea {
-      @apply flex justify-between pt-[30px] grid-cols-5;
+      @apply max-w-full grid justify-between pt-[30px] grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 2xl:grid-cols-7;
       .booksCard {
-        @apply object-contain;
-        .booksImg {
-          @apply w-fit;
-          img {
-            @apply cursor-pointer w-fit;
+        @apply w-[80%] m-[10px];
+        .cardsContent {
+          @apply w-full;
+          .booksImg {
+            @apply w-full;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+            img {
+              @apply cursor-pointer w-full;
+            }
+          }
+
+          .booksTitle {
+            @apply pt-[20px] text-[16px] md:text-[14px] font-bold;
+          }
+
+          .booksAuthor {
+            @apply text-[14px] md:text-[12px] text-fadeGray;
+          }
+
+          .booksPrice {
+            @apply text-[14px] md:text-[17px] text-middleRed;
           }
         }
-
-        .booksTitle {
-          @apply w-[210px] text-[16px] font-bold;
-        }
-
-        .booksAuthor {
-          @apply text-[12px] text-fadeGray;
-        }
-
-        .booksPrice {
-          @apply text-[20px] text-middleRed;
+        &:last-child{
+          @apply hidden 2xl:block;
         }
       }
+    }
+  }
+  .cardError{
+    @apply max-w-full pt-[30px];
+    .error{
+      @apply flex-none text-[18px] w-full leading-[2] grow-[7];
     }
   }
 }

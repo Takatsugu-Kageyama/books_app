@@ -1,7 +1,7 @@
 .overall {
   @apply w-[90%] mx-auto pt-[30px] pb-[180px];
   .booksBox {
-    @apply bg-bgWhite flex items-center h-[297px];
+    @apply bg-bgWhite flex flex-col sm:flex-row items-center py-[20px] sm:h-[297px] sm:py-0;
     .booksImage {
       @apply w-[189px];
       img {
@@ -10,26 +10,41 @@
     }
 
     .booksDetail {
-      @apply pl-[40px] w-[60%] flex flex-col gap-y-[30px];
+      @apply self-center w-fit flex flex-col gap-y-[30px] sm:w-[60%] sm:pl-[40px];
       .booksContents {
-        @apply flex flex-col gap-y-[10px];
+        @apply flex flex-col gap-y-[10px] pl-[20px] pt-[10px] sm:pl-0;
         h2 {
-          @apply text-[28px] font-bold;
+          @apply w-fit text-[24px] sm:text-[28px] font-bold;
         }
 
         .booksAuthor {
-          @apply text-[20px] text-fadeGray;
+          @apply w-fit text-[18px] sm:text-[20px] text-fadeGray;
         }
 
         .booksPrice {
-          @apply text-[20px] text-middleRed;
+          @apply w-fit text-[18px] sm:text-[20px] text-middleRed;
         }
       }
 
       button {
-        @apply w-[300px] h-[56px] text-[24px] rounded-[20px] bg-middleGreen;
+        @apply w-fit px-[20px] h-[56px] text-[24px] rounded-[20px] bg-middleGreen;
         &:hover {
           @apply bg-hoverBtn;
+        }
+        .cartIcon {
+          @apply text-[30px] mr-[10px];
+        }
+      }
+      .alreadyBtn {
+        @apply flex flex-row items-center w-[300px] h-[56px] text-[24px] rounded-[20px] bg-[#CCCCCC];
+        &:hover {
+          @apply bg-hoverGray;
+        }
+        p {
+          @apply basis-[60%] self-center;
+        }
+        .checkIcon {
+          @apply basis-[20%] text-[30px] mr-[30px];
         }
       }
     }
@@ -55,7 +70,7 @@
     }
 
     .inputArea {
-      @apply w-[90%] mx-auto flex justify-center border-b-4 border-middleGray mb-[35px];
+      @apply w-[90%] mx-auto flex justify-center border-b-4 border-middleGray mb-[20px] sm:mb-[35px];
       input {
         @apply my-[20px] px-[10px] w-[80%] h-[40px] bg-middleGray rounded-[10px];
         &:focus {
@@ -64,7 +79,7 @@
       }
 
       button {
-        @apply w-[160px] h-[40px] ml-auto text-[16px] bg-middleGreen self-center rounded-[18px];
+        @apply w-[20%] sm:w-[160px] h-[40px] ml-auto text-[16px] bg-middleGreen self-center rounded-[8px] sm:rounded-[18px];
         &:hover {
           @apply bg-hoverBtn;
         }
@@ -74,9 +89,9 @@
     .unitThread {
       @apply flex mb-[30px] pb-[35px] w-[90%] mx-auto border-b-4 border-middleGray;
       .userIcon {
-        @apply flex justify-center items-center w-[64px] h-[64px] self-start bg-middleBlack rounded-[50%];
+        @apply flex justify-center items-center w-[43px] h-[43px] sm:w-[64px] sm:h-[64px] self-start bg-middleBlack rounded-[50%];
         .usersIconImg {
-          @apply w-[36.36px];
+          @apply w-[30px] sm:w-[36.36px];
           img {
             @apply w-full;
           }
@@ -84,17 +99,17 @@
       }
 
       .userContents {
-        @apply w-[60%] pl-[20px];
+        @apply w-[90%] sm:w-[60%] pl-[20px];
         .userData {
           @apply flex gap-x-[10px];
           .userName {
             @apply leading-[1];
             h2 {
-              @apply text-[24px] font-bold;
+              @apply text-[18px] sm:text-[24px] font-bold;
             }
 
             p {
-              @apply text-[14px] text-middleBlack;
+              @apply pt-[5px] text-[12px] sm:text-[14px] text-middleBlack;
             }
           }
 
@@ -113,7 +128,7 @@
     }
     .noThread {
       .textBox {
-        @apply w-[90%] mx-auto text-[24px] font-semibold text-center py-[30px];
+        @apply w-[90%] mx-auto text-[14px] sm:text-[24px] font-semibold text-center py-[30px];
       }
     }
   }

@@ -18,3 +18,24 @@ export const getCartBooks = async (userId: string) => {
     }
   }
 };
+
+//!カート内の本のISBN番号を得る関数
+export const getCartBooksIsbn = async (userId: string) => {
+  //!参照先
+  const userCartRef = doc(db, "User", userId);
+  //!格納されている本のIsbn番号を取得
+  //!本単体が持つデータの取得
+  const cartBooksIsbnDocSnap = await getDoc(userCartRef);
+  //!ユーザーのデータがあるかどうか確認
+  if (cartBooksIsbnDocSnap.exists()) {
+    //!カート内の本が格納されている配列
+    const cartBooksIsbnData = cartBooksIsbnDocSnap.data().CartBooks;
+    //!isbnを格納する配列
+    const cartBooksIsbn = [];
+    //!isbnを配列に入れる
+    for (const isbn of cartBooksIsbnData) {
+      cartBooksIsbn.push(isbn.Book.isbn);
+    }
+    return cartBooksIsbn;
+  }
+};

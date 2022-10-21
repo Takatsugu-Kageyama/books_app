@@ -1,5 +1,5 @@
 import { doc, deleteDoc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
-import { db } from "../Firebase/firebaseConfig";
+import { db } from "./firebaseConfig";
 
 export const deleteCatBook = async (userId: string, booksId: string) => {
   //!参照先

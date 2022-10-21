@@ -1,22 +1,93 @@
 .layoutWrap {
+  @apply bg-bgWhite font-NotoSans;
   .contentsWrap {
     @apply flex w-[100vw] max-h-screen overflow-hidden;
     .rightSideWrap {
       @apply basis-full;
       .topContainer {
-        @apply flex justify-between pt-[20px] md:text-[18px] pr-[50px];
+        @apply w-[95%] mx-auto flex-col lg:w-full lg:flex-row flex justify-between pt-[20px] md:text-[18px] lg:pr-[50px];
+        .hamburger {
+          display: none;
+        }
+        @media (max-width: 1023px) {
+          .hamburger {
+            display: block;
+            width: 30px;
+            height: 22px;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            margin-left: 23px;
+            z-index: 100;
+          }
+          .openHamburger {
+            display: block;
+            width: 30px;
+            height: 22px;
+            position: absolute;
+            top: 30px;
+            left: 230px;
+            margin-left: 23px;
+            z-index: 100;
+          }
+          .hamburgerBar {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            position: absolute;
+            left: 0;
+            background: #000;
+            transition: top 0.24s, transform 0.24s, opacity 0.24s;
+          }
+          .isActive {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            position: absolute;
+            left: 0;
+            background: #000;
+            transition: top 0.24s, transform 0.24s, opacity 0.24s;
+          }
+          .hamburgerBar:nth-child(1) {
+            top: 0;
+          }
 
+          .hamburgerBar:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+          .hamburgerBar:nth-child(3) {
+            top: 100%;
+            transform: translateY(-100%);
+          }
+
+          .isActive:nth-child(1) {
+            top: 50%;
+            transform: translateY(-50%) rotate(135deg);
+          }
+
+          .isActive:nth-child(2) {
+            transform: translate(50%, -50%);
+            opacity: 0;
+          }
+
+          .isActive:nth-child(3) {
+            top: 50%;
+            transform: translateY(-50%) rotate(-135deg);
+          }
+        }
         .inputArea {
-          @apply w-[80%];
+          @apply mt-[20px] w-full lg:mt-0 lg:w-[80%] order-last lg:order-first;
           input {
-            @apply w-[80%] h-[40px] bg-middleGray rounded-l-[6px] px-[10px];
+            @apply w-[85%] sm:w-[90%] lg:w-[80%] h-[40px] bg-middleGray rounded-l-[6px] px-[10px];
             &:focus {
               @apply outline-hoverBtn;
             }
           }
 
           button {
-            @apply bg-middleGreen w-[10%] h-[40px] rounded-r-[6px] align-top;
+            @apply bg-middleGreen w-[15%] sm:w-[10%] h-[40px] rounded-r-[6px] align-top;
             &:hover {
               @apply bg-hoverBtn;
             }
@@ -24,11 +95,17 @@
         }
 
         .indArea {
-          @apply flex items-center gap-x-[32px];
+          @apply self-end flex items-center gap-x-[14px] lg:gap-x-[32px];
           .cartBtn {
-            @apply w-[190px] h-[42px] rounded-[10px] bg-middleGreen flex items-center justify-center;
+            @apply w-[100%] px-[18px] h-[42px] rounded-[10px] bg-middleGreen flex items-center justify-center;
             &:hover {
               @apply cursor-pointer bg-hoverBtn;
+            }
+            .cartIcon {
+              @apply lg:text-[1.5vw];
+            }
+            p {
+              @apply lg:text-[1.3vw];
             }
           }
 

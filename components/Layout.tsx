@@ -1,60 +1,108 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import styles from "../styles/components/layout.module.css";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Head from "next/head";
 import Link from "next/link";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useAuthContext } from "../util/Context/AuthContext";
 
 type LayoutProps = Required<{
   readonly children: ReactElement;
 }>;
 
 const Layout = ({ children }: LayoutProps) => {
-  //Stateの設定
-  const [inputValue, setInputValue] = useState(""); //!ユーザーが検索欄に入力した値を保管
-
-  //変数の設定
+  //!ユーザーが検索欄に入力した値を保管
+  const [inputValue, setInputValue] = useState("");
+  //!変換の状態
+  const [isComposing, setIsComposing] = useState(false);
+  //!ハンバーガーメニューがクリックされているかの状態を保管
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter(); //!Next Router
-
-  //ユーザーアクション
+  //!ユーザーがログインしているかの確認
+  const { user } = useAuthContext();
+  const isLoggedIn = !!user;
+  //!ユーザーアクション
+  const keyPress = (e: any) => {
+    if (e.key === "Enter" && isComposing && inputValue !== "") {
+      router.push({
+        pathname: "SearchResult",
+        query: { value: inputValue },
+      });
+    }
+  };
   //!検索欄に入力された内容を保存
-  const isSearchBarChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
-  // console.log(inputValue);
+  useEffect(() => {
+    const handleRouteChange = (url:any) => {
+        setIsMenuOpen(false);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, []);
+  console.log(isMenuOpen);
   return (
     <div className={styles.layoutWrap}>
       <div className={styles.contentsWrap}>
-        <Navbar />
+        <Navbar isMenuOpen={isMenuOpen} />
         <div className={styles.rightSideWrap}>
           {/*検索欄とロゴ*/}
           <div className={styles.topContainer}>
+            {/* ハンバーガーメニュー */}
+            <button
+              onClick={(e) => {
+                e.preventDefault;
+                setIsMenuOpen(!isMenuOpen);
+              }}
+              className={isMenuOpen ? styles.openHamburger : styles.hamburger}
+            >
+              <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
+              <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
+              <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
+            </button>
             <div className={styles.inputArea}>
-              <input onInput={isSearchBarChanged} placeholder="本のタイトルを検索" />
+              <input
+                onInput={isSearchBarChanged}
+                onKeyPress={(e) => keyPress(e)}
+                placeholder="本のタイトルを検索"
+                onCompositionStart={() => {
+                  setIsComposing(false);
+                }}
+                onCompositionEnd={() => {
+                  setIsComposing(true);
+                }}
+              />
               <button
                 onClick={(e) => {
                   e.preventDefault;
-                  router.push({
-                    pathname: "SearchResult",
-                    query: { value: inputValue },
-                  });
+                  if (inputValue !== "") {
+                    router.push({
+                      pathname: "SearchResult",
+                      query: { value: inputValue },
+                    });
+                  }
                 }}
               >
                 検索
               </button>
             </div>
             <div className={styles.indArea}>
-              <Link href="/Cart">
+              <Link href={isLoggedIn ? "/Cart" : "/Login"}>
                 <div className={styles.cartBtn}>
-                  <ShoppingCartIcon />
+                  <ShoppingCartIcon className={styles.cartIcon} />
                   <p>カート</p>
                 </div>
               </Link>
               <div className={styles.accountBtn}>
-                <AccountCircleIcon className={styles.accountIcon} />
+                <Link href={isLoggedIn ? "/UserPage" : "/Login"}>
+                  <AccountCircleIcon className={styles.accountIcon} />
+                </Link>
               </div>
             </div>
           </div>

@@ -1,0 +1,45 @@
+.overall {
+  @apply h-[100vh] bg-white font-NotoSans;
+  .formContainer {
+    .logo {
+      @apply w-[180px] md:w-[240px] mx-auto py-[30px];
+    }
+    h2 {
+      @apply py-[30px] text-[24px] md:text-[32px] text-center;
+    }
+    .loginCard {
+      @apply w-[340px] md:w-[600px] mx-auto pb-[20px] border-[1.5px] outline-[#a6a6a6] outline-dashed outline-2 outline-offset-2 rounded-[5px];
+      .perInput {
+        @apply py-[10px] m-[10px];
+        p {
+          @apply m-[10px] md:text-[18px];
+        }
+        .input {
+          @apply w-full h-[40px] border-[1.5px] border-[#a6a6a6] rounded-[5px];
+          box-shadow: 0 1px 0 rgb(255 255 255 / 50%), 0 1px 0 rgb(0 0 0 / 7%) inset;
+          &:focus {
+            @apply outline-hoverBtn;
+          }
+        }
+        .errorText {
+          @apply text-red-500;
+        }
+      }
+      .submitBtn {
+        @apply md:text-[24px] block bg-middleGreen w-[180px] h-[50px] rounded-[15px] mx-auto;
+        &:hover {
+          @apply bg-hoverBtn;
+        }
+      }
+    }
+    .registerBtn {
+      @apply w-fit mx-auto pt-[20px];
+      .registerLink {
+        @apply w-fit mx-auto;
+        &:hover {
+          @apply opacity-[70%];
+        }
+      }
+    }
+  }
+}

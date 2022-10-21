@@ -1,0 +1,54 @@
+.overall .userContainer {
+  @apply w-[80%] mx-auto;
+}
+.overall .userContainer h2 {
+  @apply text-[24px] md:text-[32px] font-bold py-[63px];
+}
+.overall .userContainer .userCard {
+  @apply bg-bgWhite py-[30px];
+}
+.overall .userContainer .userCard .nameBlock {
+  @apply w-[90%] mx-auto border-b-[3px] border-middleGray py-[20px];
+}
+.overall .userContainer .userCard .nameBlock .nameData {
+  @apply mx-auto flex justify-center text-[18px] md:text-[24px] font-bold;
+}
+.overall .userContainer .userCard .nameBlock .nameData .title {
+  @apply text-[#b3b3b3];
+}
+.overall .userContainer .userCard .nameBlock .nameData p {
+  @apply basis-[50%];
+}
+.overall .userContainer .userCard .accountBlock {
+  @apply w-[90%] mx-auto;
+}
+.overall .userContainer .userCard .accountBlock .accountData {
+  @apply flex justify-between text-[18px] md:text-[24px] font-bold border-b-[3px] border-middleGray py-[20px];
+}
+.overall .userContainer .userCard .accountBlock .accountData p {
+  @apply basis-[50%];
+}
+.overall .userContainer .userCard .accountBlock .accountData .title {
+  @apply text-[#b3b3b3];
+}
+.overall .userContainer .userCard .emailBlock {
+  @apply w-[90%] mx-auto;
+}
+.overall .userContainer .userCard .emailBlock .emailData {
+  @apply flex justify-between text-[18px] md:text-[24px] font-bold border-b-[3px] border-middleGray py-[20px];
+}
+.overall .userContainer .userCard .emailBlock .emailData p {
+  @apply basis-[50%];
+}
+.overall .userContainer .userCard .emailBlock .emailData .title {
+  @apply text-[#b3b3b3];
+}
+.overall .userContainer .signOutBtn {
+  @apply border border-black mt-[20px] p-[10px] rounded-[20px] font-[700];
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+.overall .userContainer .signOutBtn:hover {
+  transform: scale(1.2);
+}
+/*# sourceMappingURL=userPage.module.css.map */

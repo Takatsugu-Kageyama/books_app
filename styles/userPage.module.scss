@@ -1,0 +1,56 @@
+.overall {
+  .userContainer {
+    @apply w-[80%] mx-auto;
+    h2 {
+      @apply text-[24px] md:text-[32px] font-bold py-[63px];
+    }
+    .userCard {
+      @apply bg-bgWhite py-[30px];
+      .nameBlock {
+        @apply w-[90%] mx-auto border-b-[3px] border-middleGray py-[20px];
+        .nameData {
+          @apply mx-auto flex justify-center text-[18px] md:text-[24px] font-bold;
+          .title {
+            @apply text-[#b3b3b3];
+          }
+          p {
+            @apply basis-[50%];
+          }
+        }
+      }
+      .accountBlock {
+        @apply w-[90%] mx-auto;
+        .accountData {
+          @apply flex justify-between text-[18px] md:text-[24px] font-bold border-b-[3px] border-middleGray py-[20px];
+          p {
+            @apply basis-[50%];
+          }
+          .title {
+            @apply text-[#b3b3b3];
+          }
+        }
+      }
+      .emailBlock {
+        @apply w-[90%] mx-auto;
+        .emailData {
+          @apply flex justify-between text-[18px] md:text-[24px] font-bold border-b-[3px] border-middleGray py-[20px];
+          p {
+            @apply basis-[50%];
+          }
+          .title {
+            @apply text-[#b3b3b3];
+          }
+        }
+      }
+    }
+    .signOutBtn {
+      @apply border border-black mt-[20px] p-[10px] rounded-[20px] font-[700];
+      transition: all 0.3s ease 0s;
+      text-decoration: none;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
