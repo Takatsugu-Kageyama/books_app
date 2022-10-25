@@ -19,6 +19,8 @@ const Layout = ({ children }: LayoutProps) => {
   const [isComposing, setIsComposing] = useState(false);
   //!ハンバーガーメニューがクリックされているかの状態を保管
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //!セレクトされたジャンルを保管
+  const [isGenre, setIsGenre] = useState("001");
   const router = useRouter(); //!Next Router
   //!ユーザーがログインしているかの確認
   const { user } = useAuthContext();
@@ -32,13 +34,21 @@ const Layout = ({ children }: LayoutProps) => {
       });
     }
   };
+  useEffect(() => {
+    if (inputValue !== "") {
+      router.push({
+        pathname: "SearchResult",
+        query: { value: inputValue, genre: isGenre },
+      });
+    }
+  }, [isGenre]);
   //!検索欄に入力された内容を保存
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
   useEffect(() => {
-    const handleRouteChange = (url:any) => {
-        setIsMenuOpen(false);
+    const handleRouteChange = (url: any) => {
+      setIsMenuOpen(false);
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -46,7 +56,6 @@ const Layout = ({ children }: LayoutProps) => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, []);
-  console.log(isMenuOpen);
   return (
     <div className={styles.layoutWrap}>
       <div className={styles.contentsWrap}>
@@ -67,6 +76,24 @@ const Layout = ({ children }: LayoutProps) => {
               <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
             </button>
             <div className={styles.inputArea}>
+              <select value={isGenre} className={styles.genreSelect} onChange={(e) => setIsGenre(e.target.value)}>
+                <option value="001">すべて</option>
+                <option value="001001">漫画</option>
+                <option value="001002">語学・参考書</option>
+                <option value="001003">絵本・児童書</option>
+                <option value="001004">小説・エッセイ</option>
+                <option value="001005">パソコン・システム開発</option>
+                <option value="001006">ビジネス・経済・就職</option>
+                <option value="001007">旅行・留学・アウトドア</option>
+                <option value="001008">文・思想・社会</option>
+                <option value="001010">美容・暮らし・健康・料理</option>
+                <option value="001011">エンタメ・ゲーム</option>
+                <option value="001012">科学・技術</option>
+                <option value="001013">写真集・タレント</option>
+                <option value="001017">ライトノベル</option>
+                <option value="001019"> 文庫</option>
+                <option value="001020"> 新書</option>
+              </select>
               <input
                 onInput={isSearchBarChanged}
                 onKeyPress={(e) => keyPress(e)}
@@ -84,7 +111,7 @@ const Layout = ({ children }: LayoutProps) => {
                   if (inputValue !== "") {
                     router.push({
                       pathname: "SearchResult",
-                      query: { value: inputValue },
+                      query: { value: inputValue, genre: isGenre },
                     });
                   }
                 }}

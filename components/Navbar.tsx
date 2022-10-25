@@ -5,7 +5,6 @@ type LayoutPropsSchema = {
   isMenuOpen: boolean;
 };
 export default function Navbar({ isMenuOpen }: LayoutPropsSchema) {
-  console.log(isMenuOpen);
   return (
     <div>
       <div className={isMenuOpen ? styles.openOverall : styles.overall}>
