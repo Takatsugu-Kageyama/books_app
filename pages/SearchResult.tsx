@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/searchResult.module.scss";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { async } from "@firebase/util";
 
 const SearchResult = ({ booksData }: any) => {
   //ステートの設定
@@ -11,12 +9,12 @@ const SearchResult = ({ booksData }: any) => {
   //変数
   const router = useRouter(); //!Next Router
   const inputWord = router.query.value;
-
+  const selectedGenre = router.query.genre;
   //Side Effect
   //!入力値が変更された時に再度API接続をしてデータを取得
   useEffect(() => {
     setResultBooks(booksData);
-  }, [inputWord]);
+  }, [inputWord, selectedGenre]);
 
   return (
     <div className={styles.overall}>
@@ -54,6 +52,7 @@ export default SearchResult;
 export const getServerSideProps = async (context: any) => {
   const { query } = context;
   const inputWord = query.value;
+  const genreId = query.genre;
   let data = null;
   function sleepByPromise(sec: any) {
     return new Promise((resolve) => setTimeout(resolve, sec * 1000));
@@ -61,9 +60,10 @@ export const getServerSideProps = async (context: any) => {
   while (!data) {
     await sleepByPromise(0.3);
     const response = await fetch(
-      `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&keyword=${inputWord}&size=1&sort=reviewCount`
+      `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=${genreId}&keyword=${inputWord}&size=1&sort=reviewCount`
     );
     data = await response.json();
+    // console.log(data.Items);
     if (data) {
       return {
         props: {

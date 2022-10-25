@@ -79,8 +79,27 @@
 .layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea {
   @apply mt-[20px] w-full lg:mt-0 lg:w-[80%] order-last lg:order-first;
 }
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea .genreSelect {
+  @apply hidden lg:inline-block bg-lightGray rounded-l-[6px];
+  top: -1px;
+  left: 0;
+  height: 40px;
+  width: 20%;
+  font-family: inherit;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  filter: alpha(opacity=0);
+  visibility: visible;
+  border: 0;
+  line-height: 35px;
+}
+.layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea .genreSelect option {
+  @apply bg-bgWhite;
+}
 .layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea input {
-  @apply w-[85%] sm:w-[90%] lg:w-[80%] h-[40px] bg-middleGray rounded-l-[6px] px-[10px];
+  @apply w-[85%] sm:w-[90%] lg:w-[70%] h-[40px] bg-middleGray px-[10px];
 }
 .layoutWrap .contentsWrap .rightSideWrap .topContainer .inputArea input:focus {
   @apply outline-hoverBtn;
