@@ -30,7 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
     if (e.key === "Enter" && isComposing && inputValue !== "") {
       router.push({
         pathname: "SearchResult",
-        query: { value: inputValue },
+        query: { value: inputValue, genre: isGenre },
       });
     }
   };
