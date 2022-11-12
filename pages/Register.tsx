@@ -42,7 +42,7 @@ const Register = () => {
             } else if (!/^[a-zA-Z0-9]+$/) {
               errors.account = "※アカウントは半角英字で入力してください。";
             } else if (values.account.length <= 3 && 20 >= values.account.length) {
-              errors.account = "※アカウントは10文字以上20文字以下で入力してください。";
+              errors.account = "※アカウントは3文字以上20文字以下で入力してください。";
             }
             //!メールアドレスのバディエーション
             if (!values.email) {
@@ -58,7 +58,7 @@ const Register = () => {
             }
             return errors;
           }}
-          onSubmit={async (values, { setSubmitting }) => {
+          onSubmit={async (values) => {
             await createUserWithEmailAndPassword(auth, values.email, values.password).then((cred) => {
               sendUserData(cred.user.uid, values.name, values.account, values.email, values.password).then(()=>{
                 router.push("/");
@@ -114,7 +114,6 @@ const Register = () => {
                     name="password"
                     onChange={handleChange}
                     value={values.password}
-                    // pattern="^[0-9a-zA-Z]+$"
                   />
                   <p className={styles.errorText}>{errors.password && touched.password && errors.password}</p>
                 </div>
