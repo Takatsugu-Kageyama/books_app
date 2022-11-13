@@ -12,11 +12,6 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
 
   //router初期設定
   const router = useRouter();
-  // useEffect(() => {
-  //   if (comicData === null || lightNovelData === null || pictureBookData === null || novelBookData === null) {
-  //     window.alert("申し訳ございません。エラーが発生したため再度リロードをお願いします。");
-  //   }
-  // });
   //コンポーネントがマウントされたときにAPIデータを格納
   useEffect(() => {
     setComicPosts(comicData);
