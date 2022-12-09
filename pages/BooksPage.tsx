@@ -43,9 +43,10 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
             return setIsBooksCart(true);
           }
         }
+        console.log(value);
       });
     }
-  });
+  }, []);
 
   //!ページリロードと同時にFirebaseにチャットがあるかどうかを確認する
   useEffect(() => {
@@ -194,8 +195,6 @@ export default BooksPage;
 export const getServerSideProps = async (context: any) => {
   const { query } = context;
   const isbn = query.value;
-  console.log(context);
-  let isCartIsbn = "";
   let data = null;
   function sleepByPromise(sec: any) {
     return new Promise((resolve) => setTimeout(resolve, sec * 1000));
@@ -211,19 +210,10 @@ export const getServerSideProps = async (context: any) => {
       break;
     }
   }
-  //本がカートにあるかを確認する関数
-  await getCartBooksIsbn("I7PXmd8olYKMk0SYEnuP").then((value: any) => {
-    for (const CartIsbn of value) {
-      if (CartIsbn === isbn) {
-        isCartIsbn = CartIsbn;
-      }
-    }
-  });
   return {
     props: {
       booksData: data.Items,
       clickedBooksIsbn: isbn,
-      cartBooksIsbn: isCartIsbn,
     },
   };
 };

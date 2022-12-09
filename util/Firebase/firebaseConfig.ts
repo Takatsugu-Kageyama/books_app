@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 
 //firebase Config object:
 const firebaseConfig = {
-  apiKey: "AIzaSyAl9l4W1m7pREhu6c41cdsO7a-qv1XwiNs",
-  authDomain: "booktalk-b17e0.firebaseapp.com",
-  projectId: "booktalk-b17e0",
-  storageBucket: "booktalk-b17e0.appspot.com",
-  messagingSenderId: "1029067192642",
-  appId: "1:1029067192642:web:67180f7ade952c0fb070db",
-  measurementId: "G-991BD62CH0",
+  apiKey: "AIzaSyCTwMKd6Grv2Qw2WQkcZzgAKz3CsYjS8Wo",
+  authDomain: "booktalk-b19d8.firebaseapp.com",
+  projectId: "booktalk-b19d8",
+  storageBucket: "booktalk-b19d8.appspot.com",
+  messagingSenderId: "781862730715",
+  appId: "1:781862730715:web:19d719f37bea149d3245fe",
+  measurementId: "G-4Y2WP05VSV"
 };
 
 // Initialize Firebase
