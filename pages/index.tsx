@@ -36,7 +36,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
       {/*漫画*/}
       <div className={styles.booksBox}>
         <h2>漫画</h2>
-        <div key={null} className={comicPosts !== null? styles.booksCardArea : styles.cardError}>
+        <div key={null} className={comicPosts !== null ? styles.booksCardArea : styles.cardError}>
           {comicPosts ? (
             comicPosts.map((value: any) => {
               return (
@@ -73,7 +73,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
       {/*ライトノベル*/}
       <div className={styles.booksBox}>
         <h2>ライトノベル</h2>
-        <div key={null} className={lightNovelData!== null? styles.booksCardArea : styles.cardError}>
+        <div key={null} className={lightNovelData !== null ? styles.booksCardArea : styles.cardError}>
           {lightNovelPosts ? (
             lightNovelPosts.map((value: any) => {
               return (
@@ -112,7 +112,7 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
       {/*小説・エッセイ*/}
       <div className={styles.booksBox}>
         <h2>小説・エッセイ</h2>
-        <div key={null} className={novelBookData!== null? styles.booksCardArea : styles.cardErro}>
+        <div key={null} className={novelBookData !== null ? styles.booksCardArea : styles.cardError}>
           {novelBooksProps ? (
             novelBooksProps.map((value: any) => {
               return (
@@ -121,13 +121,10 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                     <div
                       className={styles.booksImg}
                       onClick={() => {
-                        // setClickedBook(value);
-                        // console.log(clickedBook);
                         router.push({
                           pathname: "BooksPage",
                           query: { value: value.Item.isbn },
                         });
-                        // isBooksChats(value.Item.isbn);
                       }}
                     >
                       <img src={value.Item.largeImageUrl} alt="" />
