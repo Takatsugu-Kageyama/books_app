@@ -47,7 +47,7 @@ const Login = () => {
             }, 400);
             await signInWithEmailAndPassword(auth, values.name, values.password).then(()=>{
               router.push("/");
-            }).catch((error) => {
+            }).catch(() => {
               //異常終了時
               window.alert("メールアドレスまたはパスワードが違います");
           });
