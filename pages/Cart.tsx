@@ -22,11 +22,10 @@ const Cart = () => {
   useEffect(() => {
     if (isLoggedIn) {
       getUserData(user.uid).then((userValue: UserSchema) => {
-        console.log(userValue);
         setUserName(userValue.name);
       });
     }
-  }, [user]);
+  }, [isLoggedIn, user]);
   //!ユーザーのカート内のデータ取得
   useEffect(() => {
     if (isLoggedIn) {
@@ -34,7 +33,7 @@ const Cart = () => {
         setCartValue(value);
       });
     }
-  }, [cartValue]);
+  }, [cartValue, isLoggedIn, user?.uid]);
   useEffect(() => {
     let sumPrice = 0;
     if (cartValue) {
@@ -102,13 +101,19 @@ const Cart = () => {
           </div>
           <div className={styles.sumPriceBox}>
             <div className={styles.sum}>
-              <h2>小計（２個の商品）（税込み）</h2>
+              <h2>小計（税込み）</h2>
               <h2>
                 ：￥{cartPrice}
                 <span>税込み</span>
               </h2>
             </div>
-            <button className={styles.cashBtn}>レジにすすむ</button>
+            {cartValue.length ? (
+              <button className={styles.cashBtn} >
+                レジにすすむ
+              </button>
+            ) : (
+              <button type="button" className={styles.cashBtn} disabled>レジにすすむ</button>
+            )}
           </div>
         </div>
       ) : null}

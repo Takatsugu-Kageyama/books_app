@@ -14,7 +14,7 @@ const SearchResult = ({ booksData }: any) => {
   //!入力値が変更された時に再度API接続をしてデータを取得
   useEffect(() => {
     setResultBooks(booksData);
-  }, [inputWord, selectedGenre]);
+  }, [booksData, inputWord, selectedGenre]);
 
   return (
     <div className={styles.overall}>
@@ -63,7 +63,6 @@ export const getServerSideProps = async (context: any) => {
       `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=${genreId}&keyword=${inputWord}&size=1&sort=reviewCount`
     );
     data = await response.json();
-    // console.log(data.Items);
     if (data) {
       return {
         props: {

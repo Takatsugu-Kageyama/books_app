@@ -32,7 +32,7 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
     //!クリックされた本のデータをとってくる
     setClickedBooksValue(booksData);
     //!カートにあるデータを取ってくる
-  }, []);
+  }, [booksData]);
 
   //!ページにアクセスされたときに、その本がカートに入ってるかを確認する
   useEffect(() => {
@@ -43,18 +43,16 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
             return setIsBooksCart(true);
           }
         }
-        console.log(value);
       });
     }
-  }, []);
+  }, [clickedBooksIsbn, isLoggedIn, user?.uid]);
 
   //!ページリロードと同時にFirebaseにチャットがあるかどうかを確認する
   useEffect(() => {
     isBooksChats(clickedBooksIsbn).then((value) => {
       setIsBooksChatsData(value);
     });
-    console.log(isTextInput);
-  }, [isTextInput]);
+  }, [clickedBooksIsbn, isTextInput]);
 
   return (
     <div className={styles.overall}>
@@ -86,7 +84,6 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
                           image: value.Item.largeImageUrl,
                           isbn: value.Item.isbn,
                         };
-                        // console.log(CartBooksValue);
                         addCart(CartBooksValue).then(() => {
                           window.alert("カートに追加しました！");
                         });

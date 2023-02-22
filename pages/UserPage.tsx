@@ -23,7 +23,7 @@ const UserPage = () => {
         setUserData(userValue);
       });
     }
-  }, [user]);
+  }, [isLoggedIn, user]);
   return (
     <div className={styles.overall}>
       <Head>
