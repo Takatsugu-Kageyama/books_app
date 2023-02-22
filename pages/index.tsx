@@ -7,7 +7,6 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
   //APIを保管するstate
   const [comicPosts, setComicPosts] = useState([]);
   const [lightNovelPosts, setLightNovelPosts] = useState([]);
-  const [pictureBooksPosts, setPictureBooksPosts] = useState([]);
   const [novelBooksProps, setNovelBooksProps] = useState([]);
 
   //router初期設定
@@ -16,9 +15,8 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
   useEffect(() => {
     setComicPosts(comicData);
     setLightNovelPosts(lightNovelData);
-    setPictureBooksPosts(pictureBookData);
     setNovelBooksProps(novelBookData);
-  }, []);
+  }, [comicData, lightNovelData, novelBookData, pictureBookData]);
   return (
     <div className={styles.overall}>
       <Head>
@@ -82,13 +80,10 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
                     <div
                       className={styles.booksImg}
                       onClick={() => {
-                        // setClickedBook(value);
-                        // console.log(clickedBook);
                         router.push({
                           pathname: "BooksPage",
                           query: { value: value.Item.isbn },
                         });
-                        // isBooksChats(value.Item.isbn);
                       }}
                     >
                       <img src={value.Item.largeImageUrl} alt="" />

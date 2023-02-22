@@ -12,7 +12,7 @@ const ComicPage = ({ newBooksData, popularBooksData, evaluationBooksData }: any)
     setBooksNewPosts(newBooksData);
     setBooksEarningsPosts(popularBooksData);
     setBooksEvaluationPosts(evaluationBooksData);
-  }, []);
+  }, [evaluationBooksData, newBooksData, popularBooksData]);
   return (
     <div className={styles.overall}>
       <Head>

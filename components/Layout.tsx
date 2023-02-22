@@ -41,7 +41,7 @@ const Layout = ({ children }: LayoutProps) => {
         query: { value: inputValue, genre: isGenre },
       });
     }
-  }, [isGenre]);
+  }, [inputValue, isGenre, router]);
   //!検索欄に入力された内容を保存
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
@@ -55,7 +55,7 @@ const Layout = ({ children }: LayoutProps) => {
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
-  }, []);
+  }, [router.events]);
   return (
     <div className={styles.layoutWrap}>
       <div className={styles.contentsWrap}>

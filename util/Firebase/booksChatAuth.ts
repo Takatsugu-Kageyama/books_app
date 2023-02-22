@@ -11,14 +11,10 @@ export const isBooksChats = async (booksIsbn: any) => {
   //クリックした本のデータベースが存在するかどうかを確認する
   if (booksDocSnap.exists()) {
     //!もし本単体のデータベースがあった場合
-    //return console.log("there is data!!", booksDocSnap.data().Chats);
     const booksChatsData = booksDocSnap.data().Chats; //!チャットが格納される配列
     if (booksChatsData.length === 0) {
-      console.log("there are not chats!");
       return false;
     } else {
-      // console.log("there are chats!");
-      // return console.log(booksChatsData);
       return booksChatsData;
     }
   } else {
