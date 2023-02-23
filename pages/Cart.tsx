@@ -55,7 +55,6 @@ const Cart = () => {
         <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={"/images/icon.png"} />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
       <h2 className={styles.userName}>{userName !== null ? userName : ""}さんのカート</h2>
       {isLoggedIn ? (

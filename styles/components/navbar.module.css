@@ -10,7 +10,7 @@
 }
 
 .nav {
-  @apply ml-[20px] pt-[30px] md:text-[18px] md:ml-0;
+  @apply ml-[20px] pt-[30px] md:text-[18px] md:ml-0 font-MaruGothic;
 }
 .nav .logo {
   @apply cursor-pointer self-center w-[131.28px] h-[17px] flex items-center justify-center;

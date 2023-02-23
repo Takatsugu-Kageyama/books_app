@@ -25,7 +25,6 @@ const ComicPage = ({ newBooksData, popularBooksData, evaluationBooksData }: any)
         <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={"/images/icon.png"} />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
       <h2 className={styles.header}>語学・参考書</h2>
       {/*新着*/}

@@ -29,7 +29,6 @@ const Home: NextPage = ({ comicData, lightNovelData, pictureBookData, novelBookD
         <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={"/images/icon.png"} />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
       {/*漫画*/}
       <div className={styles.booksBox}>

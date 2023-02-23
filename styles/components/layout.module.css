@@ -1,5 +1,5 @@
 .layoutWrap {
-  @apply bg-bgWhite font-NotoSans;
+  @apply bg-bgWhite font-MaruGothic;
 }
 .layoutWrap .contentsWrap {
   @apply flex w-[100vw] max-h-screen overflow-hidden;

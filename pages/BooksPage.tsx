@@ -66,7 +66,6 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
         <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={"/images/icon.png"} />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
       <div className={styles.linkArea}></div>
       {/*本の詳細と画像*/}

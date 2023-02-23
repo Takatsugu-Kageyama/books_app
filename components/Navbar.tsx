@@ -16,25 +16,25 @@ export default function Navbar({ isMenuOpen }: LayoutPropsSchema) {
             </div>
           </Link>
           <ul>
-            <li>
+            <li className=" font-MaruGothic">
               <Link href="/ComicPage">漫画</Link>
             </li>
-            <li>
+            <li className=" font-MaruGothic">
               <Link href="/studyBooks">語学・学習参考書</Link>
             </li>
-            <li>
+            <li className=" font-MaruGothic">
               <Link href="/pictureBooks">絵本・児童書</Link>
             </li>
-            <li>
+            <li className=" font-MaruGothic">
               <Link href="/novelBooks">小説・エッセイ</Link>
             </li>
-            <li>
+            <li className=" font-MaruGothic">
               <Link href="/newBooks">新書</Link>
             </li>
-            <li>
+            <li className=" font-MaruGothic">
               <Link href="/lightNovel">ライトノベル</Link>
             </li>
-            <li>
+            <li className=" font-MaruGothic">
               <Link href="/beautyBooks">美容・暮らし・健康・料理</Link>
             </li>
           </ul>
