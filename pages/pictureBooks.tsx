@@ -29,7 +29,7 @@ const ComicPage = ({ newBooksData, popularBooksData, evaluationBooksData }: any)
       <h2 className={styles.header}>絵本</h2>
       {/*新着*/}
       <div className={styles.booksBox}>
-        <h2>新着漫画</h2>
+        <h2>新着</h2>
         <div className={styles.booksCardArea}>
           {booksNewPosts.map((value: any) => {
             return (
