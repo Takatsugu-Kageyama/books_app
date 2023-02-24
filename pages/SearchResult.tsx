@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/searchResult.module.scss";
 import { useRouter } from "next/router";
+import Head  from "next/head";
 
 const SearchResult = ({ booksData }: any) => {
   //ステートの設定
@@ -18,6 +19,17 @@ const SearchResult = ({ booksData }: any) => {
 
   return (
     <div className={styles.overall}>
+      <Head>
+        <title>Book Talk</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:url" content={"https://booktalk.vercel.app/pictureBooks"} />
+        <meta property="og:title" content={"BookTalk"} />
+        <meta property="og:site_name" content={"BookTalk"} />
+        <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={"/images/icon.png"} />
+      </Head>
       <div className={styles.booksArea}>
         {resultBooks.map((value: any) => {
           return (
