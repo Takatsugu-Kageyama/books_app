@@ -1,3 +1,6 @@
+.overall {
+  @apply pb-[180px];
+}
 .overall .userContainer {
   @apply w-[80%] mx-auto;
 }

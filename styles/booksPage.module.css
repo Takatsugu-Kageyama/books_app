@@ -26,7 +26,7 @@
   @apply w-fit text-[18px] sm:text-[20px] text-middleRed;
 }
 .overall .booksBox .booksDetail button {
-  @apply w-fit px-[20px] h-[56px] text-[24px] rounded-[20px] bg-middleGreen;
+  @apply w-fit px-[20px] h-[56px] text-[24px] rounded-[20px] bg-middleGreen mx-auto md:mx-0;
 }
 .overall .booksBox .booksDetail button:hover {
   @apply bg-hoverBtn;

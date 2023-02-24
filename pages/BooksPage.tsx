@@ -82,7 +82,7 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
                 <p className={styles.booksPrice}>￥{value.Item.itemPrice}</p>
               </div>
               {isLoggedIn ? (
-                <div>
+                <>
                   {!isBooksCart ? (
                     <button
                       onClick={(e) => {
@@ -109,7 +109,7 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
                       <p>追加済</p>
                     </button>
                   )}
-                </div>
+                </>
               ) : (
                 <button
                   onClick={(e) => {
@@ -158,7 +158,7 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
               }
             }}
           >
-            トークする
+            送信
           </button>
         </div>
         {/*TODO:スレッドがデータベース内にあるかどうかで表示を切り替え*/}
