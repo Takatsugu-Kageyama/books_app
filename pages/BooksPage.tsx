@@ -204,20 +204,10 @@ export const getServerSideProps = async (context: any) => {
   const { query } = context;
   const isbn = query.value;
   let data = null;
-  function sleepByPromise(sec: any) {
-    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
-  }
-  //本のデータを受け取る関数
-  while (!data) {
-    await sleepByPromise(0.3);
-    const response = await fetch(
-      `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&isbnjan=${isbn}&hits=1`
-    );
-    data = await response.json();
-    if (data) {
-      break;
-    }
-  }
+  const response = await fetch(
+    `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001&isbnjan=${isbn}&hits=1`
+  );
+  data = await response.json();
   return {
     props: {
       booksData: data.Items,

@@ -150,32 +150,25 @@ export const getServerSideProps = async () => {
   let newBooksData = undefined;
   let popularBooksData = undefined;
   let evaluationBooksData = undefined;
-  while (newBooksData == undefined && popularBooksData == undefined && evaluationBooksData == undefined) {
-    if (newBooksData == undefined) {
-      await sleepByPromise(0.2);
-      //!新着漫画の取得
-      const fetchNewComic = await fetch(
-        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001002&sort=-releaseDate&hits=7"
-      );
-      newBooksData = await fetchNewComic.json();
-    }
-    if (popularBooksData == undefined) {
-      await sleepByPromise(0.2);
-      //!人気作品の取得
-      const fetchPopularComic = await fetch(
-        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001002&sort=sales&hits=7"
-      );
-      popularBooksData = await fetchPopularComic.json();
-    }
-    if (evaluationBooksData == undefined) {
-      await sleepByPromise(0.2);
-      //!高評価の多い作品
-      const fetchEvaluationComic = await fetch(
-        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001002&sort=reviewAverage&hits=7"
-      );
-      evaluationBooksData = await fetchEvaluationComic.json();
-    }
-  }
+
+  //!新着漫画の取得
+  const fetchNewComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001002&sort=-releaseDate&hits=7"
+  );
+  newBooksData = await fetchNewComic.json();
+
+  //!人気作品の取得
+  const fetchPopularComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001002&sort=sales&hits=7"
+  );
+  popularBooksData = await fetchPopularComic.json();
+
+  //!高評価の多い作品
+  const fetchEvaluationComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001002&sort=reviewAverage&hits=7"
+  );
+  evaluationBooksData = await fetchEvaluationComic.json();
+
   return {
     props: {
       newBooksData: newBooksData.Items || null,

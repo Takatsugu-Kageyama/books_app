@@ -16,16 +16,16 @@ const ComicPage = ({ newBooksData, popularBooksData, evaluationBooksData }: any)
   return (
     <div className={styles.overall}>
       <Head>
-      <title>Book Talk ｜ 絵本</title>
-      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-      <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
-      <meta property="og:url" content={"https://booktalk.vercel.app/pictureBooks"} />
-      <meta property="og:title" content={'BookTalk'} />
-      <meta property="og:site_name" content={'BookTalk'} />
-      <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content={"/images/icon.png"} />
-    </Head>
+        <title>Book Talk ｜ 絵本</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:url" content={"https://booktalk.vercel.app/pictureBooks"} />
+        <meta property="og:title" content={"BookTalk"} />
+        <meta property="og:site_name" content={"BookTalk"} />
+        <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={"/images/icon.png"} />
+      </Head>
       <h2 className={styles.header}>絵本</h2>
       {/*新着*/}
       <div className={styles.booksBox}>
@@ -126,32 +126,28 @@ const ComicPage = ({ newBooksData, popularBooksData, evaluationBooksData }: any)
 export default ComicPage;
 
 export const getServerSideProps = async () => {
-  function sleepByPromise(sec: number) {
-    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
-  }
   let newBooksData = undefined;
   let popularBooksData = undefined;
   let evaluationBooksData = undefined;
-  while (!newBooksData && !popularBooksData && !evaluationBooksData) {
-    await sleepByPromise(0.2);
-    //!新着漫画の取得
-    const fetchNewComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=-releaseDate&hits=7"
-    );
-    newBooksData = await fetchNewComic.json();
-    await sleepByPromise(0.2);
-    //!人気作品の取得
-    const fetchPopularComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=sales&hits=7"
-    );
-    popularBooksData = await fetchPopularComic.json();
-    await sleepByPromise(0.2);
-    //!高評価の多い作品
-    const fetchEvaluationComic = await fetch(
-      "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=reviewAverage&hits=7"
-    );
-    evaluationBooksData = await fetchEvaluationComic.json();
-  }
+
+  //!新着漫画の取得
+  const fetchNewComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=-releaseDate&hits=7"
+  );
+  newBooksData = await fetchNewComic.json();
+
+  //!人気作品の取得
+  const fetchPopularComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=sales&hits=7"
+  );
+  popularBooksData = await fetchPopularComic.json();
+
+  //!高評価の多い作品
+  const fetchEvaluationComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001003&sort=reviewAverage&hits=7"
+  );
+  evaluationBooksData = await fetchEvaluationComic.json();
+
   return {
     props: {
       newBooksData: newBooksData.Items,

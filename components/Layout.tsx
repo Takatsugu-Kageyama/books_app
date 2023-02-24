@@ -39,6 +39,7 @@ const Layout = ({ children }: LayoutProps) => {
   const isSearchBarChanged = (e: any) => {
     setInputValue(e.target.value);
   };
+
   useEffect(() => {
     const handleRouteChange = (url: any) => {
       setIsMenuOpen(false);
@@ -69,7 +70,19 @@ const Layout = ({ children }: LayoutProps) => {
               <span className={isMenuOpen ? styles.isActive : styles.hamburgerBar}></span>
             </button>
             <div className={styles.inputArea}>
-              <select value={isGenre} className={styles.genreSelect} onChange={(e) => setIsGenre(e.target.value)}>
+              <select
+                value={isGenre}
+                className={styles.genreSelect}
+                onChange={(e) => {
+                  if (inputValue !== "") {
+                    router.push({
+                      pathname: "SearchResult",
+                      query: { value: inputValue, genre: e.target.value },
+                    });
+                    setIsGenre(e.target.value);
+                  }
+                }}
+              >
                 <option value="001">すべて</option>
                 <option value="001001">漫画</option>
                 <option value="001002">語学・参考書</option>

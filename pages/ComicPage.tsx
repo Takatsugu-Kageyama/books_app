@@ -144,38 +144,28 @@ const ComicPage = ({ newComicData, popularComicData, evaluationComicData }: any)
 export default ComicPage;
 
 export const getServerSideProps = async () => {
-  function sleepByPromise(sec: number) {
-    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
-  }
   let newComicData = undefined;
   let popularComicData = undefined;
   let evaluationComicData = undefined;
-  while (newComicData == undefined && popularComicData == undefined && evaluationComicData == undefined) {
-    if (newComicData == undefined) {
-      await sleepByPromise(0.2);
-      //!新着漫画の取得
-      const fetchNewComic = await fetch(
-        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=-releaseDate&hits=7"
-      );
-      newComicData = await fetchNewComic.json();
-    }
-    if (popularComicData == undefined) {
-      await sleepByPromise(0.2);
-      //!人気作品の取得
-      const fetchPopularComic = await fetch(
-        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=sales&hits=7"
-      );
-      popularComicData = await fetchPopularComic.json();
-    }
-    if (evaluationComicData == undefined) {
-      await sleepByPromise(0.2);
-      //!高評価の多い作品
-      const fetchEvaluationComic = await fetch(
-        "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=reviewAverage&hits=7"
-      );
-      evaluationComicData = await fetchEvaluationComic.json();
-    }
-  }
+
+  //!新着の取得
+  const fetchNewComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=-releaseDate&hits=7"
+  );
+  newComicData = await fetchNewComic.json();
+
+  //!人気作品の取得
+  const fetchPopularComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=sales&hits=7"
+  );
+  popularComicData = await fetchPopularComic.json();
+
+  //!高評価の多い作品
+  const fetchEvaluationComic = await fetch(
+    "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&sort=reviewAverage&hits=7"
+  );
+  evaluationComicData = await fetchEvaluationComic.json();
+
   return {
     props: {
       newComicData: newComicData.Items || null,

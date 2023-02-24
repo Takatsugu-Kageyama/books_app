@@ -54,21 +54,13 @@ export const getServerSideProps = async (context: any) => {
   const inputWord = query.value;
   const genreId = query.genre;
   let data = null;
-  function sleepByPromise(sec: any) {
-    return new Promise((resolve) => setTimeout(resolve, sec * 1000));
-  }
-  while (!data) {
-    await sleepByPromise(0.3);
-    const response = await fetch(
-      `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=${genreId}&keyword=${inputWord}&size=1&sort=reviewCount`
-    );
-    data = await response.json();
-    if (data) {
-      return {
-        props: {
-          booksData: data.Items,
-        },
-      };
-    }
-  }
+  const response = await fetch(
+    `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=${genreId}&keyword=${inputWord}&size=1&sort=reviewCount`
+  );
+  data = await response.json();
+  return {
+    props: {
+      booksData: data.Items,
+    },
+  };
 };

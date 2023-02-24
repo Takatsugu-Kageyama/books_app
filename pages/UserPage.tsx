@@ -11,8 +11,8 @@ import Head from "next/head";
 const UserPage = () => {
   //!ユーザーのデータを格納
   const [userData, setUserData] = useState<UserSchema>();
-  const auth = getAuth(firebase)
-  const router = useRouter()
+  const auth = getAuth(firebase);
+  const router = useRouter();
   //!ユーザーの認証
   const { user } = useAuthContext();
   const isLoggedIn = !!user;
@@ -27,16 +27,16 @@ const UserPage = () => {
   return (
     <div className={styles.overall}>
       <Head>
-      <title>Book Talk ｜ ユーザーページ</title>
-      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-      <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
-      <meta property="og:url" content={"https://booktalk.vercel.app/UserPage"} />
-      <meta property="og:title" content={'BookTalk'} />
-      <meta property="og:site_name" content={'BookTalk'} />
-      <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content={"/images/icon.png"} />
-    </Head>
+        <title>Book Talk ｜ ユーザーページ</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:url" content={"https://booktalk.vercel.app/UserPage"} />
+        <meta property="og:title" content={"BookTalk"} />
+        <meta property="og:site_name" content={"BookTalk"} />
+        <meta property="og:description" content={"あなたの探したい本が見つかるBookTalk"} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={"/images/icon.png"} />
+      </Head>
       <div className={styles.userContainer}>
         <h2>{userData ? userData.name : null}さんのアカウント</h2>
         <div className={styles.userCard}>
@@ -59,11 +59,14 @@ const UserPage = () => {
             </div>
           </div>
         </div>
-        <button onClick={async () => {
-           await signOut(auth).then(()=>{
-            router.push("/");
-           })
-        }} className={styles.signOutBtn}>
+        <button
+          onClick={async () => {
+            await signOut(auth).then(() => {
+              router.push("/");
+            });
+          }}
+          className={styles.signOutBtn}
+        >
           サインアウト
         </button>
       </div>
