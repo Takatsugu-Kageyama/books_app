@@ -135,7 +135,6 @@ const BooksPage = ({ booksData, clickedBooksIsbn, cartBooksIsbn }: any) => {
             <h2>みんなのトーク</h2>
           </div>
         </div>
-        {/*TODO:トークを送信するには会員登録をする必要がある(disable)*/}
         <div className={styles.inputArea}>
           <input
             value={isTextInput}

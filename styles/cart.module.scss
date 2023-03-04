@@ -17,7 +17,7 @@
         }
 
         .booksDetail {
-          @apply m-[10px] sm:pl-[40px] w-full sm:w-[60%] flex flex-col items-center gap-y-[30px];
+          @apply m-[10px] sm:pl-[40px] w-full sm:w-[60%] flex flex-col items-center gap-y-[30px] lg:items-start;
           .booksContents {
             @apply flex flex-col gap-y-[10px];
             h2 {

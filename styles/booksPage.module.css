@@ -65,22 +65,22 @@
   @apply text-[24px] font-bold;
 }
 .overall .threadArea .inputArea {
-  @apply w-[90%] mx-auto flex justify-center border-b-4 border-middleGray mb-[20px] sm:mb-[35px];
+  @apply w-[90%] mx-auto flex justify-center mb-[10px] sm:mb-[15px];
 }
 .overall .threadArea .inputArea input {
-  @apply my-[20px] px-[10px] w-[80%] h-[40px] bg-middleGray rounded-[10px];
+  @apply my-[20px] px-[10px] w-[80%] h-[40px] bg-middleGray rounded-[10px] rounded-r-[5px] lg:rounded-[10px];
 }
 .overall .threadArea .inputArea input:focus {
   @apply outline-hoverBtn;
 }
 .overall .threadArea .inputArea button {
-  @apply w-[20%] sm:w-[160px] h-[40px] ml-auto text-[16px] bg-middleGreen self-center rounded-[8px] sm:rounded-[18px];
+  @apply w-[20%] sm:w-[160px] h-[40px] ml-auto text-[16px] bg-middleGreen self-center rounded-[8px] rounded-l-[5px] sm:rounded-[18px] sm:rounded-l-[5px] lg:rounded-[18px];
 }
 .overall .threadArea .inputArea button:hover {
   @apply bg-hoverBtn;
 }
 .overall .threadArea .unitThread {
-  @apply flex mb-[30px] pb-[35px] w-[90%] mx-auto border-b-4 border-middleGray;
+  @apply flex py-[30px] pb-[35px] w-[90%] mx-auto border-t-4 border-middleGray;
 }
 .overall .threadArea .unitThread .userIcon {
   @apply flex justify-center items-center w-[43px] h-[43px] sm:w-[64px] sm:h-[64px] self-start bg-middleBlack rounded-[50%];
