@@ -1,16 +1,20 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-//firebase Config object:
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCTwMKd6Grv2Qw2WQkcZzgAKz3CsYjS8Wo",
-  authDomain: "booktalk-b19d8.firebaseapp.com",
-  projectId: "booktalk-b19d8",
-  storageBucket: "booktalk-b19d8.appspot.com",
-  messagingSenderId: "781862730715",
-  appId: "1:781862730715:web:19d719f37bea149d3245fe",
-  measurementId: "G-4Y2WP05VSV"
+  apiKey: "AIzaSyBx2KtehDlldVYLG-14JzJ9fS0uuphX8tE",
+  authDomain: "booktalk-staging.firebaseapp.com",
+  projectId: "booktalk-staging",
+  storageBucket: "booktalk-staging.appspot.com",
+  messagingSenderId: "133047841434",
+  appId: "1:133047841434:web:d2ce85ca237aa8c5836523",
+  measurementId: "G-SPZ68EHFG5"
 };
 
 // Initialize Firebase

@@ -168,36 +168,6 @@ export const getServerSideProps = async () => {
   );
   novelBookData = await fetchNovelBook.json();
 
-  // function sleepByPromise(sec: number) {
-  //   return new Promise((resolve) => setTimeout(resolve, sec * 1000));
-  // }
-
-  // while (comicData == undefined && lightNovelData == undefined && novelBookData == undefined) {
-  //   if (comicData == undefined) {
-  //     await sleepByPromise(0.3);
-  //     //!漫画のデータ取得
-  //     const fetchComic = await fetch(
-  //       "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001001&hits=7"
-  //     );
-  //     comicData = await fetchComic.json();
-  //   }
-  //   if (lightNovelData == undefined) {
-  //     await sleepByPromise(0.3);
-  //     //!ライトノベルデータの取得
-  //     const fetchLightNovel = await fetch(
-  //       "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001017&hits=7"
-  //     );
-  //     lightNovelData = await fetchLightNovel.json();
-  //   }
-  //   if (novelBookData == undefined) {
-  //     await sleepByPromise(0.3);
-  //     //!小説
-  //     const fetchNovelBook = await fetch(
-  //       "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?applicationId=1030475744401461181&booksGenreId=001004&size=2&hits=7"
-  //     );
-  //     novelBookData = await fetchNovelBook.json();
-  //   }
-  // }
   return {
     props: {
       comicData: comicData.Items || null,
